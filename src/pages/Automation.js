@@ -3,6 +3,8 @@ import { motion, AnimatePresence } from 'framer-motion';
 import styles from './Automation.module.css';
 import { Text } from '../components/Text';
 import { Button } from '../components/Button';
+import WorkflowViewer from '../components/WorkflowViewer';
+import placeholderImages from '../placeholderImages';
 
 const automationProjects = [
   {
@@ -49,15 +51,53 @@ const automationProjects = [
     image: '/images/automation/reddit-biz-ideas.jpg',
     tags: ['Reddit API', 'AI Analysis', 'Business Intelligence', 'GPT Integration'],
     metrics: [
-      { label: 'Success Rate', value: '85%' },
-      { label: 'Data Sources', value: 'Reddit' },
-      { label: 'Processing Time', value: '<2 min' }
+      { label: 'Posts Analyzed', value: '1000+' },
+      { label: 'Business Ideas', value: '50+' },
+      { label: 'Subreddits', value: '15' }
     ],
-    details: 'I created an intelligent business opportunity discovery system that monitors Reddit for posts describing business problems or requests for solutions. This innovative workflow includes:\n\n• Targeted Subreddit Monitoring: Automatically searches r/smallbusiness and other relevant subreddits for specific keywords\n\n• Content Filtering: Applies multiple filters (upvotes ≥2, post age, content length) to focus on quality posts\n\n• AI-Powered Analysis: Uses an AI agent to determine if a post genuinely describes a business problem\n\n• Business Opportunity Identification: Processes relevant posts to extract business challenges and needs\n\n• Solution Generation: Leverages GPT models to generate viable business ideas and solutions for identified problems\n\n• Multi-Channel Distribution: Automatically sends results to Google Sheets, Slack channels, and email\n\n• Sentiment Analysis: Analyzes emotional content to prioritize urgent business needs\n\n• Comprehensive Data Collection: Captures metadata including subreddit size, post date, and engagement metrics\n\nThis workflow has successfully identified dozens of viable business opportunities by analyzing real market needs posted on Reddit, creating a steady stream of potential business ideas with minimal manual effort.',
-    videoUrl: '/videos/reddit-biz-ideas.mp4'
+    details: 'I created an advanced n8n workflow that leverages AI to discover business opportunities from Reddit discussions. This system includes:\n\n• Multi-Subreddit Monitoring: Continuously monitors 15+ business and entrepreneurship-focused subreddits\n\n• Problem Identification: Uses keyword filtering and sentiment analysis to identify posts discussing genuine business problems\n\n• Content Classification: Categorizes posts by industry, problem type, and potential solution complexity\n\n• GPT-Powered Analysis: Utilizes GPT-4 to analyze problems and generate potential business solutions\n\n• Opportunity Scoring: Implements a scoring algorithm to rank opportunities by viability and market potential\n\n• Detailed Reporting: Generates comprehensive reports with problem statements, solution ideas, and market analyses\n\n• Trend Identification: Identifies emerging problem patterns across multiple posts and communities\n\nThis workflow has successfully identified over 50 viable business opportunities, providing detailed solution concepts and initial market sizing for each.',
+    videoUrl: '/videos/reddit-ideas.mp4'
   },
   {
     id: 4,
+    title: 'First WhatsApp Chatbot',
+    tool: 'n8n',
+    toolIcon: placeholderImages.n8nLogo,
+    description: 'A complete WhatsApp chatbot solution that serves as an AI-powered product sales agent using a vector store knowledgebase.',
+    impact: 'Automated customer product inquiries with 24/7 availability and improved response quality using vector search technology',
+    image: placeholderImages.whatsappChatbot,
+    tags: ['WhatsApp API', 'AI Agent', 'Vector Store', 'Customer Support'],
+    metrics: [
+      { label: 'Response Time', value: '<5 sec' },
+      { label: 'Accuracy', value: '92%' },
+      { label: 'Uptime', value: '24/7' }
+    ],
+    details: 'I developed a comprehensive WhatsApp chatbot that functions as an AI-powered sales assistant for product inquiries. The workflow includes:\n\n• WhatsApp Business API Integration: Establishes a secure connection to receive and respond to customer messages\n\n• Vector Store Knowledge Base: Processes product brochures and documentation into a searchable vector database\n\n• Message Type Handling: Detects and routes incoming message types, focusing on text message processing\n\n• AI Agent Integration: Utilizes OpenAI\'s GPT models to generate intelligent, context-aware responses\n\n• Memory Management: Implements a windowed buffer memory system to maintain conversation context for each user\n\n• Product Catalog Access: Grants the AI agent direct access to product specifications and features via vector search\n\n• User Identification: Tracks unique users to maintain personalized conversation history\n\n• Error Recovery: Includes fallback mechanisms for handling unsupported message types\n\nThis solution has significantly improved customer service efficiency by providing instant, accurate responses to product inquiries around the clock.',
+    hasWorkflow: true,
+    workflowData: 'first-whatsapp-chatbot',
+    videoUrl: null
+  },
+  {
+    id: 'advanced-whatsapp-ai',
+    title: 'Advanced WhatsApp AI Assistant',
+    tool: 'n8n',
+    toolIcon: placeholderImages.n8nLogo,
+    description: 'Build a sophisticated AI assistant that can process various types of WhatsApp messages including text, voice, images, and more.',
+    impact: 'Enhanced customer engagement by enabling multimedia support with 95% message analysis accuracy across all formats',
+    image: placeholderImages.whatsappAI,
+    tags: ['Multimodal AI', 'Media Processing', 'WhatsApp Integration', 'Google Gemini'],
+    metrics: [
+      { label: 'Message Types', value: '4' },
+      { label: 'Analysis Speed', value: '7-12 sec' },
+      { label: 'GPT Integration', value: 'Full' }
+    ],
+    details: 'I engineered an advanced WhatsApp AI assistant capable of handling and analyzing multiple message types with remarkable accuracy. The system features:\n\n• Multi-Format Message Processing: Handles text, audio, video, and image messages using appropriate AI models\n\n• Audio Transcription: Transcribes voice notes and audio messages using specialized AI models\n\n• Video Content Analysis: Utilizes Google Gemini to summarize and describe video content\n\n• Image Recognition: Processes images to extract and describe visual content and text\n\n• Text Summarization: Condenses and processes text messages for efficient AI analysis\n\n• Knowledge Tool Access: Integrates with Wikipedia tool for enhanced information retrieval\n\n• Windowed Memory System: Maintains conversation context across multiple interactions\n\n• Seamless Response Delivery: Returns analysis results and AI responses directly through WhatsApp\n\nThis versatile system provides a complete multimedia communication experience, allowing users to interact naturally using their preferred message format while receiving intelligent, context-aware responses.',
+    hasWorkflow: true,
+    workflowData: 'respond-whatsapp-message',
+    videoUrl: null
+  },
+  {
+    id: 6,
     title: 'Enterprise n8n Self-Hosting',
     tool: 'n8n',
     toolIcon: '/n8nlogo.jpg',
@@ -74,7 +114,7 @@ const automationProjects = [
     videoUrl: '/videos/n8n-selfhosting.mp4'
   },
   {
-    id: 5,
+    id: 7,
     title: 'Custom n8n Nodes Development',
     tool: 'n8n',
     toolIcon: '/n8nlogo.jpg',
@@ -91,7 +131,7 @@ const automationProjects = [
     videoUrl: '/videos/n8n-custom-nodes.mp4'
   },
   {
-    id: 6,
+    id: 8,
     title: 'Data Pipeline Orchestration',
     tool: 'n8n',
     toolIcon: '/n8nlogo.jpg',
@@ -108,7 +148,7 @@ const automationProjects = [
     videoUrl: '/videos/n8n-data-pipeline.mp4'
   },
   {
-    id: 7,
+    id: 9,
     title: 'n8n Workflow Optimization',
     tool: 'n8n',
     toolIcon: '/n8nlogo.jpg',
@@ -125,7 +165,7 @@ const automationProjects = [
     videoUrl: '/videos/n8n-optimization.mp4'
   },
   {
-    id: 8,
+    id: 10,
     title: 'Multi-System Integration Hub',
     tool: 'n8n',
     toolIcon: '/n8nlogo.jpg',
@@ -147,6 +187,11 @@ export default function Automation() {
   const [selectedProject, setSelectedProject] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
   const videoRef = useRef(null);
+  const [isVideoLoaded, setIsVideoLoaded] = useState(false);
+  const [isVideoPlaying, setIsVideoPlaying] = useState(false);
+  
+  // New state for workflow
+  const [showWorkflow, setShowWorkflow] = useState(false);
 
   useEffect(() => {
     setIsLoaded(true);
@@ -203,10 +248,37 @@ export default function Automation() {
     };
   }, []);
 
-  // Create a handler for project selection that manages video loading
+  // Reset video state when project changes
+  useEffect(() => {
+    setIsVideoLoaded(false);
+    setIsVideoPlaying(false);
+    setShowWorkflow(false);
+  }, [selectedProject]);
+
+  const handleVideoLoad = () => {
+    setIsVideoLoaded(true);
+  };
+
+  const toggleVideo = () => {
+    if (videoRef.current) {
+      if (isVideoPlaying) {
+        videoRef.current.pause();
+      } else {
+        videoRef.current.play();
+      }
+      setIsVideoPlaying(!isVideoPlaying);
+    }
+  };
+
   const handleProjectSelect = (project) => {
     setSelectedProject(project);
-    // Videos will be handled in the useEffect with videoRef dependency
+    // Reset workflow view
+    setShowWorkflow(false);
+  };
+
+  // New function to toggle workflow visibility
+  const toggleWorkflowView = () => {
+    setShowWorkflow(!showWorkflow);
   };
 
   const containerVariants = {
@@ -382,7 +454,7 @@ export default function Automation() {
             onClick={() => setSelectedProject(null)}
           >
             <motion.div 
-              className={styles.modalContent}
+              className={`${styles.modalContent} ${showWorkflow ? styles.modalContentLarge : ''}`}
               initial={{ y: 50, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               exit={{ y: 50, opacity: 0 }}
@@ -413,6 +485,8 @@ export default function Automation() {
                     loop
                     playsInline
                     poster={selectedProject.image}
+                    onLoadedData={handleVideoLoad}
+                    onClick={toggleVideo}
                   >
                     <source src={selectedProject.videoUrl} type="video/mp4" />
                     Your browser does not support the video tag.
@@ -458,6 +532,35 @@ export default function Automation() {
                     ))}
                   </div>
                 </div>
+
+                {/* New section for workflow visualization */}
+                {selectedProject.hasWorkflow && (
+                  <div className={styles.workflowSection}>
+                    <div className={styles.workflowHeader}>
+                      <Text variant="h3">Workflow Visualization</Text>
+                      <Button 
+                        onClick={toggleWorkflowView}
+                        className={styles.workflowToggleButton}
+                      >
+                        {showWorkflow ? 'Hide Workflow' : 'Show Workflow'}
+                      </Button>
+                    </div>
+                    
+                    {showWorkflow && (
+                      <div className={styles.workflowContainer} style={{ 
+                        height: '450px', 
+                        width: '100%', 
+                        overflow: 'hidden', 
+                        borderRadius: '8px', 
+                        boxShadow: '0 4px 12px rgba(0, 0, 0, 0.1)',
+                        margin: '20px 0 40px 0',
+                        maxWidth: '100%'
+                      }}>
+                        <WorkflowViewer workflowData={selectedProject.workflowData} />
+                      </div>
+                    )}
+                  </div>
+                )}
 
                 <div style={{ marginTop: 'auto', textAlign: 'center' }}>
                   <Button

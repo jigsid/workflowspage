@@ -1,0 +1,170 @@
+{
+  "name": "Advanced WhatsApp AI Assistant",
+  "description": "A sophisticated WhatsApp assistant that can process various message types (text, audio, video, images) and respond using AI analysis.",
+  "nodes": [
+    {
+      "id": "whatsapp-trigger",
+      "name": "WhatsApp Trigger",
+      "description": "Receives incoming messages from WhatsApp users",
+      "position": [0, 0],
+      "type": "trigger"
+    },
+    {
+      "id": "split-message",
+      "name": "Split Out Message Parts",
+      "description": "Extracts individual messages from the payload",
+      "position": [200, 0],
+      "type": "processing"
+    },
+    {
+      "id": "redirect-types",
+      "name": "Redirect Message Types",
+      "description": "Routes messages based on their type",
+      "position": [400, 0],
+      "type": "processing"
+    },
+    {
+      "id": "audio-process",
+      "name": "Audio Processing",
+      "description": "Transcribes audio messages using Google Gemini",
+      "position": [600, -150],
+      "type": "ai"
+    },
+    {
+      "id": "video-process",
+      "name": "Video Processing",
+      "description": "Analyzes video content using Google Gemini",
+      "position": [600, -50],
+      "type": "ai"
+    },
+    {
+      "id": "image-process",
+      "name": "Image Processing",
+      "description": "Analyzes image content using GPT-4o Vision",
+      "position": [600, 50],
+      "type": "ai"
+    },
+    {
+      "id": "text-process",
+      "name": "Text Summarizer",
+      "description": "Processes and summarizes text messages",
+      "position": [600, 150],
+      "type": "ai"
+    },
+    {
+      "id": "get-user-message",
+      "name": "Get User's Message",
+      "description": "Collects processed message content",
+      "position": [800, 0],
+      "type": "processing"
+    },
+    {
+      "id": "ai-agent",
+      "name": "AI Agent",
+      "description": "Generates intelligent responses using GPT",
+      "position": [1000, 0],
+      "type": "ai"
+    },
+    {
+      "id": "memory",
+      "name": "Window Buffer Memory",
+      "description": "Maintains conversation context",
+      "position": [1000, -100],
+      "type": "storage"
+    },
+    {
+      "id": "wikipedia",
+      "name": "Wikipedia Tool",
+      "description": "Access to Wikipedia for information",
+      "position": [800, -100],
+      "type": "tool"
+    },
+    {
+      "id": "respond-user",
+      "name": "Respond to User",
+      "description": "Sends AI response via WhatsApp",
+      "position": [1200, 0],
+      "type": "action"
+    }
+  ],
+  "connections": [
+    {
+      "source": "whatsapp-trigger",
+      "target": "split-message"
+    },
+    {
+      "source": "split-message",
+      "target": "redirect-types"
+    },
+    {
+      "source": "redirect-types",
+      "target": "audio-process",
+      "label": "Audio"
+    },
+    {
+      "source": "redirect-types",
+      "target": "video-process",
+      "label": "Video"
+    },
+    {
+      "source": "redirect-types",
+      "target": "image-process",
+      "label": "Image"
+    },
+    {
+      "source": "redirect-types",
+      "target": "text-process",
+      "label": "Text"
+    },
+    {
+      "source": "audio-process",
+      "target": "get-user-message"
+    },
+    {
+      "source": "video-process",
+      "target": "get-user-message"
+    },
+    {
+      "source": "image-process",
+      "target": "get-user-message"
+    },
+    {
+      "source": "text-process",
+      "target": "get-user-message"
+    },
+    {
+      "source": "get-user-message",
+      "target": "ai-agent"
+    },
+    {
+      "source": "ai-agent",
+      "target": "respond-user"
+    },
+    {
+      "source": "memory",
+      "target": "ai-agent",
+      "label": "Memory"
+    },
+    {
+      "source": "wikipedia",
+      "target": "ai-agent",
+      "label": "Tool"
+    }
+  ],
+  "features": [
+    "Multi-Format Message Processing",
+    "Audio Transcription",
+    "Video Content Analysis",
+    "Image Recognition",
+    "Text Summarization",
+    "Knowledge Tool Access",
+    "Windowed Memory System",
+    "Seamless Response Delivery"
+  ],
+  "technology": {
+    "platform": "n8n",
+    "aiModels": ["GPT-4o", "Google Gemini 1.5 Pro"],
+    "tools": ["Wikipedia API"],
+    "messaging": "WhatsApp Business API"
+  }
+} 

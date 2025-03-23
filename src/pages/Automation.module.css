@@ -653,4 +653,74 @@
   --maxWidthXL: 1280px;
   
   --bezierFastoutSlowin: cubic-bezier(0.4, 0.0, 0.2, 1);
+}
+
+/* Workflow visualization styles */
+.workflowSection {
+  margin-top: 30px;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.workflowHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.workflowToggleButton {
+  background-color: #336791;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: background-color 0.3s;
+}
+
+.workflowToggleButton:hover {
+  background-color: #254e6d;
+}
+
+.workflowContainer {
+  margin-top: 20px;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+/* Dark mode styles for workflow section */
+@media (prefers-color-scheme: dark) {
+  .workflowSection {
+    background-color: #333;
+  }
+  
+  .workflowToggleButton {
+    background-color: #4a8db7;
+  }
+  
+  .workflowToggleButton:hover {
+    background-color: #336791;
+  }
+  
+  .workflowContainer {
+    border-color: #444;
+  }
+}
+
+.modalContentLarge {
+  width: 80% !important;
+  max-width: 1200px !important;
+  height: 80vh !important;
+  max-height: 900px !important;
+}
+
+/* Update modal body to handle overflow in large modal */
+.modalContentLarge .modalBody {
+  max-height: calc(80vh - 60px);
+  overflow-y: auto;
 } 

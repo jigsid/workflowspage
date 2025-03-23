@@ -1,0 +1,100 @@
+{
+  "name": "First WhatsApp Chatbot",
+  "description": "A complete WhatsApp chatbot solution that serves as an AI-powered product sales agent using a vector store knowledgebase.",
+  "nodes": [
+    {
+      "id": "whatsapp-trigger",
+      "name": "WhatsApp Trigger",
+      "description": "Receives incoming messages from WhatsApp users",
+      "position": [0, 0],
+      "type": "trigger"
+    },
+    {
+      "id": "handle-message",
+      "name": "Handle Message Types",
+      "description": "Filters supported (text) vs unsupported message types",
+      "position": [200, 0],
+      "type": "processing"
+    },
+    {
+      "id": "ai-agent",
+      "name": "AI Sales Agent",
+      "description": "Processes user queries with GPT-4",
+      "position": [400, -50],
+      "type": "ai"
+    },
+    {
+      "id": "vector-store", 
+      "name": "Product Catalogue",
+      "description": "Vector store containing product information",
+      "position": [400, -150],
+      "type": "storage"
+    },
+    {
+      "id": "memory",
+      "name": "Window Buffer Memory",
+      "description": "Maintains conversation context for each user",
+      "position": [200, -150],
+      "type": "storage"
+    },
+    {
+      "id": "reply-supported",
+      "name": "Reply To User",
+      "description": "Sends AI-generated response back to user",
+      "position": [600, -50],
+      "type": "action"
+    },
+    {
+      "id": "reply-unsupported",
+      "name": "Reply To User",
+      "description": "Sends error message for unsupported message types",
+      "position": [400, 50],
+      "type": "action"
+    }
+  ],
+  "connections": [
+    {
+      "source": "whatsapp-trigger",
+      "target": "handle-message"
+    },
+    {
+      "source": "handle-message",
+      "target": "ai-agent",
+      "label": "Text"
+    },
+    {
+      "source": "handle-message",
+      "target": "reply-unsupported",
+      "label": "Non-text"
+    },
+    {
+      "source": "ai-agent",
+      "target": "reply-supported"
+    },
+    {
+      "source": "vector-store",
+      "target": "ai-agent",
+      "label": "Knowledge"
+    },
+    {
+      "source": "memory",
+      "target": "ai-agent",
+      "label": "Memory"
+    }
+  ],
+  "features": [
+    "WhatsApp Business API Integration",
+    "Vector Store Knowledge Base",
+    "Message Type Handling",
+    "AI Agent Integration",
+    "Memory Management",
+    "Product Catalog Access",
+    "User Identification"
+  ],
+  "technology": {
+    "platform": "n8n",
+    "aiModel": "GPT-4",
+    "vectorStore": "In-memory Vector Store",
+    "messaging": "WhatsApp Business API"
+  }
+} 

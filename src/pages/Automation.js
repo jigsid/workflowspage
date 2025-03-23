@@ -187,7 +187,6 @@ export default function Automation() {
   const [selectedProject, setSelectedProject] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
   const videoRef = useRef(null);
-  const [isVideoLoaded, setIsVideoLoaded] = useState(false);
   const [isVideoPlaying, setIsVideoPlaying] = useState(false);
   
   // New state for workflow
@@ -250,13 +249,12 @@ export default function Automation() {
 
   // Reset video state when project changes
   useEffect(() => {
-    setIsVideoLoaded(false);
     setIsVideoPlaying(false);
     setShowWorkflow(false);
   }, [selectedProject]);
 
   const handleVideoLoad = () => {
-    setIsVideoLoaded(true);
+    // Video loaded handler
   };
 
   const toggleVideo = () => {

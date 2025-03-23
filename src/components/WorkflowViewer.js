@@ -111,7 +111,7 @@ const WorkflowViewer = ({ workflowData }) => {
   }), []);
 
   // First WhatsApp Chatbot flow visualization
-  const processFirstWhatsAppChatbot = () => {
+  const processFirstWhatsAppChatbot = useCallback(() => {
     // Create nodes for the workflow
     const nodes = [
       {
@@ -252,10 +252,10 @@ const WorkflowViewer = ({ workflowData }) => {
     ];
 
     return { nodes, edges };
-  };
+  }, []);
 
   // Advanced WhatsApp AI Assistant flow visualization
-  const processAdvancedWhatsAppAI = () => {
+  const processAdvancedWhatsAppAI = useCallback(() => {
     // Create nodes for the workflow
     const nodes = [
       {
@@ -443,10 +443,10 @@ const WorkflowViewer = ({ workflowData }) => {
     ];
 
     return { nodes, edges };
-  };
+  }, []);
 
   // Fetch workflow data from JSON file
-  const fetchWorkflowData = async () => {
+  const fetchWorkflowData = useCallback(async () => {
     setIsLoading(true);
     try {
       const response = await fetch(`/data/${workflowData}.json`);
@@ -524,12 +524,12 @@ const WorkflowViewer = ({ workflowData }) => {
     } finally {
       setIsLoading(false);
     }
-  };
+  }, [workflowData, setNodes, setEdges, setWorkflowInfo, processFirstWhatsAppChatbot, processAdvancedWhatsAppAI]);
 
   // Set workflow data when workflowData changes
   useEffect(() => {
     fetchWorkflowData();
-  }, [workflowData]);
+  }, [fetchWorkflowData]);
 
   const onNodeClick = useCallback((event, node) => {
     // Focus on the clicked node (optional feature)

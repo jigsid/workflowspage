@@ -2,7 +2,7 @@ import { useEffect, useState, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import styles from './Automation.module.css';
 import { Text } from '../components/Text';
-import { Link } from '../components/Link';
+
 import { Button } from '../components/Button';
 
 const automationProjects = [

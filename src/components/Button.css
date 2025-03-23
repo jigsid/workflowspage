@@ -1,20 +1,72 @@
 .button {
-  background-color: rgb(0, 153, 255);
-  color: white;
+  background-color: var(--color-accent);
+  color: var(--color-text);
   border: none;
-  border-radius: 8px;
-  padding: 12px 24px;
-  font-size: 16px;
-  font-weight: 600;
+  border-radius: var(--radius-md);
+  padding: var(--space-sm) var(--space-lg);
+  font-size: var(--font-size-md);
+  font-weight: var(--font-weight-semibold);
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: all var(--transition-normal);
   text-decoration: none;
-  display: inline-block;
-  text-align: center;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-xs);
+  position: relative;
+  overflow: hidden;
+  min-height: 46px;
+  letter-spacing: 0.01em;
 }
 
 .button:hover {
-  background-color: rgb(64, 191, 255);
+  background-color: var(--color-accent-dark);
   transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(0, 153, 255, 0.3);
+  box-shadow: var(--shadow-md);
+}
+
+.button:active {
+  transform: translateY(0);
+}
+
+.button:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px var(--color-accent-light);
+}
+
+.button--secondary {
+  background-color: transparent;
+  border: 1px solid var(--color-accent);
+  color: var(--color-accent);
+}
+
+.button--secondary:hover {
+  background-color: var(--color-accent-light);
+  color: var(--color-accent);
+}
+
+.button--large {
+  padding: var(--space-md) var(--space-xl);
+  font-size: var(--font-size-lg);
+  min-height: 52px;
+}
+
+.button--small {
+  padding: var(--space-xs) var(--space-md);
+  font-size: var(--font-size-sm);
+  min-height: 38px;
+}
+
+.button--icon {
+  padding: var(--space-xs);
+  border-radius: var(--radius-full);
+  width: 46px;
+  height: 46px;
+}
+
+.button--disabled,
+.button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  pointer-events: none;
 } 

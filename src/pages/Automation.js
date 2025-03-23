@@ -2,7 +2,6 @@ import { useEffect, useState, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import styles from './Automation.module.css';
 import { Text } from '../components/Text';
-
 import { Button } from '../components/Button';
 
 const automationProjects = [
@@ -247,7 +246,7 @@ export default function Automation() {
           <h1 className={styles.title}>
             n8n Automation Expertise
           </h1>
-          <Text className={styles.subtitle} as="p" size="xl">
+          <Text className={styles.subtitle} as="p" size="xl" color="secondary">
             Discover how I leverage n8n to create powerful, scalable automation solutions through custom workflows, self-hosting, and node development
           </Text>
         </div>
@@ -257,10 +256,10 @@ export default function Automation() {
             <h2>
               <span className={styles.n8nHighlightText}>Workflow automation</span> expert
             </h2>
-            <Text as="p" size="l">
+            <Text as="p" size="lg" color="secondary">
               n8n is a powerful workflow automation platform that allows for flexible, scalable integrations between virtually any system. As an n8n specialist, I leverage its open-source architecture to create custom solutions that go beyond the capabilities of traditional automation tools.
             </Text>
-            <Text as="p" size="l">
+            <Text as="p" size="lg" color="secondary">
               With n8n, I can build complex automation workflows that perfectly match your business processes, without the limitations of SaaS products. Whether you need custom node development, enterprise self-hosting, or complex workflow optimization, I bring specialized expertise to maximize your automation potential.
             </Text>
           </div>
@@ -269,13 +268,13 @@ export default function Automation() {
               <h3>Workflow Development</h3>
               <ul>
                 <li>
-                  <Text as="p" size="s">Creating sophisticated automation flows with error handling, conditional logic, and data transformation</Text>
+                  <Text as="p" size="md" color="secondary">Creating sophisticated automation flows with error handling, conditional logic, and data transformation</Text>
                 </li>
                 <li>
-                  <Text as="p" size="s">Integrating with 200+ systems including CRMs, databases, APIs, and messaging platforms</Text>
+                  <Text as="p" size="md" color="secondary">Integrating with 200+ systems including CRMs, databases, APIs, and messaging platforms</Text>
                 </li>
                 <li>
-                  <Text as="p" size="s">Building scalable data pipelines for ETL processes and real-time data synchronization</Text>
+                  <Text as="p" size="md" color="secondary">Building scalable data pipelines for ETL processes and real-time data synchronization</Text>
                 </li>
               </ul>
             </div>
@@ -283,13 +282,13 @@ export default function Automation() {
               <h3>Technical Implementation</h3>
               <ul>
                 <li>
-                  <Text as="p" size="s">Self-hosting n8n in production environments with high availability and security</Text>
+                  <Text as="p" size="md" color="secondary">Self-hosting n8n in production environments with high availability and security</Text>
                 </li>
                 <li>
-                  <Text as="p" size="s">Developing custom nodes using TypeScript to extend n8n capabilities</Text>
+                  <Text as="p" size="md" color="secondary">Developing custom nodes using TypeScript to extend n8n capabilities</Text>
                 </li>
                 <li>
-                  <Text as="p" size="s">Performance optimization and workflow reliability engineering</Text>
+                  <Text as="p" size="md" color="secondary">Performance optimization and workflow reliability engineering</Text>
                 </li>
               </ul>
             </div>
@@ -300,7 +299,7 @@ export default function Automation() {
           <h2 className={styles.sectionTitle}>
             n8n Automation Projects
           </h2>
-          <Text className={styles.sectionSubtitle} as="p" size="l">
+          <Text className={styles.sectionSubtitle} as="p" size="lg" color="secondary">
             Explore my portfolio of professional n8n automation projects, from custom workflow development to enterprise implementations
           </Text>
 
@@ -326,7 +325,9 @@ export default function Automation() {
                 </div>
                 <div className={styles.projectContent}>
                   <h3>{project.title}</h3>
-                  <p className={styles.description}>{project.description}</p>
+                  <Text as="p" size="md" color="secondary" className={styles.description}>
+                    {project.description}
+                  </Text>
                   <div className={styles.tags}>
                     {project.tags.slice(0, 3).map(tag => (
                       <span key={tag} className={styles.tag}>{tag}</span>
@@ -335,14 +336,20 @@ export default function Automation() {
                   <div className={styles.metrics}>
                     {project.metrics.map(metric => (
                       <div key={metric.label} className={styles.metric}>
-                        <span className={styles.metricValue}>{metric.value}</span>
-                        <span className={styles.metricLabel}>{metric.label}</span>
+                        <Text as="span" size="lg" weight="bold" color="accent" className={styles.metricValue}>
+                          {metric.value}
+                        </Text>
+                        <Text as="span" size="xs" color="secondary" className={styles.metricLabel}>
+                          {metric.label}
+                        </Text>
                       </div>
                     ))}
                   </div>
                   <div className={styles.impact}>
                     <h4>Impact</h4>
-                    <p>{project.impact}</p>
+                    <Text as="p" size="sm" color="secondary">
+                      {project.impact}
+                    </Text>
                   </div>
                 </div>
               </motion.div>
@@ -357,6 +364,8 @@ export default function Automation() {
             as="a"
             target="_blank"
             className={styles.contactButton}
+            variant="primary"
+            size="large"
           >
             Let's discuss your project
           </Button>
@@ -382,12 +391,10 @@ export default function Automation() {
               <button 
                 className={styles.modalClose} 
                 onClick={() => setSelectedProject(null)}
+                aria-label="Close modal"
               >
                 ×
               </button>
-              <div className={styles.modalImage}>
-                <img src={selectedProject.image} alt={selectedProject.title} />
-              </div>
               <div className={styles.modalBody}>
                 <div className={styles.modalHeader}>
                   <h2>{selectedProject.title}</h2>
@@ -414,26 +421,31 @@ export default function Automation() {
                 
                 <div>
                   <h3>Description</h3>
-                  <p className={styles.modalDescription}>
+                  <Text as="div" size="md" color="secondary" className={styles.modalDescription}>
                     {selectedProject.details.split('\n\n').map((paragraph, index) => (
-                      <span key={index}>
+                      <p key={index} style={{ marginBottom: '1rem' }}>
                         {paragraph}
-                        <br /><br />
-                      </span>
+                      </p>
                     ))}
-                  </p>
+                  </Text>
                 </div>
                 
                 <div>
                   <h3>Impact</h3>
-                  <p className={styles.modalDescription}>{selectedProject.impact}</p>
+                  <Text as="p" size="md" color="secondary" className={styles.modalDescription}>
+                    {selectedProject.impact}
+                  </Text>
                 </div>
                 
                 <div className={styles.modalMetrics}>
                   {selectedProject.metrics.map(metric => (
                     <div key={metric.label} className={styles.metric}>
-                      <span className={styles.metricValue}>{metric.value}</span>
-                      <span className={styles.metricLabel}>{metric.label}</span>
+                      <Text as="span" size="xl" weight="bold" color="accent" className={styles.metricValue}>
+                        {metric.value}
+                      </Text>
+                      <Text as="span" size="xs" color="secondary" className={styles.metricLabel}>
+                        {metric.label}
+                      </Text>
                     </div>
                   ))}
                 </div>
@@ -445,6 +457,18 @@ export default function Automation() {
                       <span key={tag} className={styles.tag}>{tag}</span>
                     ))}
                   </div>
+                </div>
+
+                <div style={{ marginTop: 'auto', textAlign: 'center' }}>
+                  <Button
+                    href="mailto:jigsawsmma@gmail.com?subject=n8n%20Project%20Inquiry:%20"
+                    as="a"
+                    target="_blank"
+                    variant="primary"
+                    size="default"
+                  >
+                    Contact me about this project
+                  </Button>
                 </div>
               </div>
             </motion.div>

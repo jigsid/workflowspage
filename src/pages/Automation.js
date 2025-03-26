@@ -638,7 +638,7 @@ export default function Automation() {
             </motion.div>
             <motion.div className={styles.clientValue} variants={textFadeVariants}>
               <div className={styles.valuePoint}>
-                <svg viewBox="0 0 24 24" fill="none" stroke="var(--color-success)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <svg viewBox="0 0 24 24" fill="none" stroke="var(--color-success)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" width="24" height="24">
                   <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
                   <polyline points="22 4 12 14.01 9 11.01"></polyline>
                 </svg>
@@ -647,7 +647,7 @@ export default function Automation() {
                 </Text>
               </div>
               <div className={styles.valuePoint}>
-                <svg viewBox="0 0 24 24" fill="none" stroke="var(--color-success)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <svg viewBox="0 0 24 24" fill="none" stroke="var(--color-success)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" width="24" height="24">
                   <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
                   <polyline points="22 4 12 14.01 9 11.01"></polyline>
                 </svg>
@@ -656,7 +656,7 @@ export default function Automation() {
                 </Text>
               </div>
               <div className={styles.valuePoint}>
-                <svg viewBox="0 0 24 24" fill="none" stroke="var(--color-success)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <svg viewBox="0 0 24 24" fill="none" stroke="var(--color-success)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" width="24" height="24">
                   <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
                   <polyline points="22 4 12 14.01 9 11.01"></polyline>
                 </svg>
@@ -701,6 +701,102 @@ export default function Automation() {
               </ul>
             </motion.div>
           </motion.div>
+        </motion.section>
+
+        {/* Services Section */}
+        <motion.section
+          className={styles.servicesSection}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.8, delay: 0.5 }}
+        >
+          <h2 className={styles.servicesTitle}>Specialized n8n Services</h2>
+          <Text as="p" className={styles.servicesSubtitle} size="lg" color="secondary">
+            Comprehensive automation solutions tailored to your business needs
+          </Text>
+          
+          <div className={styles.serviceCards}>
+            <div className={styles.serviceCard}>
+              <div className={styles.serviceIconWrap}>
+                <svg className={styles.serviceIcon} viewBox="0 0 24 24" fill="none" stroke="var(--color-accent)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
+                  <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+                </svg>
+              </div>
+              <h3>API Integrations</h3>
+              <Text as="p" size="md" color="secondary">
+                Connect disparate systems to create seamless data flows. I specialize in integrating CRMs, marketing platforms, project management tools, and custom APIs.
+              </Text>
+              <ul className={styles.serviceFeatures}>
+                <li>REST & GraphQL API integrations</li>
+                <li>Custom authentication methods</li>
+                <li>Data transformation & normalization</li>
+              </ul>
+            </div>
+            
+            <div className={styles.serviceCard}>
+              <div className={styles.serviceIconWrap}>
+                <svg className={styles.serviceIcon} viewBox="0 0 24 24" fill="none" stroke="var(--color-accent)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>
+                </svg>
+              </div>
+              <h3>Data Automation</h3>
+              <Text as="p" size="md" color="secondary">
+                Automate data collection, processing, and analysis workflows. Create ETL pipelines that transform raw data into actionable insights.
+              </Text>
+              <ul className={styles.serviceFeatures}>
+                <li>Scheduled data extraction</li>
+                <li>Multi-step transformation pipelines</li>
+                <li>Automated reporting systems</li>
+              </ul>
+            </div>
+            
+            <div className={styles.serviceCard}>
+              <div className={styles.serviceIconWrap}>
+                <svg className={styles.serviceIcon} viewBox="0 0 24 24" fill="none" stroke="var(--color-accent)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <circle cx="12" cy="12" r="3"></circle>
+                  <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+                </svg>
+              </div>
+              <h3>Enterprise n8n Setup</h3>
+              <Text as="p" size="md" color="secondary">
+                End-to-end implementation of n8n in enterprise environments. From installation to configuration, security, and scaling for high-volume workflows.
+              </Text>
+              <ul className={styles.serviceFeatures}>
+                <li>Docker-based deployment</li>
+                <li>High-availability configuration</li>
+                <li>Security best practices implementation</li>
+              </ul>
+            </div>
+          </div>
+        </motion.section>
+
+        {/* Success Statistics Section */}
+        <motion.section
+          className={styles.statsSection}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.8, delay: 0.5 }}
+        >
+          <h2 className={styles.statsTitle}>Results-Driven Automation</h2>
+          <div className={styles.statsGrid}>
+            <div className={styles.statCard}>
+              <div className={styles.statValue}>50+</div>
+              <div className={styles.statLabel}>n8n Workflows<br />Developed</div>
+            </div>
+            <div className={styles.statCard}>
+              <div className={styles.statValue}>85%</div>
+              <div className={styles.statLabel}>Average Time<br />Saved for Clients</div>
+            </div>
+            <div className={styles.statCard}>
+              <div className={styles.statValue}>100%</div>
+              <div className={styles.statLabel}>Client<br />Satisfaction</div>
+            </div>
+            <div className={styles.statCard}>
+              <div className={styles.statValue}>24/7</div>
+              <div className={styles.statLabel}>Support<br />Available</div>
+            </div>
+          </div>
         </motion.section>
 
         {/* Interactive filter section */}
@@ -829,6 +925,79 @@ export default function Automation() {
             </div>
           </motion.div>
 
+          {/* How I Work Section */}
+          <motion.section
+            className={styles.workProcess}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 1.0 }}
+          >
+            <h2 className={styles.processTitle}>My Workflow Process</h2>
+            <Text as="p" className={styles.processSubtitle} size="lg" color="secondary">
+              A streamlined approach to delivering high-quality automation solutions
+            </Text>
+            
+            <div className={styles.processSteps}>
+              <div className={styles.processStep}>
+                <div className={styles.processIcon}>
+                  <svg viewBox="0 0 24 24" fill="none" stroke="var(--color-accent)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
+                    <polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline>
+                    <line x1="12" y1="22.08" x2="12" y2="12"></line>
+                  </svg>
+                </div>
+                <div className={styles.processNumber}>1</div>
+                <h3>Discovery & Requirements</h3>
+                <Text as="p" size="md" color="secondary">
+                  In-depth consultation to understand your business processes, pain points, and automation needs. I'll identify the most valuable opportunities for efficiency gains.
+                </Text>
+              </div>
+              
+              <div className={styles.processStep}>
+                <div className={styles.processIcon}>
+                  <svg viewBox="0 0 24 24" fill="none" stroke="var(--color-accent)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                    <line x1="3" y1="9" x2="21" y2="9"></line>
+                    <line x1="9" y1="21" x2="9" y2="9"></line>
+                  </svg>
+                </div>
+                <div className={styles.processNumber}>2</div>
+                <h3>Solution Design</h3>
+                <Text as="p" size="md" color="secondary">
+                  Creating a detailed workflow blueprint that maps out every step of the automation process. You'll review and approve this plan before development begins.
+                </Text>
+              </div>
+              
+              <div className={styles.processStep}>
+                <div className={styles.processIcon}>
+                  <svg viewBox="0 0 24 24" fill="none" stroke="var(--color-accent)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <polyline points="16 18 22 12 16 6"></polyline>
+                    <polyline points="8 6 2 12 8 18"></polyline>
+                  </svg>
+                </div>
+                <div className={styles.processNumber}>3</div>
+                <h3>Development & Testing</h3>
+                <Text as="p" size="md" color="secondary">
+                  Building your workflow with robust error handling, comprehensive testing, and optimization for performance. I ensure every component works flawlessly.
+                </Text>
+              </div>
+              
+              <div className={styles.processStep}>
+                <div className={styles.processIcon}>
+                  <svg viewBox="0 0 24 24" fill="none" stroke="var(--color-accent)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                    <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                  </svg>
+                </div>
+                <div className={styles.processNumber}>4</div>
+                <h3>Deployment & Training</h3>
+                <Text as="p" size="md" color="secondary">
+                  Seamless implementation of your workflow in production with comprehensive documentation and training to ensure your team can effectively use and maintain the solution.
+                </Text>
+              </div>
+            </div>
+          </motion.section>
+
           {filteredProjects.length === 0 ? (
             <motion.div
               initial={{ opacity: 0 }}
@@ -912,6 +1081,60 @@ export default function Automation() {
           )}
         </section>
 
+        {/* FAQ Section */}
+        <motion.section
+          className={styles.faqSection}
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.7 }}
+        >
+          <h2 className={styles.faqTitle}>Frequently Asked Questions</h2>
+          
+          <div className={styles.faqGrid}>
+            <div className={styles.faqItem}>
+              <h3>What exactly is n8n and why should I use it?</h3>
+              <Text as="p" size="md" color="secondary">
+                n8n is a powerful workflow automation platform that connects various apps and services without requiring coding. It's self-hostable, offers more flexibility than tools like Zapier, and gives you complete control over your data and workflows.
+              </Text>
+            </div>
+            
+            <div className={styles.faqItem}>
+              <h3>How long does it take to implement an automation workflow?</h3>
+              <Text as="p" size="md" color="secondary">
+                Timeline varies based on complexity, but most projects are completed within 2-3 weeks. Simple integrations can be ready in just a few days, while complex enterprise solutions might take 4-6 weeks for full implementation and testing.
+              </Text>
+            </div>
+            
+            <div className={styles.faqItem}>
+              <h3>Do I need technical knowledge to maintain the workflows?</h3>
+              <Text as="p" size="md" color="secondary">
+                No. I provide comprehensive documentation and training to ensure your team can monitor and maintain workflows. For more complex needs, ongoing support packages are available to handle maintenance for you.
+              </Text>
+            </div>
+            
+            <div className={styles.faqItem}>
+              <h3>Can you integrate with my existing software stack?</h3>
+              <Text as="p" size="md" color="secondary">
+                Yes! n8n connects with 200+ systems out of the box, and I can develop custom nodes for any proprietary systems you use. I've successfully integrated with CRMs, ERPs, marketing platforms, databases, and custom APIs.
+              </Text>
+            </div>
+            
+            <div className={styles.faqItem}>
+              <h3>What if I want changes after the workflow is built?</h3>
+              <Text as="p" size="md" color="secondary">
+                All projects include a revision period for fine-tuning the workflow. After deployment, I offer flexible support packages for ongoing modifications and expansions as your business needs evolve.
+              </Text>
+            </div>
+            
+            <div className={styles.faqItem}>
+              <h3>Is my data secure with n8n workflows?</h3>
+              <Text as="p" size="md" color="secondary">
+                Absolutely. n8n can be self-hosted in your secure environment, giving you complete control over your data. I implement all workflows following security best practices and can work within your existing security protocols.
+              </Text>
+            </div>
+          </div>
+        </motion.section>
+
         <motion.section 
           className={styles.footer}
           initial={{ opacity: 0, y: 20 }}
@@ -933,7 +1156,15 @@ export default function Automation() {
             >
               Schedule Free Consultation
             </Button>
-            
+            <Button
+              href="https://upwork.com/freelancers/~YOUR_UPWORK_ID"
+              as="a"
+              target="_blank"
+              variant="secondary"
+              size="large"
+            >
+              Hire Me on Upwork
+            </Button>
           </div>
         </motion.section>
       </div>
@@ -1150,7 +1381,7 @@ export default function Automation() {
               </button>
               <button className={styles.zoomButton} onClick={handleResetZoom} aria-label="Reset zoom">
                 <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
-                  <path d="M12 5V2L8 6l4 4V7c3.31 0 6 2.69 6 6s-2.69 6-6 6-6-2.69-6-6H4c0 4.42 3.58 8 8 8s8-3.58 8-8-3.58-8-8-8z" />
+                  <path d="M12 5V2L8 6l4 4V7c3.31 0 6 2.69 6 6s-2.69 6-6 6-6-2.69-6-6H4c0 4.42 3.58 8 8 8s8-3.58 8-8z" />
                 </svg>
               </button>
             </div>

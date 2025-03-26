@@ -8,6 +8,15 @@ const placeholderImages = {
   woocommerceSupport: '/images/automation/Screenshot 2025-03-26 175701.png',
   hackerNewsVideo: '/images/automation/Screenshot 2025-03-26 175253.png',
   emailSubscription: '/images/automation/Screenshot 2025-03-26 180829.png',
+  
+  // New workflow images
+  visualRegression: '/images/automation/Screenshot 2025-03-26 210556.png',
+  customerSupport: '/images/automation/Screenshot 2025-03-26 211315.png',
+  youtubeTitle: '/images/automation/Screenshot 2025-03-26 211449.png',
+  hrWorkflow: '/images/automation/Screenshot 2025-03-26 211610.png',
+  autoGenDocs: '/images/automation/Screenshot 2025-03-26 212325.png',
+  wordpressChatbot: '/images/automation/Screenshot 2025-03-26 212145.png',
+  googleMapsLeads: '/images/automation/Screenshot 2025-03-26 212448.png',
 };
 
 export default placeholderImages; 

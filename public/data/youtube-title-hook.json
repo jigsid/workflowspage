@@ -1,0 +1,1725 @@
+{
+  "name": "yt title hook description",
+  "nodes": [
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=Generate 3 distinct video hooks based on this video description: {{ $json.inputs }}\n\nReturn the results in this JSON format:\n{\n  \"id\": {{ $json.id }},\n  \"video_description\": \"string\",\n  \"hooks\": [\n    {\n      \"type\": \"results_first\",\n      \"hook\": \"string\",\n      \"word_count\": number,\n      \"estimated_duration_seconds\": number\n    },\n    {\n      \"type\": \"problem_solution\",\n      \"hook\": \"string\",\n      \"word_count\": number,\n      \"estimated_duration_seconds\": number\n    },\n    {\n      \"type\": \"direct_benefit\",\n      \"hook\": \"string\",\n      \"word_count\": number,\n      \"estimated_duration_seconds\": number\n    }\n  ],\n  \"metadata\": {\n    \"target_audience\": \"string\",\n    \"main_benefit\": \"string\",\n    \"urgency_factor\": \"string\"\n  }\n}\n\nHook Types:\n1. Results-first statement: Start with specific outcome/statistic\n2. Problem-solution statement: Address pain point and solution\n3. Direct benefit statement: Focus on specific numbers/results\n\nEach hook must:\n- Be 3-4 sentences maximum\n- Include target audience identification\n- State clear promise/benefit\n- Establish stakes or urgency\n- Avoid channel introductions or greetings\n\n<example hook - results_first>\nYouTube creators save 2-4 hours per video by automating their content setup process. \n\nToday we'll run through how to use AI and trending data to generate professional openings (like this one), titles, and descriptions for your YouTube content in minutes. \n\nWe'll be cutting your video prep time by 90% so you can focus on creating great content\n</example hook - results_first>",
+        "hasOutputParser": true,
+        "messages": {
+          "messageValues": [
+            {
+              "message": "You are an expert YouTube script writer specializing in creating engaging video hooks. You excel at crafting professional, concise hooks that drive viewer engagement without using clichés or artificial enthusiasm.\n\nKey Capabilities:\n- Creating hooks that are 15-45 seconds when spoken\n- Writing in conversational but professional language (8th-grade reading level)\n- Identifying target audiences and their specific needs\n- Highlighting concrete benefits without exaggeration\n- Calculating accurate word counts and speaking duration estimates\n\nLanguage Guidelines:\n- Avoid clichés and metaphors\n- Use specific, concrete language\n- Skip hyperbole and exaggeration\n- Focus on real benefits and outcomes\n- Maintain professional tone while being conversational\n- No artificial enthusiasm or forced excitement\n\nExample High-Quality Hooks:\nFor a Procreate tutorial video:\n1. \"Professional illustrators spend 60% less time on their artwork by mastering just five key Procreate tools. In this guide for beginners, you'll learn these essential features that streamline the digital art creation process. These are the same techniques I use to create commissioned artwork efficiently.\"\n2. \"New to digital art on iPad? Procreate has hundreds of features, but knowing which ones matter for beginners can save you hours of confusion. In this guide, I'll show you the essential tools that will help you create professional illustrations from day one.\"\n3. \"I'm going to show you the 5 fundamental Procreate techniques that professional illustrators use daily. This beginner-friendly guide covers everything you need to start creating polished digital art immediately. These are the exact tools I use to create commissioned artwork for clients.\"\n\nOutput Requirements:\n- Return all responses in structured JSON format\n- Include word count and estimated duration for each hook\n- Provide metadata about target audience and benefits\n- Ensure each hook is distinct in approach and style\n- Validate that all hooks meet quality guidelines"
+            }
+          ]
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.chainLlm",
+      "typeVersion": 1.5,
+      "position": [
+        240,
+        800
+      ],
+      "id": "bd1bcac8-5b09-4565-8f03-10fd8577dc53",
+      "name": "Create YT Hooks"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        -1320,
+        800
+      ],
+      "id": "7e338632-9959-4e9b-96bd-0907205bff19",
+      "name": "When clicking ‘Test workflow’"
+    },
+    {
+      "parameters": {
+        "operation": "search",
+        "base": {
+          "__rl": true,
+          "value": "appzlAtwIAFKk6Z6V",
+          "mode": "list",
+          "cachedResultName": "Untitled App",
+          "cachedResultUrl": "https://airtable.com/appzlAtwIAFKk6Z6V"
+        },
+        "table": {
+          "__rl": true,
+          "value": "tblZL5EzRrH7hrw5B",
+          "mode": "list",
+          "cachedResultName": "Product Launches",
+          "cachedResultUrl": "https://airtable.com/appzlAtwIAFKk6Z6V/tblZL5EzRrH7hrw5B"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.airtable",
+      "typeVersion": 2.1,
+      "position": [
+        -1120,
+        800
+      ],
+      "id": "6c014af3-a464-40c9-8757-4de6d2f2cd67",
+      "name": "Return Video Ideas",
+      "credentials": {
+        "airtableTokenApi": {
+          "id": "wtEfc2OHcbq59bnj",
+          "name": "Airtable Personal Access Token account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "30509bb0-ebe8-4c03-9dbf-32aa4ed6d59f",
+              "name": "inputs",
+              "value": "={{ $('Return Video Ideas').item.json.Idea }}.{{ $('Return Video Ideas').item.json.Value}}",
+              "type": "string"
+            },
+            {
+              "id": "102f16a3-39e3-4d93-a1b5-96223e19ea75",
+              "name": "id",
+              "value": "={{ $('Return Video Ideas').item.json.id }}",
+              "type": "string"
+            },
+            {
+              "id": "f5085a52-be6d-47fb-b10b-378fb4a33f73",
+              "name": "keywords",
+              "value": "={{ JSON.stringify($('YouTube SEO').item.json.output.output.relevant_keywords, null, 2) }}",
+              "type": "string"
+            },
+            {
+              "id": "8408fcee-f52b-4c30-b85f-ece5e34fd456",
+              "name": "hashtags",
+              "value": "={{ JSON.stringify($('YouTube SEO').item.json.output.output.relevant_hashtags, null, 2) }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -100,
+        800
+      ],
+      "id": "230f15e0-04cc-458b-91c7-5fd40c31f2cc",
+      "name": "Set Inputs"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "2d1e1129-958a-480e-90c4-53547ceeb0e3",
+              "leftValue": "={{ $json.Idea }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "notEmpty",
+                "singleValue": true
+              }
+            },
+            {
+              "id": "a67976dd-def9-480d-adce-1947f82728d4",
+              "leftValue": "={{ $json.Value }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "notEmpty",
+                "singleValue": true
+              }
+            },
+            {
+              "id": "163d2661-8648-487d-bcb1-b7dce0559bb1",
+              "leftValue": "={{ $json.Tools }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "notEmpty",
+                "singleValue": true
+              }
+            },
+            {
+              "id": "cce99e24-1c0f-4638-8ab1-576928d043ed",
+              "leftValue": "={{ $json.Status }}",
+              "rightValue": "Confirmed, not started",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        -900,
+        800
+      ],
+      "id": "6df46448-6b54-4649-811d-5bc8449b4b56",
+      "name": "If ready"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.outputParserAutofixing",
+      "typeVersion": 1,
+      "position": [
+        380,
+        1020
+      ],
+      "id": "72c530ea-5010-43da-9f76-8882b8b9c5de",
+      "name": "Auto-fixing Output Parser"
+    },
+    {
+      "parameters": {
+        "jsonSchemaExample": "{\n  \"id\":\"xrecfBGNLyqINkOEfm\",\n  \"video_description\": \"How to optimize your WordPress website for better performance and speed\",\n  \"hooks\": [\n    {\n      \"type\": \"results_first\",\n      \"hook\": \"WordPress websites using these optimization techniques load 73% faster and retain 45% more visitors. In this guide for website owners, I'll show you the exact steps to speed up your WordPress site without hiring a developer. These proven methods have helped over 1,000 sites improve their performance scores.\",\n      \"word_count\": 45,\n      \"estimated_duration_seconds\": 22\n    },\n    {\n      \"type\": \"problem_solution\",\n      \"hook\": \"Slow loading times are costing your WordPress site valuable visitors and sales. Most optimization guides skip the crucial steps that actually impact site speed. I'll show you the top performance tweaks that will transform your site from sluggish to lightning-fast in under an hour.\",\n      \"word_count\": 42,\n      \"estimated_duration_seconds\": 20\n    },\n    {\n      \"type\": \"direct_benefit\",\n      \"hook\": \"Learn the 7 WordPress optimization techniques that increased our clients' conversion rates by 25%. This step-by-step guide will show you how to implement professional-grade speed improvements today. These are the same methods we use on sites getting millions of monthly visitors.\",\n      \"word_count\": 41,\n      \"estimated_duration_seconds\": 19\n    }\n  ],\n  \"metadata\": {\n    \"target_audience\": \"WordPress website owners and administrators\",\n    \"main_benefit\": \"faster website loading times and improved user retention\",\n    \"urgency_factor\": \"losing visitors and sales due to slow performance\"\n  }\n}"
+      },
+      "type": "@n8n/n8n-nodes-langchain.outputParserStructured",
+      "typeVersion": 1.2,
+      "position": [
+        500,
+        1140
+      ],
+      "id": "42c227ad-979c-444b-92eb-a9a67d9ef036",
+      "name": "Structured Output Parser"
+    },
+    {
+      "parameters": {
+        "content": "## Creates 3 Hooks\nResults_first, problem_solution, direct_benefit",
+        "height": 280,
+        "width": 300,
+        "color": 7
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        220,
+        680
+      ],
+      "id": "c448e88c-320a-4eab-aaf5-c4e4a1f9724a",
+      "name": "Sticky Note"
+    },
+    {
+      "parameters": {
+        "content": "## Inputs\nEnsures idea, value and tools are defined",
+        "height": 280,
+        "width": 480,
+        "color": 7
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -1160,
+        680
+      ],
+      "id": "b913bf32-721d-49d6-8ab0-23b71c357cd0",
+      "name": "Sticky Note1"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.outputParserAutofixing",
+      "typeVersion": 1,
+      "position": [
+        240,
+        400
+      ],
+      "id": "f9fab44a-f787-4b74-ba17-4c5065e7732e",
+      "name": "Auto-fixing Output Parser1"
+    },
+    {
+      "parameters": {
+        "jsonSchemaExample": "{\n  \"id\":\"xrecfBGNLyqINkOEfm\",\n  \"content_description\": \"A tutorial on building an AI agent system in n8n that processes support tickets and automates responses\",\n  \"titles\": [\n    {\n      \"type\": \"problem_solution\",\n      \"title\": \"Stop Manual Ticket Routing: Build AI Support Agents in n8n\",\n      \"character_count\": 56,\n      \"primary_keyword\": \"AI support agents\",\n      \"power_words\": [\"stop\", \"build\"],\n      \"emotional_triggers\": [\"time savings\", \"efficiency\"],\n      \"structure\": \"problem-solution\"\n    },\n    {\n      \"type\": \"specific_value\",\n      \"title\": \"Automate 100+ Support Tickets Daily with n8n AI [Tutorial]\",\n      \"character_count\": 57,\n      \"primary_keyword\": \"support automation\",\n      \"power_words\": [\"automate\"],\n      \"emotional_triggers\": [\"scale\", \"efficiency\"],\n      \"structure\": \"specific value\"\n    },\n    {\n      \"type\": \"technical_tutorial\",\n      \"title\": \"Build Enterprise AI Support Automation in n8n [30-Min Guide]\",\n      \"character_count\": 59,\n      \"primary_keyword\": \"AI support automation\",\n      \"power_words\": [\"enterprise\", \"build\"],\n      \"emotional_triggers\": [\"achievement\", \"time savings\"],\n      \"structure\": \"technical tutorial\"\n    }\n  ],\n  \"metadata\": {\n    \"target_audience\": \"n8n developers and support teams\",\n    \"primary_focus\": \"support automation\",\n    \"seo_keywords\": [\"n8n\", \"AI agents\", \"support automation\", \"workflow\"],\n    \"optimization_notes\": {\n      \"keywords_position\": \"front-loaded\",\n      \"clarity_score\": \"high\",\n      \"clickbait_risk\": \"low\",\n      \"technical_credibility\": \"maintained\"\n    }\n  }\n}\n"
+      },
+      "type": "@n8n/n8n-nodes-langchain.outputParserStructured",
+      "typeVersion": 1.2,
+      "position": [
+        380,
+        520
+      ],
+      "id": "d7c1baeb-d776-4282-bfec-6f27f5062ebc",
+      "name": "Structured Output Parser1"
+    },
+    {
+      "parameters": {
+        "content": "## Creates 3 Titles\nProblem_solution, specific_value, technical_tutorial",
+        "height": 280,
+        "width": 300,
+        "color": 7
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        220,
+        100
+      ],
+      "id": "f468406a-c0f1-41d8-8b32-1daf17b0cca4",
+      "name": "Sticky Note2"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=Generate 3 distinct title variations based on this content description: {{ $json.inputs }}\n\nHere are the keywords ({{ $json.keywords }}) to include naturally.\n\nReturn the results in this JSON format:\n{\n  \"id\": \"{{ $json.id }}\",\n  \"content_description\": \"A tutorial on building an AI agent system in n8n that processes support tickets and automates responses\",\n  \"titles\": [\n    {\n      \"type\": \"problem_solution\",\n      \"title\": \"Stop Manual Ticket Routing: Build AI Support Agents in n8n\",\n      \"character_count\": 56,\n      \"primary_keyword\": \"AI support agents\",\n      \"power_words\": [\"stop\", \"build\"],\n      \"emotional_triggers\": [\"time savings\", \"efficiency\"],\n      \"structure\": \"problem-solution\"\n    },\n    {\n      \"type\": \"specific_value\",\n      \"title\": \"Automate 100+ Support Tickets Daily with n8n AI [Tutorial]\",\n      \"character_count\": 57,\n      \"primary_keyword\": \"support automation\",\n      \"power_words\": [\"automate\"],\n      \"emotional_triggers\": [\"scale\", \"efficiency\"],\n      \"structure\": \"specific value\"\n    },\n    {\n      \"type\": \"technical_tutorial\",\n      \"title\": \"Build Enterprise AI Support Automation in n8n [30-Min Guide]\",\n      \"character_count\": 59,\n      \"primary_keyword\": \"AI support automation\",\n      \"power_words\": [\"enterprise\", \"build\"],\n      \"emotional_triggers\": [\"achievement\", \"time savings\"],\n      \"structure\": \"technical tutorial\"\n    }\n  ],\n  \"metadata\": {\n    \"target_audience\": \"n8n developers and support teams\",\n    \"primary_focus\": \"support automation\",\n    \"seo_keywords\": [\"n8n\", \"AI agents\", \"support automation\", \"workflow\"],\n    \"optimization_notes\": {\n      \"keywords_position\": \"front-loaded\",\n      \"clarity_score\": \"high\",\n      \"clickbait_risk\": \"low\",\n      \"technical_credibility\": \"maintained\"\n    }\n  }\n}\nTitle Enhancement Checklist:\n\nCore Elements:\n\nUnder 60 characters\nKeywords in beginning\nClear value proposition\nTechnical accuracy\n\n\nEmotional Triggers:\n\nSpecific numbers/metrics\nClear benefits\nUrgency (when appropriate)\nProfessional achievement\n\n\nTechnical Focus:\n\nImplementation time\nTool specifications\nSkill level indicators\nUse case clarity\n\n\nSEO Optimization:\n\nPrimary keyword placement\nTechnical terms\nContent type brackets\nSearch intent alignment",
+        "hasOutputParser": true,
+        "messages": {
+          "messageValues": [
+            {
+              "message": "You are an expert at creating compelling, SEO-optimized titles for technical content focused on AI, automation, and n8n. Your titles drive clicks while maintaining technical credibility and accuracy. Key Requirements:  Maximum 60 characters to prevent truncation Front-load important keywords Balance creativity with clarity Target technical professionals Maintain credibility  Emotional Triggers & Power Words:  Time savings: \"Quick\", \"Rapid\", \"Instant\" Efficiency: \"Streamline\", \"Optimize\", \"Automate\" Achievement: \"Master\", \"Transform\", \"Unlock\" Technical value: \"Scalable\", \"Robust\", \"Enterprise-grade\" Urgency: \"Essential\", \"Critical\", \"Must-have\" Innovation: \"Revolutionary\", \"Game-changing\", \"Next-gen\"  High-Performing Title Structures:  Problem-Solution Format  \"Why Your [X] Isn't [Desired Outcome]\" \"How to Fix [Common Problem] with [Solution]\" \"Stop [Pain Point]: Use [Solution] Instead\"   Specific Value Format  \"[X] Ways to [Achieve Goal] in [Timeframe]\" \"Build [Solution] That Handles [X] Tasks Daily\" \"Automate [X] Hours of Work in [Y] Minutes\"   Technical Tutorial Format  \"How to Integrate [Tool] with [Tool] [Implementation Time]\" \"[X]-Step [Tool] Setup for [Specific Use Case]\" \"Building [Solution] with [Tools] [Tutorial Type]\". Ensure to include relevant keywords naturally, they will be passed in the inputs.\n\nHere are some examples of high performing titles:\n\nTechnical Tutorial Style\n1. \"Top AI Agents in n8n: A Comprehensive Guide to Automating with AI\"\n2. \"Create 100% Local No Code AI Agents with N8N and Ollama in 10...\"\n3. \"n8n Masterclass: Build AI Agents & Automate Workflows\"\n\nProblem-Solution Style\n1. \"Build your first AI AGENT as A Total BEGINNER! (NO CODE)\"\n2. \"10 n8n Tips in 10 Minutes to 10x Your AI Automations\"\n3. \"How to Build a Personal Assistant AI Agent in n8n\""
+            }
+          ]
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.chainLlm",
+      "typeVersion": 1.5,
+      "position": [
+        240,
+        220
+      ],
+      "id": "da8b8346-0d66-473b-b945-370fed011b08",
+      "name": "Create YT Titles"
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "base": {
+          "__rl": true,
+          "value": "app6NYPYeFfSNbIq5",
+          "mode": "list",
+          "cachedResultName": "Automake.io Social Content",
+          "cachedResultUrl": "https://airtable.com/app6NYPYeFfSNbIq5"
+        },
+        "table": {
+          "__rl": true,
+          "value": "tblqqozF4f44wAGiX",
+          "mode": "list",
+          "cachedResultName": "Videos",
+          "cachedResultUrl": "https://airtable.com/app6NYPYeFfSNbIq5/tblqqozF4f44wAGiX"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "id": "={{ $('Set Inputs').item.json.id }}",
+            "Title_Option_1": "={{ $json.output.titles[0].title }}",
+            "Title_Option_2": "={{ $json.output.titles[1].title }}",
+            "Title_Option_3": "={{ $json.output.titles[2].title }}"
+          },
+          "matchingColumns": [
+            "id"
+          ],
+          "schema": [
+            {
+              "id": "id",
+              "displayName": "id",
+              "required": false,
+              "defaultMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": true,
+              "removed": false
+            },
+            {
+              "id": "Idea",
+              "displayName": "Idea",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "Value Add",
+              "displayName": "Value Add",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "Title_Chosen",
+              "displayName": "Title_Chosen",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "Title_Option_1",
+              "displayName": "Title_Option_1",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Title_Option_2",
+              "displayName": "Title_Option_2",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Title_Option_3",
+              "displayName": "Title_Option_3",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "HOOK_Results_First",
+              "displayName": "HOOK_Results_First",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "HOOK_Problem_Solution",
+              "displayName": "HOOK_Problem_Solution",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "HOOK_Direct_Benefit",
+              "displayName": "HOOK_Direct_Benefit",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "HOOK_Data",
+              "displayName": "HOOK_Data",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "Category",
+              "displayName": "Category",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "array",
+              "options": [
+                {
+                  "name": "Zero to Hero (Masterclass)",
+                  "value": "Zero to Hero (Masterclass)"
+                },
+                {
+                  "name": "Beginner Content",
+                  "value": "Beginner Content"
+                },
+                {
+                  "name": "Setup",
+                  "value": "Setup"
+                },
+                {
+                  "name": "Node-specific",
+                  "value": "Node-specific"
+                },
+                {
+                  "name": "Template N8N agent",
+                  "value": "Template N8N agent"
+                },
+                {
+                  "name": "",
+                  "value": ""
+                }
+              ],
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "Status",
+              "displayName": "Status",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "options",
+              "options": [
+                {
+                  "name": "Not started",
+                  "value": "Not started"
+                },
+                {
+                  "name": "In progress",
+                  "value": "In progress"
+                },
+                {
+                  "name": "Ready to publish",
+                  "value": "Ready to publish"
+                },
+                {
+                  "name": "Published",
+                  "value": "Published"
+                },
+                {
+                  "name": "",
+                  "value": ""
+                }
+              ],
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "Priority",
+              "displayName": "Priority",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "options",
+              "options": [
+                {
+                  "name": "High",
+                  "value": "High"
+                },
+                {
+                  "name": "Medium",
+                  "value": "Medium"
+                },
+                {
+                  "name": "Low",
+                  "value": "Low"
+                }
+              ],
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "Comments",
+              "displayName": "Comments",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "Link (template)",
+              "displayName": "Link (template)",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": true
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.airtable",
+      "typeVersion": 2.1,
+      "position": [
+        600,
+        220
+      ],
+      "id": "2db58d42-12a1-4f66-94c3-03d771bd4c54",
+      "name": "Update Titles",
+      "credentials": {
+        "airtableTokenApi": {
+          "id": "wtEfc2OHcbq59bnj",
+          "name": "Airtable Personal Access Token account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.outputParserAutofixing",
+      "typeVersion": 1,
+      "position": [
+        260,
+        1680
+      ],
+      "id": "aa3cd624-b898-4533-9105-421098a7b39f",
+      "name": "Auto-fixing Output Parser2"
+    },
+    {
+      "parameters": {
+        "jsonSchemaExample": "{\n  \"id\": \"xrecfBGNLyqINkOEfm\",\n  \"video_content\": \"How to build an AI agent system in n8n for email processing\",\n  \"description_full\": \"Automate your entire email workflow with intelligent AI agents. Learn how to process, categorize, and respond to emails automatically using n8n's powerful automation tools.\\n\\n🔗 Download the complete workflow template: [link]\\n\\nTransform your email management with an AI-powered system that saves hours daily. Perfect for teams handling high-volume email communications.\\n\\n⚙️ Technical Requirements:\\n• n8n instance\\n• OpenAI API key\\n• Email account access\\n\\n🚀 Key Benefits:\\n• Reduce email processing time by 75%\\n• Automatic categorization and routing\\n• Intelligent response generation\\n\\n⏱️ Implementation time: 45 minutes\\n\\n📚 Resources:\\n📘 Full tutorial on our blog: [link]\\n⚡ Quick start guide: [link]\\n\\n🤝 Connect With Us:\\n🐦 Follow for updates: @handle\\n💼 Connect on LinkedIn: /in/profile\\n\\n💬 What email workflows do you want to automate? Share below!\\n\\n▶️ Next: Building AI Agents for Document Processing\\n🔔 Subscribe for more automation tutorials!\\n\\n#n8n #AIAutomation #EmailAutomation\",\n  \"description_elements\": {\n    \"opening_hook\": {\n      \"text\": \"Automate your entire email workflow with intelligent AI agents. Learn how to process, categorize, and respond to emails automatically using n8n's powerful automation tools.\",\n      \"keywords_used\": [\"email workflow\", \"AI agents\", \"automation\"],\n      \"differs_from_title\": true\n    },\n    \"main_content\": {\n      \"primary_cta\": \"🔗 Download the complete workflow template: [link]\",\n      \"value_proposition\": \"Transform your email management with an AI-powered system that saves hours daily. Perfect for teams handling high-volume email communications.\",\n      \"technical_details\": {\n        \"prerequisites\": [\n          \"n8n instance\",\n          \"OpenAI API key\",\n          \"Email account access\"\n        ],\n        \"tools_used\": [\n          \"n8n\",\n          \"OpenAI API\",\n          \"Email nodes\"\n        ],\n        \"completion_time\": \"Implementation time: 45 minutes\"\n      },\n      \"key_benefits\": [\n        \"Reduce email processing time by 75%\",\n        \"Automatic categorization and routing\",\n        \"Intelligent response generation\"\n      ]\n    },\n    \"engagement_elements\": {\n      \"comment_prompt\": \"💬 What email workflows do you want to automate? Share below!\",\n      \"resources\": [\n        \"📘 Full tutorial on our blog: [link]\",\n        \"⚡ Quick start guide: [link]\"\n      ],\n      \"social_links\": [\n        \"🐦 Follow for updates: @handle\",\n        \"💼 Connect on LinkedIn: /in/profile\"\n      ]\n    },\n    \"closing\": {\n      \"hashtags\": [\"#n8n\", \"#AIAutomation\", \"#EmailAutomation\"],\n      \"next_video\": \"▶️ Next: Building AI Agents for Document Processing\",\n      \"final_cta\": \"🔔 Subscribe for more automation tutorials!\"\n    }\n  },\n  \"seo_optimization\": {\n    \"primary_keywords\": [\"AI agents\", \"email automation\", \"n8n workflow\"],\n    \"secondary_keywords\": [\"email processing\", \"workflow automation\", \"AI email\"],\n    \"target_audience\": [\"automation developers\", \"email managers\", \"operations teams\"],\n    \"total_word_count\": 275,\n    \"keyword_density\": {\n      \"primary\": 2.2,\n      \"secondary\": 1.8\n    }\n  }\n}\n"
+      },
+      "type": "@n8n/n8n-nodes-langchain.outputParserStructured",
+      "typeVersion": 1.2,
+      "position": [
+        400,
+        1800
+      ],
+      "id": "b030ab37-53f1-4fd8-8762-b84f5d052ef7",
+      "name": "Structured Output Parser2"
+    },
+    {
+      "parameters": {
+        "content": "## Creates a Description\n",
+        "height": 280,
+        "width": 300,
+        "color": 7
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        240,
+        1340
+      ],
+      "id": "24eb81bb-a455-4363-9334-d65bee860701",
+      "name": "Sticky Note3"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=Generate a comprehensive YouTube description based on this video content: {{ $json.inputs }}\n\nHere are the keywords ({{ $json.keywords }}) to include naturally and hashtags ({{ $json.hashtags }}).\n\n\nReturn in this format:\n{\n  \"id\": {{ $json.id }},\n  \"video_content\": \"string\",\n  \"description_full\": \"string\",\n  \"description_elements\": {\n    \"opening_hook\": {\n      \"text\": \"string (150 chars max)\",\n      \"keywords_used\": [\"string\"],\n      \"differs_from_title\": \"boolean\"\n    },\n    \"main_content\": {\n      \"primary_cta\": \"string\",\n      \"value_proposition\": \"string\",\n      \"technical_details\": {\n        \"prerequisites\": [\"string\"],\n        \"tools_used\": [\"string\"],\n        \"completion_time\": \"string\"\n      },\n      \"key_benefits\": [\"string\"]\n    },\n    \"engagement_elements\": {\n      \"comment_prompt\": \"string\",\n      \"resources\": [\"string\"],\n      \"social_links\": [\"string\"]\n    },\n    \"closing\": {\n      \"hashtags\": [\"string\"],\n      \"next_video\": \"string\",\n      \"final_cta\": \"string\"\n    }\n  },\n  \"seo_optimization\": {\n    \"primary_keywords\": [\"string\"],\n    \"secondary_keywords\": [\"string\"],\n    \"target_audience\": [\"string\"],\n    \"total_word_count\": \"number\",\n    \"keyword_density\": {\n      \"primary\": \"number\",\n      \"secondary\": \"number\"\n    }\n  }\n}\nExample Output:\n{\n  \"id\": {{ $json.id }},\n  \"video_content\": \"How to build an AI agent system in n8n for email processing\",\n  \"description_full\": \"Automate your entire email workflow with intelligent AI agents. Learn how to process, categorize, and respond to emails automatically using n8n's powerful automation tools.\\n\\n🔗 Download the complete workflow template: [link]\\n\\nTransform your email management with an AI-powered system that saves hours daily. Perfect for teams handling high-volume email communications.\\n\\n⚙️ Technical Requirements:\\n• n8n instance\\n• OpenAI API key\\n• Email account access\\n\\n🚀 Key Benefits:\\n• Reduce email processing time by 75%\\n• Automatic categorization and routing\\n• Intelligent response generation\\n\\n⏱️ Implementation time: 45 minutes\\n\\n📚 Resources:\\n📘 Full tutorial on our blog: [link]\\n⚡ Quick start guide: [link]\\n\\n🤝 Connect With Us:\\n🐦 Follow for updates: @handle\\n💼 Connect on LinkedIn: /in/profile\\n\\n💬 What email workflows do you want to automate? Share below!\\n\\n▶️ Next: Building AI Agents for Document Processing\\n🔔 Subscribe for more automation tutorials!\\n\\n#n8n #AIAutomation #EmailAutomation\",\n  \"description_elements\": {\n    \"opening_hook\": {\n      \"text\": \"Automate your entire email workflow with intelligent AI agents. Learn how to process, categorize, and respond to emails automatically using n8n's powerful automation tools.\",\n      \"keywords_used\": [\"email workflow\", \"AI agents\", \"automation\"],\n      \"differs_from_title\": true\n    },\n    \"main_content\": {\n      \"primary_cta\": \"🔗 Download the complete workflow template: [link]\",\n      \"value_proposition\": \"Transform your email management with an AI-powered system that saves hours daily. Perfect for teams handling high-volume email communications.\",\n      \"technical_details\": {\n        \"prerequisites\": [\n          \"n8n instance\",\n          \"OpenAI API key\",\n          \"Email account access\"\n        ],\n        \"tools_used\": [\n          \"n8n\",\n          \"OpenAI API\",\n          \"Email nodes\"\n        ],\n        \"completion_time\": \"Implementation time: 45 minutes\"\n      },\n      \"key_benefits\": [\n        \"Reduce email processing time by 75%\",\n        \"Automatic categorization and routing\",\n        \"Intelligent response generation\"\n      ]\n    },\n    \"engagement_elements\": {\n      \"comment_prompt\": \"💬 What email workflows do you want to automate? Share below!\",\n      \"resources\": [\n        \"📘 Full tutorial on our blog: [link]\",\n        \"⚡ Quick start guide: [link]\"\n      ],\n      \"social_links\": [\n        \"🐦 Follow for updates: @handle\",\n        \"💼 Connect on LinkedIn: /in/profile\"\n      ]\n    },\n    \"closing\": {\n      \"hashtags\": [\"#n8n\", \"#AIAutomation\", \"#EmailAutomation\"],\n      \"next_video\": \"▶️ Next: Building AI Agents for Document Processing\",\n      \"final_cta\": \"🔔 Subscribe for more automation tutorials!\"\n    }\n  },\n  \"seo_optimization\": {\n    \"primary_keywords\": [\"AI agents\", \"email automation\", \"n8n workflow\"],\n    \"secondary_keywords\": [\"email processing\", \"workflow automation\", \"AI email\"],\n    \"target_audience\": [\"automation developers\", \"email managers\", \"operations teams\"],\n    \"total_word_count\": 275,\n    \"keyword_density\": {\n      \"primary\": 2.2,\n      \"secondary\": 1.8\n    }\n  }\n}\nRequirements for Review:\n\nCheck opening hook uniqueness\nVerify keyword placement\nConfirm engagement elements\nValidate technical accuracy\nEnsure professional tone\nCheck for complete structure",
+        "hasOutputParser": true,
+        "messages": {
+          "messageValues": [
+            {
+              "message": "You are an expert at creating highly optimized YouTube descriptions for technical content, specifically in AI, automation, and n8n. You excel at balancing SEO optimization with engaging content that drives viewer action. Core Capabilities:  Opening Hook Excellence:   Craft compelling first 150 characters Use different keywords than title Focus on searchable technical terms Hook viewers with clear value proposition   SEO Optimization:   Use 2-3 target keywords naturally Place main keyword in first three sentences Include related keywords for discoverability Minimum 250 words for technical tutorials Front-load technical specifications   Engagement Optimization:   Strategic emoji placement Clear calls-to-action Professional formatting Visual breaks in content Engagement prompts  Content Structure Rules:  Above \"Show More\":   Unique hook different from title Primary CTA with link Clear value proposition Technical benefit statement   Main Description:   Secondary CTAs Resource links Social connections Technical prerequisites Implementation details   Closing Elements:   3 relevant hashtags (passed in the inputs) Next video suggestion Final engagement prompt Related content links. Ensure to include relevant keywords naturally, they will be passed in the inputs."
+            }
+          ]
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.chainLlm",
+      "typeVersion": 1.5,
+      "position": [
+        260,
+        1460
+      ],
+      "id": "c99cb2d1-1e38-4025-b756-2c86afcbb1a2",
+      "name": "Create YT Description"
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "base": {
+          "__rl": true,
+          "value": "app6NYPYeFfSNbIq5",
+          "mode": "list",
+          "cachedResultName": "Automake.io Social Content",
+          "cachedResultUrl": "https://airtable.com/app6NYPYeFfSNbIq5"
+        },
+        "table": {
+          "__rl": true,
+          "value": "tblqqozF4f44wAGiX",
+          "mode": "list",
+          "cachedResultName": "Videos",
+          "cachedResultUrl": "https://airtable.com/app6NYPYeFfSNbIq5/tblqqozF4f44wAGiX"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "id": "={{ $('Set Inputs').item.json.id }}",
+            "HOOK_Results_First": "={{ $json.output.hooks[0].hook }}",
+            "HOOK_Problem_Solution": "={{ $json.output.hooks[1].hook }}",
+            "HOOK_Direct_Benefit": "={{ $json.output.hooks[2].hook }}",
+            "HOOK_Data": "={{ JSON.stringify($json.output,2,null) }}",
+            "Hashtags": "={{ $('Set Inputs').item.json.hashtags }}",
+            "SEO_Keywords": "={{ $('Set Inputs').item.json.keywords }}"
+          },
+          "matchingColumns": [
+            "id"
+          ],
+          "schema": [
+            {
+              "id": "id",
+              "displayName": "id",
+              "required": false,
+              "defaultMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": true,
+              "removed": false
+            },
+            {
+              "id": "Idea",
+              "displayName": "Idea",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "Value",
+              "displayName": "Value",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "Tools",
+              "displayName": "Tools",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "Title_Chosen",
+              "displayName": "Title_Chosen",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "Title_Option_1",
+              "displayName": "Title_Option_1",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "Title_Option_2",
+              "displayName": "Title_Option_2",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "Title_Option_3",
+              "displayName": "Title_Option_3",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "Hashtags",
+              "displayName": "Hashtags",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "SEO_Keywords",
+              "displayName": "SEO_Keywords",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "HOOK_Results_First",
+              "displayName": "HOOK_Results_First",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "HOOK_Problem_Solution",
+              "displayName": "HOOK_Problem_Solution",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "HOOK_Direct_Benefit",
+              "displayName": "HOOK_Direct_Benefit",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "HOOK_Data",
+              "displayName": "HOOK_Data",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Description",
+              "displayName": "Description",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Description_Data",
+              "displayName": "Description_Data",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Category",
+              "displayName": "Category",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "array",
+              "options": [
+                {
+                  "name": "Zero to Hero (Masterclass)",
+                  "value": "Zero to Hero (Masterclass)"
+                },
+                {
+                  "name": "Beginner Content",
+                  "value": "Beginner Content"
+                },
+                {
+                  "name": "Setup",
+                  "value": "Setup"
+                },
+                {
+                  "name": "Node-specific",
+                  "value": "Node-specific"
+                },
+                {
+                  "name": "Template N8N agent",
+                  "value": "Template N8N agent"
+                },
+                {
+                  "name": "",
+                  "value": ""
+                }
+              ],
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "Status",
+              "displayName": "Status",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "options",
+              "options": [
+                {
+                  "name": "Not started",
+                  "value": "Not started"
+                },
+                {
+                  "name": "In progress",
+                  "value": "In progress"
+                },
+                {
+                  "name": "Ready to publish",
+                  "value": "Ready to publish"
+                },
+                {
+                  "name": "Published",
+                  "value": "Published"
+                },
+                {
+                  "name": "",
+                  "value": ""
+                }
+              ],
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "Priority",
+              "displayName": "Priority",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "options",
+              "options": [
+                {
+                  "name": "High",
+                  "value": "High"
+                },
+                {
+                  "name": "Medium",
+                  "value": "Medium"
+                },
+                {
+                  "name": "Low",
+                  "value": "Low"
+                }
+              ],
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "Comments",
+              "displayName": "Comments",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "Link (template)",
+              "displayName": "Link (template)",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": true
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.airtable",
+      "typeVersion": 2.1,
+      "position": [
+        600,
+        800
+      ],
+      "id": "bdb1f5f9-5562-42c5-bab3-8cada069ce4a",
+      "name": "Update Hooks",
+      "credentials": {
+        "airtableTokenApi": {
+          "id": "wtEfc2OHcbq59bnj",
+          "name": "Airtable Personal Access Token account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "base": {
+          "__rl": true,
+          "value": "app6NYPYeFfSNbIq5",
+          "mode": "list",
+          "cachedResultName": "Automake.io Social Content",
+          "cachedResultUrl": "https://airtable.com/app6NYPYeFfSNbIq5"
+        },
+        "table": {
+          "__rl": true,
+          "value": "tblqqozF4f44wAGiX",
+          "mode": "list",
+          "cachedResultName": "Videos",
+          "cachedResultUrl": "https://airtable.com/app6NYPYeFfSNbIq5/tblqqozF4f44wAGiX"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "id": "={{ $('Set Inputs').item.json.id }}",
+            "Description": "={{ $json.output.description_full }}",
+            "Description_Data": "={{ JSON.stringify($json.output, null, 2) }}"
+          },
+          "matchingColumns": [
+            "id"
+          ],
+          "schema": [
+            {
+              "id": "id",
+              "displayName": "id",
+              "required": false,
+              "defaultMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": true,
+              "removed": false
+            },
+            {
+              "id": "Idea",
+              "displayName": "Idea",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "Value Add",
+              "displayName": "Value Add",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "Title_Chosen",
+              "displayName": "Title_Chosen",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "Title_Option_1",
+              "displayName": "Title_Option_1",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "Title_Option_2",
+              "displayName": "Title_Option_2",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "Title_Option_3",
+              "displayName": "Title_Option_3",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "HOOK_Results_First",
+              "displayName": "HOOK_Results_First",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "HOOK_Problem_Solution",
+              "displayName": "HOOK_Problem_Solution",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "HOOK_Direct_Benefit",
+              "displayName": "HOOK_Direct_Benefit",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "HOOK_Data",
+              "displayName": "HOOK_Data",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "Description",
+              "displayName": "Description",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Description_Data",
+              "displayName": "Description_Data",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Category",
+              "displayName": "Category",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "array",
+              "options": [
+                {
+                  "name": "Zero to Hero (Masterclass)",
+                  "value": "Zero to Hero (Masterclass)"
+                },
+                {
+                  "name": "Beginner Content",
+                  "value": "Beginner Content"
+                },
+                {
+                  "name": "Setup",
+                  "value": "Setup"
+                },
+                {
+                  "name": "Node-specific",
+                  "value": "Node-specific"
+                },
+                {
+                  "name": "Template N8N agent",
+                  "value": "Template N8N agent"
+                },
+                {
+                  "name": "",
+                  "value": ""
+                }
+              ],
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "Status",
+              "displayName": "Status",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "options",
+              "options": [
+                {
+                  "name": "Not started",
+                  "value": "Not started"
+                },
+                {
+                  "name": "In progress",
+                  "value": "In progress"
+                },
+                {
+                  "name": "Ready to publish",
+                  "value": "Ready to publish"
+                },
+                {
+                  "name": "Published",
+                  "value": "Published"
+                },
+                {
+                  "name": "",
+                  "value": ""
+                }
+              ],
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "Priority",
+              "displayName": "Priority",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "options",
+              "options": [
+                {
+                  "name": "High",
+                  "value": "High"
+                },
+                {
+                  "name": "Medium",
+                  "value": "Medium"
+                },
+                {
+                  "name": "Low",
+                  "value": "Low"
+                }
+              ],
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "Comments",
+              "displayName": "Comments",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "Link (template)",
+              "displayName": "Link (template)",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": true
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.airtable",
+      "typeVersion": 2.1,
+      "position": [
+        620,
+        1460
+      ],
+      "id": "dd8a3b0c-f95d-460b-8190-d98b5693d54f",
+      "name": "Update Descriptions",
+      "credentials": {
+        "airtableTokenApi": {
+          "id": "wtEfc2OHcbq59bnj",
+          "name": "Airtable Personal Access Token account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=You have access to one tool that helps you make a http request to Tavily (tavily_api_search) to obtain information about: \n1) Trending hashtags for AI agents, automation and n8n workflow content on YouTube\n2) Trending SEO keywords for AI agents, automation and n8n workflow content on YouTube\n\nCall the tool with a relevant search_query to obtain the 3 most relevant hashtags and 3-5 most relevant SEO keywords that'll be used to optimise my video title and description. Determine the most appropriate search_query based on the the input information for the video (idea, value, tools):\nIdea:{{ $json.Idea }}.Value:{{ $json.Value }}.Tools:{{ $json.Tools }}.\n\ne.g. search query: \"top performing YouTube videos AND trending hashtags for [topic] and [tools] in last 3 months.\n\nYou'll summarise the return results from Tavily into the top three most relevant hashtags and seo keywords given the content",
+        "hasOutputParser": true,
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 1.7,
+      "position": [
+        -620,
+        800
+      ],
+      "id": "11c19177-7949-4299-bbef-eba55cb7734d",
+      "name": "YouTube SEO"
+    },
+    {
+      "parameters": {
+        "options": {
+          "prompt": "Instructions:\n--------------\n{instructions}\n--------------\nCompletion:\n--------------\n{completion}\n--------------\n\nAbove, the Completion did not satisfy the constraints given in the Instructions.\nError:\n--------------\n{error}\n--------------\n\nPlease try again. Please only respond with an answer that satisfies the constraints laid out in the Instructions:"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.outputParserAutofixing",
+      "typeVersion": 1,
+      "position": [
+        -340,
+        980
+      ],
+      "id": "1aae356f-42a8-42e7-ac7a-a7c1e605b39a",
+      "name": "Auto-fixing Output Parser3"
+    },
+    {
+      "parameters": {
+        "jsonSchemaExample": "{\n  \"input\": {\n    \"video_topic\": \"Building AI Agents in n8n\",\n    \"search_query\": \"top performing YouTube videos AND trending hashtags for [topic] AI agent automation and [tools] n8n, Tavily and LLM workflows in last 3 months\"\n  },\n  \"output\": {\n    \"relevant_keywords\": [\n      \"ai agents n8n\",\n      \"workflow automation\",\n      \"n8n tutorial\",\n      \"automation workflow\",\n      \"n8n automation\"\n    ],\n    \"relevant_hashtags\": [\n      \"#AIAutomation\",\n      \"#n8n\",\n      \"#WorkflowAutomation\",\n      \"#NoCode\",\n      \"#TechTutorial\"\n    ]\n  },\n  \"metadata\": {\n    \"keyword_metrics\": [\n      {\n        \"keyword\": \"ai agents n8n\",\n        \"monthly_search_volume\": 1200,\n        \"trend_direction\": \"up\"\n      },\n      {\n        \"keyword\": \"workflow automation\",\n        \"monthly_search_volume\": 2400,\n        \"trend_direction\": \"stable\"\n      },\n      {\n        \"keyword\": \"n8n tutorial\",\n        \"monthly_search_volume\": 800,\n        \"trend_direction\": \"up\"\n      },\n      {\n        \"keyword\": \"automation workflow\",\n        \"monthly_search_volume\": 1800,\n        \"trend_direction\": \"stable\"\n      },\n      {\n        \"keyword\": \"n8n automation\",\n        \"monthly_search_volume\": 1500,\n        \"trend_direction\": \"up\"\n      }\n    ],\n    \"hashtag_metrics\": [\n      {\n        \"hashtag\": \"#AIAutomation\",\n        \"usage_count\": 15000,\n        \"popularity\": \"high\"\n      },\n      {\n        \"hashtag\": \"#n8n\",\n        \"usage_count\": 8000,\n        \"popularity\": \"medium\"\n      },\n      {\n        \"hashtag\": \"#WorkflowAutomation\",\n        \"usage_count\": 12000,\n        \"popularity\": \"high\"\n      },\n      {\n        \"hashtag\": \"#NoCode\",\n        \"usage_count\": 25000,\n        \"popularity\": \"high\"\n      },\n      {\n        \"hashtag\": \"#TechTutorial\",\n        \"usage_count\": 5000,\n        \"popularity\": \"medium\"\n      }\n    ]\n  }\n}"
+      },
+      "type": "@n8n/n8n-nodes-langchain.outputParserStructured",
+      "typeVersion": 1.2,
+      "position": [
+        -300,
+        1180
+      ],
+      "id": "78811eac-7fa4-4ba8-b1ff-1ac82cab8647",
+      "name": "Structured Output Parser3"
+    },
+    {
+      "parameters": {
+        "content": "## Returns Hashtags and SEO Keywords for YouTube\nBased on recent trending videos",
+        "height": 640,
+        "width": 520,
+        "color": 7
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -660,
+        680
+      ],
+      "id": "fe5d538e-5e20-42bb-9310-d1d09ff294c2",
+      "name": "Sticky Note4"
+    },
+    {
+      "parameters": {
+        "toolDescription": "Use this tool to send a http request to the tavily api",
+        "method": "POST",
+        "url": "https://api.tavily.com/search",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendBody": true,
+        "parametersBody": {
+          "values": [
+            {
+              "name": "query"
+            },
+            {
+              "name": "search_depth",
+              "valueProvider": "fieldValue",
+              "value": "advanced"
+            },
+            {
+              "name": "max_results",
+              "valueProvider": "fieldValue",
+              "value": "10"
+            },
+            {
+              "name": "include_answer",
+              "valueProvider": "fieldValue",
+              "value": "true"
+            },
+            {
+              "name": "topic",
+              "valueProvider": "fieldValue",
+              "value": "general"
+            }
+          ]
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.toolHttpRequest",
+      "typeVersion": 1.1,
+      "position": [
+        -460,
+        1080
+      ],
+      "id": "b131df14-b78c-45b7-9b4c-8b0f3ec0edc5",
+      "name": "tavily_api_search",
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "p5a4PNMJsfaWEUaS",
+          "name": "Header Auth account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "modelName": "models/gemini-2.0-flash",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        -600,
+        1020
+      ],
+      "id": "082525ff-8fec-4bc4-8ef3-55dce91f0ac8",
+      "name": "Google Gemini Chat Model",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "Jy7p1cDVcEWg3OdP",
+          "name": "Google Gemini(PaLM) Api account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "modelName": "models/gemini-2.0-flash",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        160,
+        1040
+      ],
+      "id": "a7931d83-9519-47b7-8ac4-c37d49f90833",
+      "name": "Google Gemini Chat Model1",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "Jy7p1cDVcEWg3OdP",
+          "name": "Google Gemini(PaLM) Api account"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Create YT Hooks": {
+      "main": [
+        [
+          {
+            "node": "Update Hooks",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "When clicking ‘Test workflow’": {
+      "main": [
+        [
+          {
+            "node": "Return Video Ideas",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Return Video Ideas": {
+      "main": [
+        [
+          {
+            "node": "If ready",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Set Inputs": {
+      "main": [
+        [
+          {
+            "node": "Create YT Hooks",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Create YT Titles",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Create YT Description",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If ready": {
+      "main": [
+        [
+          {
+            "node": "YouTube SEO",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "YouTube SEO",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Auto-fixing Output Parser": {
+      "ai_outputParser": [
+        [
+          {
+            "node": "Create YT Hooks",
+            "type": "ai_outputParser",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Structured Output Parser": {
+      "ai_outputParser": [
+        [
+          {
+            "node": "Auto-fixing Output Parser",
+            "type": "ai_outputParser",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Auto-fixing Output Parser1": {
+      "ai_outputParser": [
+        [
+          {
+            "node": "Create YT Titles",
+            "type": "ai_outputParser",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Structured Output Parser1": {
+      "ai_outputParser": [
+        [
+          {
+            "node": "Auto-fixing Output Parser1",
+            "type": "ai_outputParser",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Create YT Titles": {
+      "main": [
+        [
+          {
+            "node": "Update Titles",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Auto-fixing Output Parser2": {
+      "ai_outputParser": [
+        [
+          {
+            "node": "Create YT Description",
+            "type": "ai_outputParser",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Structured Output Parser2": {
+      "ai_outputParser": [
+        [
+          {
+            "node": "Auto-fixing Output Parser2",
+            "type": "ai_outputParser",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Create YT Description": {
+      "main": [
+        [
+          {
+            "node": "Update Descriptions",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "YouTube SEO": {
+      "main": [
+        [
+          {
+            "node": "Set Inputs",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Auto-fixing Output Parser3": {
+      "ai_outputParser": [
+        [
+          {
+            "node": "YouTube SEO",
+            "type": "ai_outputParser",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Structured Output Parser3": {
+      "ai_outputParser": [
+        [
+          {
+            "node": "Auto-fixing Output Parser3",
+            "type": "ai_outputParser",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "tavily_api_search": {
+      "ai_tool": [
+        [
+          {
+            "node": "YouTube SEO",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Gemini Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "YouTube SEO",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Gemini Chat Model1": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Auto-fixing Output Parser1",
+            "type": "ai_languageModel",
+            "index": 0
+          },
+          {
+            "node": "Create YT Hooks",
+            "type": "ai_languageModel",
+            "index": 0
+          },
+          {
+            "node": "Create YT Titles",
+            "type": "ai_languageModel",
+            "index": 0
+          },
+          {
+            "node": "Auto-fixing Output Parser",
+            "type": "ai_languageModel",
+            "index": 0
+          },
+          {
+            "node": "Create YT Description",
+            "type": "ai_languageModel",
+            "index": 0
+          },
+          {
+            "node": "Auto-fixing Output Parser2",
+            "type": "ai_languageModel",
+            "index": 0
+          },
+          {
+            "node": "Auto-fixing Output Parser3",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "34dbf49f-3c4e-4be7-a8d4-7373116e5d4f",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "558d88703fb65b2d0e44613bc35916258b0f0bf983c5d4730c00c424b77ca36a"
+  },
+  "id": "ebmo9OcfQLn6V8mU",
+  "tags": [
+    {
+      "createdAt": "2025-03-17T17:54:43.003Z",
+      "updatedAt": "2025-03-17T17:54:43.003Z",
+      "id": "GEJbP7vqW7U46OYq",
+      "name": "portfolio"
+    }
+  ]
+}

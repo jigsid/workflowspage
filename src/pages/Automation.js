@@ -249,13 +249,139 @@ const automationProjects = [
     image: placeholderImages.emailSubscription,
     tags: ['Email Automation', 'Content Generation', 'Airtable', 'Subscription Management'],
     metrics: [
-      { label: 'Open Rate', value: '+62%' },
-      { label: 'Subscribers', value: '5000+' },
-      { label: 'Personalization', value: '100%' }
+      { label: 'Subscribers', value: '5,000+' },
+      { label: 'Open Rate', value: '42%' },
+      { label: 'AI Content', value: '100%' }
     ],
-    details: 'I designed and implemented a sophisticated email subscription system that uses AI to generate personalized content for subscribers. This comprehensive solution includes:\n\n• Subscription Management: Uses n8n forms for seamless subscriber registration and preference collection\n\n• Database Integration: Leverages Airtable for efficient subscriber data management and segmentation\n\n• Scheduled Delivery: Implements intelligent timing algorithms to deliver content at optimal times for each subscriber\n\n• AI Content Generation: Utilizes advanced language models to create personalized factoids and content based on subscriber preferences\n\n• Image Creation: Generates custom images for each email to increase visual engagement\n\n• Unsubscribe Handling: Provides simple, compliant unsubscribe functionality with immediate database updates\n\n• Analytics Tracking: Monitors open rates, click-through rates, and other key metrics to optimize performance\n\nThis system has dramatically improved subscriber engagement while reducing the manual effort required to create and distribute newsletter content.',
+    details: 'I designed and implemented a sophisticated email subscription system that uses AI to generate personalized content for newsletter subscribers. The workflow includes:\n\n• Subscription Form: Custom-built n8n form with validation and double opt-in verification\n\n• Subscriber Database: Airtable integration for reliable storage and segmentation of subscriber data\n\n• Content Generation: AI-powered system that creates personalized newsletter content based on subscriber preferences\n\n• Dynamic Templating: Custom email templates that adapt to different content types and subscriber segments\n\n• Delivery Scheduling: Smart timing algorithm that sends emails at optimal times for each subscriber\n\n• Engagement Tracking: Comprehensive analytics to measure open rates, click-through rates, and other metrics\n\n• Unsubscribe Handling: Seamless one-click unsubscribe process with feedback collection\n\nThis system has dramatically improved newsletter engagement while reducing the manual effort required to create and send newsletters.',
     hasWorkflow: true,
     workflowData: 'email-subscription-service'
+  },
+  {
+    id: 14,
+    title: 'Visual Regression Testing with Apify and AI Vision Model',
+    tool: 'n8n',
+    toolIcon: placeholderImages.n8nLogo,
+    description: 'Automated visual regression testing framework that uses website screenshots and AI vision models to detect unwanted UI changes.',
+    impact: 'Reduced bug detection time by 85% and improved release confidence by identifying visual regressions before production',
+    image: placeholderImages.visualRegression,
+    tags: ['Visual Testing', 'Quality Assurance', 'AI Vision', 'Apify Integration'],
+    metrics: [
+      { label: 'Detection Rate', value: '98%' },
+      { label: 'False Positives', value: '<3%' },
+      { label: 'Pages Monitored', value: '50+' }
+    ],
+    details: 'I developed a comprehensive visual regression testing system that automatically detects unwanted UI changes across web applications. This workflow includes:\n\n• Baseline Screenshot Generation: Uses Apify to capture high-quality screenshots of websites in controlled environments\n\n• Scheduled Test Runs: Automatically captures new screenshots on a defined schedule for comparison\n\n• AI-powered Analysis: Leverages vision models to compare screenshots and identify visual differences\n\n• Intelligent Classification: Distinguishes between expected changes and potential regressions\n\n• Detailed Reporting: Generates comprehensive reports with visual diffs and specific change details\n\n• Integration with Issue Tracking: Automatically creates tickets for detected regressions in Linear or JIRA\n\n• False Positive Reduction: Learning system that improves detection accuracy over time\n\nThis automated testing pipeline has significantly improved our quality assurance process by identifying visual regressions early in the development cycle.',
+    hasWorkflow: true,
+    workflowData: 'visual-regression-testing'
+  },
+  {
+    id: 15,
+    title: 'Automate Customer Support Issue Resolution using AI Text Classifier',
+    tool: 'n8n',
+    toolIcon: placeholderImages.n8nLogo,
+    description: 'Intelligent workflow that automatically classifies, prioritizes, and resolves customer support tickets using AI analysis.',
+    impact: 'Decreased average resolution time by 68% while maintaining a 94% customer satisfaction rating',
+    image: placeholderImages.customerSupport,
+    tags: ['Customer Support', 'AI Classification', 'Ticket Automation', 'Knowledge Base'],
+    metrics: [
+      { label: 'Resolution Time', value: '-68%' },
+      { label: 'Auto-Resolution', value: '42%' },
+      { label: 'Customer Satisfaction', value: '94%' }
+    ],
+    details: 'I engineered a sophisticated support ticket automation system that uses AI to streamline the resolution process. Key features include:\n\n• Ticket Classification: Automatically categorizes incoming issues by type, priority, and complexity\n\n• Sentiment Analysis: Identifies customer sentiment to prioritize urgent or negative interactions\n\n• Knowledge Base Integration: Searches internal documentation to find relevant solutions\n\n• Automated Responses: Generates personalized responses for common issues with high confidence scores\n\n• Agent Assignment: Routes complex tickets to the most qualified support agents based on expertise\n\n• Resolution Tracking: Monitors resolution time and success rates across different issue types\n\n• Customer Feedback Loop: Collects and analyzes feedback to continuously improve the system\n\nThis solution has dramatically reduced support queue backlogs while maintaining high customer satisfaction by providing quick, accurate responses to common issues.',
+    hasWorkflow: true,
+    workflowData: 'customer-support-resolution'
+  },
+  {
+    id: 16,
+    title: 'YouTube Title, Hook, and Description Generator',
+    tool: 'n8n',
+    toolIcon: placeholderImages.n8nLogo,
+    description: 'AI-powered content optimization tool that automatically generates high-performing titles, hooks, and descriptions for YouTube videos.',
+    impact: 'Increased average view counts by 43% and improved click-through rates by 38% across client channels',
+    image: placeholderImages.youtubeTitle,
+    tags: ['YouTube SEO', 'Content Optimization', 'AI Generation', 'Metadata'],
+    metrics: [
+      { label: 'CTR Improvement', value: '+38%' },
+      { label: 'View Increase', value: '+43%' },
+      { label: 'Time Saved', value: '3hrs/video' }
+    ],
+    details: 'I created an advanced content optimization workflow that leverages AI to generate high-performing YouTube metadata elements. The system includes:\n\n• Topic Analysis: Processes video content to identify key themes, concepts, and keywords\n\n• Competitive Research: Analyzes top-performing videos in similar categories for metadata patterns\n\n• Title Generation: Creates multiple attention-grabbing title options optimized for search and clicks\n\n• Hook Creation: Crafts compelling opening hooks that maximize viewer retention in the crucial first seconds\n\n• Description Writing: Produces comprehensive descriptions with timestamps, keywords, and calls to action\n\n• Hashtag Optimization: Generates relevant hashtags to improve discoverability\n\n• A/B Testing Support: Provides variant options for testing different metadata approaches\n\nContent creators using this workflow have seen significant improvements in video performance metrics while saving hours of manual optimization work per video.',
+    hasWorkflow: true,
+    workflowData: 'youtube-title-hook'
+  },
+  {
+    id: 17,
+    title: 'AI Automated HR Workflow for CV Analysis and Candidate Evaluation',
+    tool: 'n8n',
+    toolIcon: placeholderImages.n8nLogo,
+    description: 'End-to-end recruitment automation that extracts candidate information from CVs, evaluates qualifications, and generates comprehensive assessment reports.',
+    impact: 'Reduced initial candidate screening time by 92% while improving candidate quality through objective evaluation',
+    image: placeholderImages.hrWorkflow,
+    tags: ['HR Automation', 'CV Analysis', 'Candidate Screening', 'Recruitment'],
+    metrics: [
+      { label: 'Screening Time', value: '-92%' },
+      { label: 'Processing Capacity', value: '500+ CVs/day' },
+      { label: 'Bias Reduction', value: 'Significant' }
+    ],
+    details: 'I developed a comprehensive recruitment automation workflow that transforms the CV screening and evaluation process. This system includes:\n\n• Structured CV Intake: Custom form submission process with secure document handling\n\n• Data Extraction: Intelligent parsing of unstructured CV documents into standardized data points\n\n• Qualification Analysis: AI-powered evaluation of candidate skills, experience, and education against job requirements\n\n• Custom Scoring: Configurable scoring algorithm that weights different attributes based on job specifications\n\n• Comparative Ranking: Automatically ranks candidates against each other based on overall qualifications\n\n• Assessment Report Generation: Creates detailed reports for hiring managers with key candidate insights\n\n• Google Sheets Integration: Maintains a structured database of all candidates with evaluation metrics\n\nThis automation has dramatically increased recruiting efficiency while improving the quality of candidates advancing to interview stages.',
+    hasWorkflow: true,
+    workflowData: 'hr-workflow-cv-analysis'
+  },
+  {
+    id: 18,
+    title: 'Auto-generate Documentation for n8n Workflows with GPT and Docsify',
+    tool: 'n8n',
+    toolIcon: placeholderImages.n8nLogo,
+    description: 'Automated documentation generation system that creates comprehensive technical documentation for n8n workflows using AI analysis.',
+    impact: 'Reduced documentation time by 85% while improving comprehensiveness and consistency across all workflow documentation',
+    image: placeholderImages.autoGenDocs,
+    tags: ['Documentation', 'Technical Writing', 'Knowledge Management', 'AI Generation'],
+    metrics: [
+      { label: 'Doc Generation', value: '<2 min' },
+      { label: 'Completeness', value: '97%' },
+      { label: 'Maintainability', value: 'Self-updating' }
+    ],
+    details: 'I engineered an intelligent documentation system that automatically generates comprehensive technical documentation for n8n workflows. Key features include:\n\n• Workflow Analysis: Extracts detailed information about nodes, connections, and configurations\n\n• Structure Generation: Creates logical documentation structure with proper sections and hierarchy\n\n• Technical Writing: Uses AI to produce clear, concise explanations of workflow functionality\n\n• Markdown Formatting: Outputs documentation in well-formatted Markdown with proper styling\n\n• Diagram Creation: Generates visual representations of workflow structure and data flow\n\n• Docsify Integration: Automatically publishes documentation to a searchable web interface\n\n• Version Control: Maintains documentation history with Git integration for tracking changes\n\nThis system has transformed our documentation process by ensuring all workflows are thoroughly documented with minimal manual effort, improving knowledge sharing and maintenance across teams.',
+    hasWorkflow: true,
+    workflowData: 'auto-generate-docs'
+  },
+  {
+    id: 19,
+    title: 'WordPress AI Chatbot to Enhance User Experience',
+    tool: 'n8n',
+    toolIcon: placeholderImages.n8nLogo,
+    description: 'Integrated AI chatbot solution for WordPress sites that provides personalized assistance using site content and Supabase vector database.',
+    impact: 'Increased user engagement by 58% and reduced support inquiries by 45% through intelligent self-service',
+    image: placeholderImages.wordpressChatbot,
+    tags: ['WordPress', 'Chatbot', 'Supabase', 'Vector Database'],
+    metrics: [
+      { label: 'User Engagement', value: '+58%' },
+      { label: 'Support Reduction', value: '-45%' },
+      { label: 'Response Time', value: '<1 sec' }
+    ],
+    details: 'I developed a sophisticated AI chatbot integration for WordPress websites that dramatically improves user experience. The system includes:\n\n• WordPress Content Indexing: Automatically processes all website content into a vector database\n\n• Supabase Vector Store: Maintains embeddings of site content for semantic search capabilities\n\n• Real-time Chat Interface: Responsive, user-friendly chat widget that integrates seamlessly with WordPress themes\n\n• OpenAI Integration: Uses advanced language models to generate natural, helpful responses\n\n• Context-Aware Responses: Provides answers based specifically on site content rather than generic information\n\n• Query Routing: Intelligently routes complex questions to human operators when necessary\n\n• Usage Analytics: Tracks common questions and interaction patterns to improve site content\n\nWebsite owners using this solution have seen significant improvements in user engagement metrics and substantial reductions in support ticket volume.',
+    hasWorkflow: true,
+    workflowData: 'wordpress-ai-chatbot'
+  },
+  {
+    id: 20,
+    title: 'Generate Leads with Google Maps',
+    tool: 'n8n',
+    toolIcon: placeholderImages.n8nLogo,
+    description: 'Automated lead generation workflow that uses Google Maps API to identify and qualify potential business prospects in specific geographic areas.',
+    impact: 'Generated 500+ qualified leads per month with detailed business information for sales outreach campaigns',
+    image: placeholderImages.googleMapsLeads,
+    tags: ['Lead Generation', 'Google Maps API', 'Sales Automation', 'Data Enrichment'],
+    metrics: [
+      { label: 'Leads/Month', value: '500+' },
+      { label: 'Data Points', value: '12+ per lead' },
+      { label: 'Conversion Rate', value: '8.2%' }
+    ],
+    details: 'I designed a powerful lead generation system that leverages the Google Maps API to discover and qualify business prospects. The workflow includes:\n\n• Geographic Targeting: Precisely defines search areas by city, neighborhood, or radius\n\n• Business Category Filtering: Targets specific business types and industries based on classification\n\n• Data Extraction: Captures comprehensive business details including contact information, hours, and reviews\n\n• Duplicate Prevention: Implements intelligent deduplication to prevent contacting the same business twice\n\n• Data Enrichment: Enhances lead data with additional information from supplementary sources\n\n• Lead Scoring: Applies customizable scoring criteria to prioritize the most promising prospects\n\n• CRM Integration: Seamlessly exports qualified leads to CRM systems for sales team follow-up\n\nThis automated approach has transformed the lead generation process, providing a consistent pipeline of qualified prospects while eliminating hours of manual research.',
+    hasWorkflow: true,
+    workflowData: 'google-maps-leads'
   }
 ];
 

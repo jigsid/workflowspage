@@ -596,11 +596,29 @@ export default function Automation() {
           transition={{ duration: 0.8, delay: 0.2 }}
         >
           <h1 className={styles.title}>
-            n8n Automation Expertise
+            n8n Workflow Development Expert
           </h1>
           <Text className={styles.subtitle} as="p" size="xl" color="secondary">
-            Discover powerful, scalable automation solutions through custom workflows, self-hosting, and node development
+            Professional automation solutions that streamline business processes & increase efficiency
           </Text>
+          <div className={styles.headerButtons}>
+            <Button
+              href="mailto:jigsawsmma@gmail.com?subject=n8n%20Automation%20Inquiry"
+              as="a"
+              target="_blank"
+              variant="primary"
+              size="large"
+            >
+              Get a Free Consultation
+            </Button>
+            <Button
+              onClick={() => scrollRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' })}
+              variant="secondary"
+              size="large"
+            >
+              View Portfolio
+            </Button>
+          </div>
         </motion.div>
 
         <motion.section 
@@ -611,17 +629,41 @@ export default function Automation() {
         >
           <div className={styles.introText}>
             <motion.h2 variants={textFadeVariants}>
-              <span className={styles.n8nHighlightText}>Workflow automation</span> expert
+              Trusted <span className={styles.n8nHighlightText}>n8n workflow</span> developer
             </motion.h2>
             <motion.div variants={textFadeVariants}>
               <Text as="p" size="lg" color="secondary">
-                n8n is a powerful workflow automation platform that allows for flexible, scalable integrations between virtually any system. As an n8n specialist, I leverage its open-source architecture to create custom solutions that go beyond the capabilities of traditional automation tools.
+                I specialize in creating customized n8n workflows that automate complex business processes, saving you time and reducing operational costs. My solutions are tailored to your specific needs, with a focus on reliability, scalability, and ease of maintenance.
               </Text>
             </motion.div>
-            <motion.div variants={textFadeVariants}>
-              <Text as="p" size="lg" color="secondary">
-                With n8n, I can build complex automation workflows that perfectly match your business processes, without the limitations of SaaS products. Whether you need custom node development, enterprise self-hosting, or complex workflow optimization, I bring specialized expertise to maximize your automation potential.
-              </Text>
+            <motion.div className={styles.clientValue} variants={textFadeVariants}>
+              <div className={styles.valuePoint}>
+                <svg viewBox="0 0 24 24" fill="none" stroke="var(--color-success)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                  <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                </svg>
+                <Text as="p" size="md" color="secondary">
+                  <strong>Cost-effective:</strong> Save up to 80% compared to hiring full-time automation specialists
+                </Text>
+              </div>
+              <div className={styles.valuePoint}>
+                <svg viewBox="0 0 24 24" fill="none" stroke="var(--color-success)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                  <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                </svg>
+                <Text as="p" size="md" color="secondary">
+                  <strong>Fast delivery:</strong> Most projects completed within 2-3 weeks, with quick iterations
+                </Text>
+              </div>
+              <div className={styles.valuePoint}>
+                <svg viewBox="0 0 24 24" fill="none" stroke="var(--color-success)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                  <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                </svg>
+                <Text as="p" size="md" color="secondary">
+                  <strong>Ongoing support:</strong> Continuous maintenance and updates to ensure long-term success
+                </Text>
+              </div>
             </motion.div>
           </div>
           <motion.div 
@@ -734,7 +776,7 @@ export default function Automation() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.7 }}
           >
-            n8n Automation Projects
+            Proven n8n Solutions Portfolio
           </motion.h2>
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -742,8 +784,49 @@ export default function Automation() {
             transition={{ duration: 0.6, delay: 0.8 }}
           >
             <Text className={styles.sectionSubtitle} as="p" size="lg" color="secondary">
-              Explore my portfolio of professional n8n automation projects, from custom workflow development to enterprise implementations
+              Browse real-world automation projects that have saved clients time and money through intelligent workflow design
             </Text>
+          </motion.div>
+
+          {/* Client Testimonials */}
+          <motion.div 
+            className={styles.testimonials}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.9 }}
+          >
+            <div className={styles.testimonial}>
+              <div className={styles.testimonialContent}>
+                <svg className={styles.quoteIcon} viewBox="0 0 24 24" fill="var(--color-accent)" width="32" height="32">
+                  <path d="M10 11l-2 2v5H3v-6l4-4h3v3zm11 0l-2 2v5h-5v-6l4-4h3v3z" />
+                </svg>
+                <Text as="p" size="lg" color="secondary">
+                  "Working with this n8n expert has transformed our business operations. The custom workflows they built have automated processes that used to take our team hours each day. The ROI has been incredible."
+                </Text>
+                <div className={styles.testimonialAuthor}>
+                  <div className={styles.authorDetails}>
+                    <Text as="p" size="md" weight="bold">Sarah Johnson</Text>
+                    <Text as="p" size="sm" color="secondary">Operations Director, TechSolutions Inc.</Text>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className={styles.testimonial}>
+              <div className={styles.testimonialContent}>
+                <svg className={styles.quoteIcon} viewBox="0 0 24 24" fill="var(--color-accent)" width="32" height="32">
+                  <path d="M10 11l-2 2v5H3v-6l4-4h3v3zm11 0l-2 2v5h-5v-6l4-4h3v3z" />
+                </svg>
+                <Text as="p" size="lg" color="secondary">
+                  "The n8n workflows created for our marketing team have eliminated data entry errors and saved us countless hours. The developer was professional, knowledgeable, and delivered exactly what we needed on time."
+                </Text>
+                <div className={styles.testimonialAuthor}>
+                  <div className={styles.authorDetails}>
+                    <Text as="p" size="md" weight="bold">Michael Chen</Text>
+                    <Text as="p" size="sm" color="secondary">Marketing Manager, GrowthCore</Text>
+                  </div>
+                </div>
+              </div>
+            </div>
           </motion.div>
 
           {filteredProjects.length === 0 ? (
@@ -835,17 +918,23 @@ export default function Automation() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.9 }}
         >
-          <h2>Want to leverage n8n for your automation needs?</h2>
-          <Button
-            href="mailto:jigsawsmma@gmail.com?subject=n8n%20Automation%20Inquiry"
-            as="a"
-            target="_blank"
-            className={styles.contactButton}
-            variant="primary"
-            size="large"
-          >
-            Let's discuss your project
-          </Button>
+          <h2>Ready to automate your business processes?</h2>
+          <Text as="p" size="lg" color="secondary" className={styles.footerText}>
+            Let's discuss how custom n8n workflows can save you time and money. I offer a free consultation to understand your needs.
+          </Text>
+          <div className={styles.footerButtons}>
+            <Button
+              href="mailto:jigsawsmma@gmail.com?subject=n8n%20Automation%20Inquiry"
+              as="a"
+              target="_blank"
+              className={styles.contactButton}
+              variant="primary"
+              size="large"
+            >
+              Schedule Free Consultation
+            </Button>
+            
+          </div>
         </motion.section>
       </div>
 

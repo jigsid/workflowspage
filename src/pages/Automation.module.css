@@ -98,6 +98,12 @@
   margin-top: var(--space-lg);
 }
 
+.headerButtons {
+  display: flex;
+  gap: var(--space-md);
+  margin-top: var(--space-xl);
+}
+
 .filters {
   display: flex;
   flex-direction: column;
@@ -198,31 +204,32 @@
   border-radius: var(--radius-lg);
   overflow: hidden;
   transition: all var(--transition-normal);
-  position: relative;
   cursor: pointer;
+  position: relative;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  box-shadow: var(--shadow-sm);
+  height: 100%;
   display: flex;
   flex-direction: column;
-  height: 100%;
-  border: 1px solid var(--color-border);
-  box-shadow: var(--shadow-sm);
-  backdrop-filter: blur(10px);
 }
 
 .projectCard::before {
   content: "";
   position: absolute;
-  inset: 0;
-  background: linear-gradient(to bottom, rgba(58, 123, 213, 0.08), transparent);
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: var(--gradient-primary);
   opacity: 0;
   transition: opacity var(--transition-normal);
   z-index: 1;
-  pointer-events: none;
 }
 
 .projectCard:hover {
-  transform: translateY(-4px);
+  transform: translateY(-5px);
+  border-color: rgba(58, 123, 213, 0.3);
   box-shadow: var(--shadow-md);
-  border-color: rgba(58, 123, 213, 0.2);
 }
 
 .projectCard:hover::before {
@@ -231,17 +238,16 @@
 
 .projectImage {
   position: relative;
-  width: 100%;
   height: 200px;
   overflow: hidden;
+  background: var(--color-bg-secondary);
 }
 
 .projectImage img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform var(--transition-slow);
-  display: block;
+  transition: transform var(--transition-normal);
 }
 
 .projectCard:hover .projectImage img {
@@ -365,20 +371,35 @@
 
 .footer {
   text-align: center;
-  padding: var(--space-xl) 0;
+  padding: var(--space-3xl) 0;
+  background: rgba(20, 27, 45, 0.4);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--color-border);
 }
 
 .footer h2 {
-  font-size: var(--font-size-2xl);
-  margin-bottom: var(--space-lg);
+  font-size: var(--font-size-3xl);
+  font-weight: var(--font-weight-bold);
+  margin-bottom: var(--space-md);
   background: var(--gradient-accent);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
 
+.footerText {
+  max-width: 600px;
+  margin: 0 auto var(--space-xl);
+}
+
+.footerButtons {
+  display: flex;
+  gap: var(--space-md);
+  justify-content: center;
+}
+
 .contactButton {
-  font-size: var(--font-size-md);
+  margin-top: var(--space-lg);
 }
 
 .modalOverlay {
@@ -545,6 +566,8 @@
 }
 
 .introText {
+  flex: 1;
+  padding-right: var(--space-xl);
   display: flex;
   flex-direction: column;
   gap: var(--space-md);
@@ -661,6 +684,19 @@
   
   .content {
     padding: 0 var(--space-md);
+  }
+  
+  .headerButtons {
+    flex-direction: column;
+    width: 100%;
+  }
+  
+  .footerButtons {
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    max-width: 300px;
+    margin: 0 auto;
   }
 }
 
@@ -922,5 +958,79 @@
   
   .jsonViewer code {
     color: #f0f0f0;
+  }
+}
+
+.clientValue {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+  margin-top: var(--space-xl);
+  background: rgba(20, 27, 45, 0.6);
+  border-radius: var(--radius-lg);
+  padding: var(--space-lg);
+  border: 1px solid var(--color-border);
+}
+
+.valuePoint {
+  display: flex;
+  gap: var(--space-md);
+  align-items: center;
+}
+
+.valuePoint svg {
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
+}
+
+.testimonials {
+  display: flex;
+  gap: var(--space-xl);
+  margin: var(--space-xl) 0;
+  flex-wrap: wrap;
+}
+
+.testimonial {
+  flex: 1;
+  min-width: 300px;
+}
+
+.testimonialContent {
+  background: rgba(20, 27, 45, 0.6);
+  border-radius: var(--radius-lg);
+  padding: var(--space-xl);
+  position: relative;
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--color-border);
+  transition: all var(--transition-normal);
+}
+
+.testimonialContent:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
+  border-color: rgba(58, 123, 213, 0.3);
+}
+
+.quoteIcon {
+  margin-bottom: var(--space-md);
+  opacity: 0.5;
+}
+
+.testimonialAuthor {
+  display: flex;
+  align-items: center;
+  margin-top: var(--space-lg);
+  gap: var(--space-md);
+}
+
+.authorDetails {
+  display: flex;
+  flex-direction: column;
+}
+
+@media (max-width: 768px) {
+  .testimonials {
+    flex-direction: column;
   }
 } 

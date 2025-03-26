@@ -65,7 +65,7 @@ const automationProjects = [
     toolIcon: placeholderImages.n8nLogo,
     description: 'A complete WhatsApp chatbot solution that serves as an AI-powered product sales agent using a vector store knowledgebase.',
     impact: 'Automated customer product inquiries with 24/7 availability and improved response quality using vector search technology',
-    image: placeholderImages.whatsappChatbot,
+    image: '/images/automation/whatsapp-chatbot.jpg',
     tags: ['WhatsApp API', 'AI Agent', 'Vector Store', 'Customer Support'],
     metrics: [
       { label: 'Response Time', value: '<5 sec' },
@@ -74,8 +74,7 @@ const automationProjects = [
     ],
     details: 'I developed a comprehensive WhatsApp chatbot that functions as an AI-powered sales assistant for product inquiries. The workflow includes:\n\n• WhatsApp Business API Integration: Establishes a secure connection to receive and respond to customer messages\n\n• Vector Store Knowledge Base: Processes product brochures and documentation into a searchable vector database\n\n• Message Type Handling: Detects and routes incoming message types, focusing on text message processing\n\n• AI Agent Integration: Utilizes OpenAI\'s GPT models to generate intelligent, context-aware responses\n\n• Memory Management: Implements a windowed buffer memory system to maintain conversation context for each user\n\n• Product Catalog Access: Grants the AI agent direct access to product specifications and features via vector search\n\n• User Identification: Tracks unique users to maintain personalized conversation history\n\n• Error Recovery: Includes fallback mechanisms for handling unsupported message types\n\nThis solution has significantly improved customer service efficiency by providing instant, accurate responses to product inquiries around the clock.',
     hasWorkflow: true,
-    workflowData: 'first-whatsapp-chatbot',
-    videoUrl: null
+    workflowData: 'first-whatsapp-chatbot'
   },
   {
     id: 'advanced-whatsapp-ai',
@@ -84,7 +83,7 @@ const automationProjects = [
     toolIcon: placeholderImages.n8nLogo,
     description: 'Build a sophisticated AI assistant that can process various types of WhatsApp messages including text, voice, images, and more.',
     impact: 'Enhanced customer engagement by enabling multimedia support with 95% message analysis accuracy across all formats',
-    image: placeholderImages.whatsappAI,
+    image: '/images/automation/whatsapp-ai.jpg',
     tags: ['Multimodal AI', 'Media Processing', 'WhatsApp Integration', 'Google Gemini'],
     metrics: [
       { label: 'Message Types', value: '4' },
@@ -93,8 +92,25 @@ const automationProjects = [
     ],
     details: 'I engineered an advanced WhatsApp AI assistant capable of handling and analyzing multiple message types with remarkable accuracy. The system features:\n\n• Multi-Format Message Processing: Handles text, audio, video, and image messages using appropriate AI models\n\n• Audio Transcription: Transcribes voice notes and audio messages using specialized AI models\n\n• Video Content Analysis: Utilizes Google Gemini to summarize and describe video content\n\n• Image Recognition: Processes images to extract and describe visual content and text\n\n• Text Summarization: Condenses and processes text messages for efficient AI analysis\n\n• Knowledge Tool Access: Integrates with Wikipedia tool for enhanced information retrieval\n\n• Windowed Memory System: Maintains conversation context across multiple interactions\n\n• Seamless Response Delivery: Returns analysis results and AI responses directly through WhatsApp\n\nThis versatile system provides a complete multimedia communication experience, allowing users to interact naturally using their preferred message format while receiving intelligent, context-aware responses.',
     hasWorkflow: true,
-    workflowData: 'respond-whatsapp-message',
-    videoUrl: null
+    workflowData: 'respond-whatsapp-message'
+  },
+  {
+    id: 'financial-documents-assistant',
+    title: 'Financial Documents Assistant',
+    tool: 'n8n',
+    toolIcon: '/n8nlogo.jpg',
+    description: 'A sophisticated document processing system that uses vector search and LLMs to analyze financial documents and provide intelligent answers to queries.',
+    impact: 'Streamlined financial document analysis and reduced query response time by 90% while improving accuracy',
+    image: '/images/automation/financial-documents-assistant.jpg',
+    tags: ['Vector Search', 'Qdrant', 'Mistral.ai', 'Document Analysis'],
+    metrics: [
+      { label: 'Query Time', value: '-90%' },
+      { label: 'Accuracy', value: '95%' },
+      { label: 'File Types', value: 'Multiple' }
+    ],
+    details: 'I built a comprehensive financial documents assistant that leverages vector search technology and large language models to analyze and retrieve information from financial documents. This system includes:\n\n• Local File Monitoring: Automatically detects when files are added, changed, or removed from a target folder\n\n• Document Synchronization: Seamlessly synchronizes file changes with the Qdrant vector database\n\n• Text Processing Pipeline: Splits documents into manageable chunks and prepares them for embedding\n\n• AI Embeddings: Uses Mistral.ai to generate high-quality vector embeddings of document content\n\n• Vector Storage: Stores embeddings with rich metadata in Qdrant for efficient retrieval\n\n• Natural Language Interface: Provides a conversational interface for asking questions about financial documents\n\n• Intelligent Retrieval: Implements vector search to find the most relevant document sections for each query\n\n• AI-Powered Responses: Generates accurate, contextual answers based on retrieved document segments\n\nThis system dramatically improves the efficiency of financial document analysis, allowing users to get instant answers to complex questions about their financial data without having to manually search through documents.',
+    hasWorkflow: true,
+    workflowData: 'financial-documents-assistant'
   },
   {
     id: 6,
@@ -186,87 +202,18 @@ const automationProjects = [
 export default function Automation() {
   const [selectedProject, setSelectedProject] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
-  const videoRef = useRef(null);
-  const [isVideoPlaying, setIsVideoPlaying] = useState(false);
-  
-  // New state for workflow
   const [showWorkflow, setShowWorkflow] = useState(false);
-
+  const [fullscreenImage, setFullscreenImage] = useState(false);
+  const [zoomLevel, setZoomLevel] = useState(1);
+  
   useEffect(() => {
     setIsLoaded(true);
   }, []);
 
+  // Reset workflow view when project changes
   useEffect(() => {
-    if (selectedProject && videoRef.current) {
-      // Ensure video src is set correctly
-      if (videoRef.current.src !== selectedProject.videoUrl) {
-        videoRef.current.src = selectedProject.videoUrl;
-      }
-      
-      videoRef.current.load();
-      
-      const playTimer = setTimeout(() => {
-        if (videoRef.current) {
-          videoRef.current.currentTime = 0;
-          videoRef.current.play().catch(e => console.log('Video play error:', e));
-        }
-      }, 100);
-      
-      return () => clearTimeout(playTimer);
-    }
-  }, [selectedProject]);
-
-  // Add lazy loading of video assets
-  useEffect(() => {
-    // Only load workflow videos when on the automation page
-    const preloadWorkflowVideos = () => {
-      // Create preload links for workflow videos - but with a lower priority
-      const videos = automationProjects.slice(0, 3).map(project => project.videoUrl);
-      videos.forEach(videoUrl => {
-        const link = document.createElement('link');
-        link.rel = 'preload';
-        link.href = videoUrl;
-        link.as = 'video';
-        link.setAttribute('fetchpriority', 'low');
-        document.head.appendChild(link);
-      });
-    };
-
-    preloadWorkflowVideos();
-
-    return () => {
-      // Clean up preload links when component unmounts
-      const preloadLinks = document.querySelectorAll('link[rel="preload"][as="video"]');
-      preloadLinks.forEach(link => {
-        if (link.href.includes('yt-transcript.mp4') || 
-            link.href.includes('web-scraping.mp4') || 
-            link.href.includes('reddit-biz-ideas.mp4')) {
-          document.head.removeChild(link);
-        }
-      });
-    };
-  }, []);
-
-  // Reset video state when project changes
-  useEffect(() => {
-    setIsVideoPlaying(false);
     setShowWorkflow(false);
   }, [selectedProject]);
-
-  const handleVideoLoad = () => {
-    // Video loaded handler
-  };
-
-  const toggleVideo = () => {
-    if (videoRef.current) {
-      if (isVideoPlaying) {
-        videoRef.current.pause();
-      } else {
-        videoRef.current.play();
-      }
-      setIsVideoPlaying(!isVideoPlaying);
-    }
-  };
 
   const handleProjectSelect = (project) => {
     setSelectedProject(project);
@@ -274,9 +221,35 @@ export default function Automation() {
     setShowWorkflow(false);
   };
 
-  // New function to toggle workflow visibility
   const toggleWorkflowView = () => {
     setShowWorkflow(!showWorkflow);
+  };
+
+  const openFullscreenImage = (e) => {
+    e.stopPropagation();
+    setFullscreenImage(true);
+    setZoomLevel(1);
+  };
+
+  const closeFullscreenImage = (e) => {
+    e.stopPropagation();
+    setFullscreenImage(false);
+    setZoomLevel(1);
+  };
+
+  const handleZoomIn = (e) => {
+    e.stopPropagation();
+    setZoomLevel(prev => Math.min(prev + 0.25, 3));
+  };
+
+  const handleZoomOut = (e) => {
+    e.stopPropagation();
+    setZoomLevel(prev => Math.max(prev - 0.25, 0.5));
+  };
+
+  const handleResetZoom = (e) => {
+    e.stopPropagation();
+    setZoomLevel(1);
   };
 
   const containerVariants = {
@@ -475,20 +448,21 @@ export default function Automation() {
                 </div>
                 
                 <div className={styles.modalVideo}>
-                  <h3>Workflow Demo</h3>
-                  <video 
-                    ref={videoRef}
-                    controls
-                    muted
-                    loop
-                    playsInline
-                    poster={selectedProject.image}
-                    onLoadedData={handleVideoLoad}
-                    onClick={toggleVideo}
-                  >
-                    <source src={selectedProject.videoUrl} type="video/mp4" />
-                    Your browser does not support the video tag.
-                  </video>
+                  <h3>Workflow Overview</h3>
+                  <div className={styles.workflowImage}>
+                    <img 
+                      src={selectedProject.image} 
+                      alt={selectedProject.title}
+                      className={styles.workflowScreenshot}
+                      onClick={openFullscreenImage}
+                    />
+                    <button className={styles.viewFullscreen} onClick={openFullscreenImage}>
+                      <svg className={styles.fullscreenIcon} viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z" />
+                      </svg>
+                      View Fullscreen
+                    </button>
+                  </div>
                 </div>
                 
                 <div>
@@ -573,6 +547,50 @@ export default function Automation() {
                 </div>
               </div>
             </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      <AnimatePresence>
+        {fullscreenImage && selectedProject && (
+          <motion.div 
+            className={styles.fullscreenOverlay}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={closeFullscreenImage}
+          >
+            <button 
+              className={styles.fullscreenClose} 
+              onClick={closeFullscreenImage}
+              aria-label="Close fullscreen"
+            >
+              ×
+            </button>
+            <motion.img 
+              src={selectedProject.image} 
+              alt={selectedProject.title}
+              className={styles.fullscreenImage}
+              style={{ transform: `scale(${zoomLevel})` }}
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: zoomLevel }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.3 }}
+            />
+            <div className={styles.zoomControls} onClick={e => e.stopPropagation()}>
+              <button className={styles.zoomButton} onClick={handleZoomOut} aria-label="Zoom out">
+                −
+              </button>
+              <div className={styles.zoomLevel}>{Math.round(zoomLevel * 100)}%</div>
+              <button className={styles.zoomButton} onClick={handleZoomIn} aria-label="Zoom in">
+                +
+              </button>
+              <button className={styles.zoomButton} onClick={handleResetZoom} aria-label="Reset zoom">
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
+                  <path d="M12 5V2L8 6l4 4V7c3.31 0 6 2.69 6 6s-2.69 6-6 6-6-2.69-6-6H4c0 4.42 3.58 8 8 8s8-3.58 8-8-3.58-8-8-8z" />
+                </svg>
+              </button>
+            </div>
           </motion.div>
         )}
       </AnimatePresence>

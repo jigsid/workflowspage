@@ -119,91 +119,6 @@ const automationProjects = [
     workflowData: 'financial-documents-assistant'
   },
   {
-    id: 6,
-    title: 'Enterprise n8n Self-Hosting',
-    tool: 'n8n',
-    toolIcon: '/n8nlogo.jpg',
-    description: 'Deployed and maintained a self-hosted n8n instance on Kubernetes with high availability, load balancing, and automated backups.',
-    impact: 'Achieved 99.9% uptime with secure access for 50+ team members across departments',
-    image: '/images/automation/n8n-selfhosting.jpg',
-    tags: ['Kubernetes', 'Docker', 'Self-Hosting', 'High Availability'],
-    metrics: [
-      { label: 'Uptime', value: '99.9%' },
-      { label: 'Users', value: '50+' },
-      { label: 'Workflows', value: '200+' }
-    ],
-    details: 'I architected and implemented a robust self-hosted n8n environment on Kubernetes to ensure high availability and scalability. The setup includes automated database backups, version-controlled deployments, and a secure access layer with SSO integration. This enterprise-grade implementation allows teams across the organization to create and manage their automation workflows while maintaining data sovereignty and security compliance.',
-    videoUrl: '/videos/n8n-selfhosting.mp4'
-  },
-  {
-    id: 7,
-    title: 'Custom n8n Nodes Development',
-    tool: 'n8n',
-    toolIcon: '/n8nlogo.jpg',
-    description: 'Developed custom n8n nodes for proprietary systems and specialized APIs, extending n8n\'s capabilities for unique business requirements.',
-    impact: 'Reduced integration development time by 70% and enabled 15+ new automation scenarios',
-    image: '/images/automation/n8n-custom-nodes.jpg',
-    tags: ['TypeScript', 'API Integration', 'Custom Nodes', 'Open Source'],
-    metrics: [
-      { label: 'Dev Time', value: '-70%' },
-      { label: 'New Automations', value: '15+' },
-      { label: 'Code Reuse', value: '85%' }
-    ],
-    details: 'I designed and implemented several custom n8n nodes to integrate with proprietary internal systems and specialized third-party APIs. Using TypeScript and following n8n\'s node development best practices, I created reusable components that seamlessly extend n8n\'s capabilities. These custom nodes include advanced authentication handling, complex data transformation, and specialized error management. Some of these nodes have been contributed back to the n8n community as open-source packages.',
-    videoUrl: '/videos/n8n-custom-nodes.mp4'
-  },
-  {
-    id: 8,
-    title: 'Data Pipeline Orchestration',
-    tool: 'n8n',
-    toolIcon: '/n8nlogo.jpg',
-    description: 'Built complex data pipelines using n8n to extract, transform, and load data between multiple systems with error handling and monitoring.',
-    impact: 'Processed over 1M records daily with 99.8% reliability and comprehensive error recovery',
-    image: '/images/automation/n8n-data-pipeline.jpg',
-    tags: ['ETL', 'Data Integration', 'Error Handling', 'Monitoring'],
-    metrics: [
-      { label: 'Daily Records', value: '1M+' },
-      { label: 'Reliability', value: '99.8%' },
-      { label: 'Systems', value: '12+' }
-    ],
-    details: 'I designed and implemented sophisticated data pipeline workflows in n8n that handle the extraction, transformation, and loading of data between multiple systems. These workflows include comprehensive error handling with automatic retry mechanisms, data validation, and alerting. The pipelines process millions of records daily while maintaining high reliability. I implemented custom monitoring solutions to track performance metrics and detect anomalies in real-time.',
-    videoUrl: '/videos/n8n-data-pipeline.mp4'
-  },
-  {
-    id: 9,
-    title: 'n8n Workflow Optimization',
-    tool: 'n8n',
-    toolIcon: '/n8nlogo.jpg',
-    description: 'Optimized existing n8n workflows for performance, reliability, and maintainability using advanced n8n features and best practices.',
-    impact: 'Reduced execution time by 65% and error rates by 90% across critical workflows',
-    image: '/images/automation/n8n-optimization.jpg',
-    tags: ['Performance', 'Reliability', 'Best Practices', 'Refactoring'],
-    metrics: [
-      { label: 'Speed Gain', value: '+65%' },
-      { label: 'Error Reduction', value: '90%' },
-      { label: 'Workflows', value: '35+' }
-    ],
-    details: 'I conducted comprehensive audits and optimizations of existing n8n workflows to improve their performance, reliability, and maintainability. By implementing advanced n8n features such as batching, queuing, and parallel processing, I significantly reduced execution times. I refactored workflows to follow best practices, including modularization, error handling, and proper documentation. The optimized workflows are now more resilient, easier to maintain, and execute much faster.',
-    videoUrl: '/videos/n8n-optimization.mp4'
-  },
-  {
-    id: 10,
-    title: 'Multi-System Integration Hub',
-    tool: 'n8n',
-    toolIcon: '/n8nlogo.jpg',
-    description: 'Created a centralized integration hub using n8n to connect and synchronize data between CRM, ERP, marketing, and support platforms.',
-    impact: 'Eliminated data silos and reduced manual data entry by 85% across departments',
-    image: '/images/automation/n8n-integration-hub.jpg',
-    tags: ['System Integration', 'API Orchestration', 'Data Sync', 'Webhooks'],
-    metrics: [
-      { label: 'Systems Connected', value: '8+' },
-      { label: 'Manual Work', value: '-85%' },
-      { label: 'Data Accuracy', value: '+95%' }
-    ],
-    details: 'I architected and implemented a comprehensive integration hub using n8n that serves as the central nervous system connecting various business applications. This hub manages bidirectional data synchronization between CRM, ERP, marketing automation, support ticketing, and other critical systems. Using a combination of webhooks, scheduled triggers, and API polling, the hub ensures near real-time data consistency across all platforms while handling complex data mapping and transformation requirements.',
-    videoUrl: '/videos/n8n-integration-hub.mp4'
-  },
-  {
     id: 11,
     title: 'AI-powered WooCommerce Support Agent',
     tool: 'n8n',
@@ -382,6 +297,91 @@ const automationProjects = [
     details: 'I designed a powerful lead generation system that leverages the Google Maps API to discover and qualify business prospects. The workflow includes:\n\n• Geographic Targeting: Precisely defines search areas by city, neighborhood, or radius\n\n• Business Category Filtering: Targets specific business types and industries based on classification\n\n• Data Extraction: Captures comprehensive business details including contact information, hours, and reviews\n\n• Duplicate Prevention: Implements intelligent deduplication to prevent contacting the same business twice\n\n• Data Enrichment: Enhances lead data with additional information from supplementary sources\n\n• Lead Scoring: Applies customizable scoring criteria to prioritize the most promising prospects\n\n• CRM Integration: Seamlessly exports qualified leads to CRM systems for sales team follow-up\n\nThis automated approach has transformed the lead generation process, providing a consistent pipeline of qualified prospects while eliminating hours of manual research.',
     hasWorkflow: true,
     workflowData: 'google-maps-leads'
+  },
+  {
+    id: 6,
+    title: 'Enterprise n8n Self-Hosting',
+    tool: 'n8n',
+    toolIcon: '/n8nlogo.jpg',
+    description: 'Deployed and maintained a self-hosted n8n instance on Kubernetes with high availability, load balancing, and automated backups.',
+    impact: 'Achieved 99.9% uptime with secure access for 50+ team members across departments',
+    image: '/images/automation/n8n-selfhosting.jpg',
+    tags: ['Kubernetes', 'Docker', 'Self-Hosting', 'High Availability'],
+    metrics: [
+      { label: 'Uptime', value: '99.9%' },
+      { label: 'Users', value: '50+' },
+      { label: 'Workflows', value: '200+' }
+    ],
+    details: 'I architected and implemented a robust self-hosted n8n environment on Kubernetes to ensure high availability and scalability. The setup includes automated database backups, version-controlled deployments, and a secure access layer with SSO integration. This enterprise-grade implementation allows teams across the organization to create and manage their automation workflows while maintaining data sovereignty and security compliance.',
+    videoUrl: '/videos/n8n-selfhosting.mp4'
+  },
+  {
+    id: 7,
+    title: 'Custom n8n Nodes Development',
+    tool: 'n8n',
+    toolIcon: '/n8nlogo.jpg',
+    description: 'Developed custom n8n nodes for proprietary systems and specialized APIs, extending n8n\'s capabilities for unique business requirements.',
+    impact: 'Reduced integration development time by 70% and enabled 15+ new automation scenarios',
+    image: '/images/automation/n8n-custom-nodes.jpg',
+    tags: ['TypeScript', 'API Integration', 'Custom Nodes', 'Open Source'],
+    metrics: [
+      { label: 'Dev Time', value: '-70%' },
+      { label: 'New Automations', value: '15+' },
+      { label: 'Code Reuse', value: '85%' }
+    ],
+    details: 'I designed and implemented several custom n8n nodes to integrate with proprietary internal systems and specialized third-party APIs. Using TypeScript and following n8n\'s node development best practices, I created reusable components that seamlessly extend n8n\'s capabilities. These custom nodes include advanced authentication handling, complex data transformation, and specialized error management. Some of these nodes have been contributed back to the n8n community as open-source packages.',
+    videoUrl: '/videos/n8n-custom-nodes.mp4'
+  },
+  {
+    id: 8,
+    title: 'Data Pipeline Orchestration',
+    tool: 'n8n',
+    toolIcon: '/n8nlogo.jpg',
+    description: 'Built complex data pipelines using n8n to extract, transform, and load data between multiple systems with error handling and monitoring.',
+    impact: 'Processed over 1M records daily with 99.8% reliability and comprehensive error recovery',
+    image: '/images/automation/n8n-data-pipeline.jpg',
+    tags: ['ETL', 'Data Integration', 'Error Handling', 'Monitoring'],
+    metrics: [
+      { label: 'Daily Records', value: '1M+' },
+      { label: 'Reliability', value: '99.8%' },
+      { label: 'Systems', value: '12+' }
+    ],
+    details: 'I designed and implemented sophisticated data pipeline workflows in n8n that handle the extraction, transformation, and loading of data between multiple systems. These workflows include comprehensive error handling with automatic retry mechanisms, data validation, and alerting. The pipelines process millions of records daily while maintaining high reliability. I implemented custom monitoring solutions to track performance metrics and detect anomalies in real-time.',
+    videoUrl: '/videos/n8n-data-pipeline.mp4'
+  },
+  {
+    id: 9,
+    title: 'n8n Workflow Optimization',
+    tool: 'n8n',
+    toolIcon: '/n8nlogo.jpg',
+    description: 'Optimized existing n8n workflows for performance, reliability, and maintainability using advanced n8n features and best practices.',
+    impact: 'Reduced execution time by 65% and error rates by 90% across critical workflows',
+    image: '/images/automation/n8n-optimization.jpg',
+    tags: ['Performance', 'Reliability', 'Best Practices', 'Refactoring'],
+    metrics: [
+      { label: 'Speed Gain', value: '+65%' },
+      { label: 'Error Reduction', value: '90%' },
+      { label: 'Workflows', value: '35+' }
+    ],
+    details: 'I conducted comprehensive audits and optimizations of existing n8n workflows to improve their performance, reliability, and maintainability. By implementing advanced n8n features such as batching, queuing, and parallel processing, I significantly reduced execution times. I refactored workflows to follow best practices, including modularization, error handling, and proper documentation. The optimized workflows are now more resilient, easier to maintain, and execute much faster.',
+    videoUrl: '/videos/n8n-optimization.mp4'
+  },
+  {
+    id: 10,
+    title: 'Multi-System Integration Hub',
+    tool: 'n8n',
+    toolIcon: '/n8nlogo.jpg',
+    description: 'Created a centralized integration hub using n8n to connect and synchronize data between CRM, ERP, marketing, and support platforms.',
+    impact: 'Eliminated data silos and reduced manual data entry by 85% across departments',
+    image: '/images/automation/n8n-integration-hub.jpg',
+    tags: ['System Integration', 'API Orchestration', 'Data Sync', 'Webhooks'],
+    metrics: [
+      { label: 'Systems Connected', value: '8+' },
+      { label: 'Manual Work', value: '-85%' },
+      { label: 'Data Accuracy', value: '+95%' }
+    ],
+    details: 'I architected and implemented a comprehensive integration hub using n8n that serves as the central nervous system connecting various business applications. This hub manages bidirectional data synchronization between CRM, ERP, marketing automation, support ticketing, and other critical systems. Using a combination of webhooks, scheduled triggers, and API polling, the hub ensures near real-time data consistency across all platforms while handling complex data mapping and transformation requirements.',
+    videoUrl: '/videos/n8n-integration-hub.mp4'
   }
 ];
 

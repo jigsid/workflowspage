@@ -376,18 +376,6 @@ export default function Automation() {
                       <span key={tag} className={styles.tag}>{tag}</span>
                     ))}
                   </div>
-                  <div className={styles.metrics}>
-                    {project.metrics.map(metric => (
-                      <div key={metric.label} className={styles.metric}>
-                        <Text as="span" size="lg" weight="bold" color="accent" className={styles.metricValue}>
-                          {metric.value}
-                        </Text>
-                        <Text as="span" size="xs" color="secondary" className={styles.metricLabel}>
-                          {metric.label}
-                        </Text>
-                      </div>
-                    ))}
-                  </div>
                   <div className={styles.impact}>
                     <h4>Impact</h4>
                     <Text as="p" size="sm" color="secondary">

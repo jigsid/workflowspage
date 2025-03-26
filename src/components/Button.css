@@ -1,5 +1,5 @@
 .button {
-  background-color: var(--color-accent);
+  background: var(--gradient-primary);
   color: var(--color-text);
   border: none;
   border-radius: var(--radius-md);
@@ -17,44 +17,67 @@
   overflow: hidden;
   min-height: 46px;
   letter-spacing: 0.01em;
+  box-shadow: var(--shadow-sm);
+}
+
+.button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(rgba(255, 255, 255, 0.08), transparent);
+  opacity: 0;
+  transition: opacity var(--transition-normal);
 }
 
 .button:hover {
-  background-color: var(--color-accent-dark);
   transform: translateY(-2px);
   box-shadow: var(--shadow-md);
 }
 
+.button:hover::before {
+  opacity: 1;
+}
+
 .button:active {
   transform: translateY(0);
+  box-shadow: var(--shadow-sm);
 }
 
 .button:focus {
   outline: none;
-  box-shadow: 0 0 0 3px var(--color-accent-light);
+  box-shadow: 0 0 0 2px var(--color-accent-light), var(--shadow-sm);
 }
 
 .button--secondary {
-  background-color: transparent;
+  background: transparent;
   border: 1px solid var(--color-accent);
   color: var(--color-accent);
+  box-shadow: none;
 }
 
 .button--secondary:hover {
   background-color: var(--color-accent-light);
   color: var(--color-accent);
+  border-color: transparent;
+  box-shadow: var(--shadow-sm);
 }
 
 .button--large {
   padding: var(--space-md) var(--space-xl);
   font-size: var(--font-size-lg);
   min-height: 52px;
+  border-radius: var(--radius-md);
+  letter-spacing: 0.02em;
 }
 
 .button--small {
   padding: var(--space-xs) var(--space-md);
   font-size: var(--font-size-sm);
   min-height: 38px;
+  border-radius: var(--radius-sm);
 }
 
 .button--icon {
@@ -66,7 +89,8 @@
 
 .button--disabled,
 .button:disabled {
-  opacity: 0.6;
+  opacity: 0.5;
   cursor: not-allowed;
   pointer-events: none;
+  filter: saturate(0.7);
 } 

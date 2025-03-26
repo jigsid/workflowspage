@@ -392,9 +392,38 @@ export default function Automation() {
   const [fullscreenImage, setFullscreenImage] = useState(false);
   const [zoomLevel, setZoomLevel] = useState(1);
   const [workflowJson, setWorkflowJson] = useState(null);
+  const [searchTerm, setSearchTerm] = useState('');
+  const [filterTag, setFilterTag] = useState(null);
+  const [filterTool, setFilterTool] = useState(null);
+  const [hoveredCard, setHoveredCard] = useState(null);
+  const scrollRef = useRef(null);
+  
+  // Extract all unique tags from projects
+  const allTags = [...new Set(automationProjects.flatMap(project => project.tags))];
+  
+  // Extract all unique tools from projects
+  const allTools = [...new Set(automationProjects.map(project => project.tool))];
+  
+  // Filter projects based on search term and filters
+  const filteredProjects = automationProjects.filter(project => {
+    const matchesSearch = searchTerm === '' || 
+      project.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      project.description.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      project.tags.some(tag => tag.toLowerCase().includes(searchTerm.toLowerCase()));
+    
+    const matchesTag = filterTag === null || project.tags.includes(filterTag);
+    const matchesTool = filterTool === null || project.tool === filterTool;
+    
+    return matchesSearch && matchesTag && matchesTool;
+  });
   
   useEffect(() => {
-    setIsLoaded(true);
+    // Staggered animation to enhance the feeling of the page coming alive
+    const timer = setTimeout(() => {
+      setIsLoaded(true);
+    }, 300);
+    
+    return () => clearTimeout(timer);
   }, []);
 
   // Fetch workflow JSON when project changes
@@ -423,6 +452,13 @@ export default function Automation() {
     setShowWorkflow(false);
   }, [selectedProject]);
 
+  // Scroll to projects section when a filter is applied
+  useEffect(() => {
+    if ((filterTag !== null || filterTool !== null) && scrollRef.current) {
+      scrollRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  }, [filterTag, filterTool]);
+
   const handleProjectSelect = (project) => {
     setSelectedProject(project);
     // Reset workflow view
@@ -437,13 +473,31 @@ export default function Automation() {
     e.stopPropagation();
     setFullscreenImage(true);
     setZoomLevel(1);
+    // Disable body scroll when fullscreen is open
+    document.body.style.overflow = 'hidden';
   };
 
   const closeFullscreenImage = (e) => {
-    e.stopPropagation();
+    e && e.stopPropagation();
     setFullscreenImage(false);
     setZoomLevel(1);
+    // Re-enable body scroll
+    document.body.style.overflow = 'auto';
   };
+
+  // Add an event handler for ESC key to close fullscreen
+  useEffect(() => {
+    const handleEscKey = (event) => {
+      if (event.key === 'Escape' && fullscreenImage) {
+        closeFullscreenImage();
+      }
+    };
+
+    document.addEventListener('keydown', handleEscKey);
+    return () => {
+      document.removeEventListener('keydown', handleEscKey);
+    };
+  }, [fullscreenImage]);
 
   const handleZoomIn = (e) => {
     e.stopPropagation();
@@ -459,14 +513,39 @@ export default function Automation() {
     e.stopPropagation();
     setZoomLevel(1);
   };
+  
+  const handleTagFilter = (tag) => {
+    setFilterTag(filterTag === tag ? null : tag);
+  };
+  
+  const handleToolFilter = (tool) => {
+    setFilterTool(filterTool === tool ? null : tool);
+  };
+  
+  const clearFilters = () => {
+    setSearchTerm('');
+    setFilterTag(null);
+    setFilterTool(null);
+  };
 
+  // Animation variants
+  const pageTransition = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        duration: 0.8,
+      }
+    }
+  };
+  
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
       transition: {
         duration: 0.8,
-        staggerChildren: 0.2
+        staggerChildren: 0.1
       }
     },
     exit: {
@@ -489,33 +568,69 @@ export default function Automation() {
       }
     }
   };
+  
+  const textFadeVariants = {
+    hidden: { opacity: 0, y: 10 },
+    visible: { 
+      opacity: 1, 
+      y: 0,
+      transition: {
+        duration: 0.6,
+        ease: "easeOut"
+      }
+    }
+  };
 
   return (
-    <div className={styles.automation}>
+    <motion.div 
+      className={styles.automation}
+      initial="hidden"
+      animate="visible"
+      variants={pageTransition}
+    >
       <div className={styles.content}>
-        <div className={styles.header}>
+        <motion.div 
+          className={styles.header}
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.2 }}
+        >
           <h1 className={styles.title}>
             n8n Automation Expertise
           </h1>
           <Text className={styles.subtitle} as="p" size="xl" color="secondary">
-            Discover how I leverage n8n to create powerful, scalable automation solutions through custom workflows, self-hosting, and node development
+            Discover powerful, scalable automation solutions through custom workflows, self-hosting, and node development
           </Text>
-        </div>
+        </motion.div>
 
-        <section className={styles.intro}>
+        <motion.section 
+          className={styles.intro}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.8, delay: 0.4 }}
+        >
           <div className={styles.introText}>
-            <h2>
+            <motion.h2 variants={textFadeVariants}>
               <span className={styles.n8nHighlightText}>Workflow automation</span> expert
-            </h2>
-            <Text as="p" size="lg" color="secondary">
-              n8n is a powerful workflow automation platform that allows for flexible, scalable integrations between virtually any system. As an n8n specialist, I leverage its open-source architecture to create custom solutions that go beyond the capabilities of traditional automation tools.
-            </Text>
-            <Text as="p" size="lg" color="secondary">
-              With n8n, I can build complex automation workflows that perfectly match your business processes, without the limitations of SaaS products. Whether you need custom node development, enterprise self-hosting, or complex workflow optimization, I bring specialized expertise to maximize your automation potential.
-            </Text>
+            </motion.h2>
+            <motion.div variants={textFadeVariants}>
+              <Text as="p" size="lg" color="secondary">
+                n8n is a powerful workflow automation platform that allows for flexible, scalable integrations between virtually any system. As an n8n specialist, I leverage its open-source architecture to create custom solutions that go beyond the capabilities of traditional automation tools.
+              </Text>
+            </motion.div>
+            <motion.div variants={textFadeVariants}>
+              <Text as="p" size="lg" color="secondary">
+                With n8n, I can build complex automation workflows that perfectly match your business processes, without the limitations of SaaS products. Whether you need custom node development, enterprise self-hosting, or complex workflow optimization, I bring specialized expertise to maximize your automation potential.
+              </Text>
+            </motion.div>
           </div>
-          <div className={styles.skills}>
-            <div className={styles.skillBlock}>
+          <motion.div 
+            className={styles.skills}
+            variants={containerVariants}
+            initial="hidden"
+            animate="visible"
+          >
+            <motion.div className={styles.skillBlock} variants={itemVariants}>
               <h3>Workflow Development</h3>
               <ul>
                 <li>
@@ -528,8 +643,8 @@ export default function Automation() {
                   <Text as="p" size="md" color="secondary">Building scalable data pipelines for ETL processes and real-time data synchronization</Text>
                 </li>
               </ul>
-            </div>
-            <div className={styles.skillBlock}>
+            </motion.div>
+            <motion.div className={styles.skillBlock} variants={itemVariants}>
               <h3>Technical Implementation</h3>
               <ul>
                 <li>
@@ -542,61 +657,184 @@ export default function Automation() {
                   <Text as="p" size="md" color="secondary">Performance optimization and workflow reliability engineering</Text>
                 </li>
               </ul>
+            </motion.div>
+          </motion.div>
+        </motion.section>
+
+        {/* Interactive filter section */}
+        <motion.section
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.6 }}
+        >
+          <div className={styles.filters}>
+            <div className={styles.searchBar}>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <circle cx="11" cy="11" r="8"></circle>
+                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+              </svg>
+              <input
+                type="text"
+                className={styles.searchInput}
+                placeholder="Search projects by title, description, or tags..."
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+              />
+              {(searchTerm || filterTag || filterTool) && (
+                <Button 
+                  size="small"
+                  variant="secondary"
+                  onClick={clearFilters}
+                >
+                  Clear
+                </Button>
+              )}
+            </div>
+            
+            <div>
+              <Text as="p" size="sm" color="secondary" style={{ marginBottom: 'var(--space-xs)' }}>
+                Filter by technology:
+              </Text>
+              <div className={styles.tagFilters}>
+                {allTags.slice(0, 12).map(tag => (
+                  <button
+                    key={tag}
+                    className={`${styles.tagFilter} ${filterTag === tag ? styles.tagFilterActive : ''}`}
+                    onClick={() => handleTagFilter(tag)}
+                  >
+                    {tag}
+                  </button>
+                ))}
+              </div>
+            </div>
+            
+            <div>
+              <Text as="p" size="sm" color="secondary" style={{ marginBottom: 'var(--space-xs)' }}>
+                Filter by tool:
+              </Text>
+              <div className={styles.toolFilters}>
+                {allTools.map(tool => (
+                  <button
+                    key={tool}
+                    className={`${styles.toolFilter} ${filterTool === tool ? styles.toolFilterActive : ''}`}
+                    onClick={() => handleToolFilter(tool)}
+                  >
+                    {tool}
+                  </button>
+                ))}
+              </div>
             </div>
           </div>
-        </section>
+        </motion.section>
 
-        <section>
-          <h2 className={styles.sectionTitle}>
-            n8n Automation Projects
-          </h2>
-          <Text className={styles.sectionSubtitle} as="p" size="lg" color="secondary">
-            Explore my portfolio of professional n8n automation projects, from custom workflow development to enterprise implementations
-          </Text>
-
-          <motion.div 
-            className={styles.projectGrid}
-            variants={containerVariants}
-            initial="hidden"
-            animate={isLoaded ? "visible" : "hidden"}
+        <section ref={scrollRef}>
+          <motion.h2 
+            className={styles.sectionTitle}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.7 }}
           >
-            {automationProjects.map(project => (
-              <motion.div 
-                key={project.id}
-                className={styles.projectCard}
-                variants={itemVariants}
-                onClick={() => handleProjectSelect(project)}
-              >
-                <div className={styles.projectImage}>
-                  <img src={project.image} alt={project.title} />
-                  <div className={styles.toolBadge}>
-                    <img src={project.toolIcon} alt={project.tool} />
-                    {project.tool}
-                  </div>
-                </div>
-                <div className={styles.projectContent}>
-                  <h3>{project.title}</h3>
-                  <Text as="p" size="md" color="secondary" className={styles.description}>
-                    {project.description}
-                  </Text>
-                  <div className={styles.tags}>
-                    {project.tags.slice(0, 3).map(tag => (
-                      <span key={tag} className={styles.tag}>{tag}</span>
-                    ))}
-                  </div>
-                  <div className={styles.impact}>
-                    <h4>Impact</h4>
-                    <Text as="p" size="sm" color="secondary">
-                      {project.impact}
-                    </Text>
-                  </div>
-                </div>
-              </motion.div>
-            ))}
+            n8n Automation Projects
+          </motion.h2>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.8 }}
+          >
+            <Text className={styles.sectionSubtitle} as="p" size="lg" color="secondary">
+              Explore my portfolio of professional n8n automation projects, from custom workflow development to enterprise implementations
+            </Text>
           </motion.div>
+
+          {filteredProjects.length === 0 ? (
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.6 }}
+              style={{ 
+                textAlign: 'center', 
+                padding: 'var(--space-xl)',
+                background: 'rgba(20, 27, 45, 0.4)',
+                borderRadius: 'var(--radius-lg)',
+                marginTop: 'var(--space-xl)'
+              }}
+            >
+              <Text as="p" size="xl" color="secondary">
+                No projects match your filters
+              </Text>
+              <Button 
+                onClick={clearFilters}
+                style={{ marginTop: 'var(--space-lg)' }}
+              >
+                Clear All Filters
+              </Button>
+            </motion.div>
+          ) : (
+            <motion.div 
+              className={styles.projectGrid}
+              variants={containerVariants}
+              initial="hidden"
+              animate={isLoaded ? "visible" : "hidden"}
+            >
+              {filteredProjects.map(project => (
+                <motion.div 
+                  key={project.id}
+                  className={styles.projectCard}
+                  variants={itemVariants}
+                  onClick={() => handleProjectSelect(project)}
+                  onMouseEnter={() => setHoveredCard(project.id)}
+                  onMouseLeave={() => setHoveredCard(null)}
+                  whileHover={{ 
+                    y: -4,
+                    transition: { duration: 0.3 }
+                  }}
+                >
+                  <div className={styles.projectImage}>
+                    <img src={project.image} alt={project.title} />
+                    <div className={styles.toolBadge}>
+                      <img src={project.toolIcon} alt={project.tool} />
+                      {project.tool}
+                    </div>
+                  </div>
+                  <div className={styles.projectContent}>
+                    <h3>{project.title}</h3>
+                    <Text as="p" size="md" color="secondary" className={styles.description}>
+                      {project.description}
+                    </Text>
+                    <div className={styles.tags}>
+                      {project.tags.slice(0, 3).map(tag => (
+                        <span 
+                          key={tag} 
+                          className={styles.tag}
+                          style={{ 
+                            transform: hoveredCard === project.id && filterTag === tag ? 'scale(1.05)' : 'scale(1)',
+                            boxShadow: hoveredCard === project.id && filterTag === tag ? 'var(--shadow-glow)' : 'none',
+                            transition: 'all 0.3s ease'
+                          }}
+                        >
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
+                    <div className={styles.impact}>
+                      <h4>Impact</h4>
+                      <Text as="p" size="sm" color="secondary">
+                        {project.impact}
+                      </Text>
+                    </div>
+                  </div>
+                </motion.div>
+              ))}
+            </motion.div>
+          )}
         </section>
 
-        <section className={styles.footer}>
+        <motion.section 
+          className={styles.footer}
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.9 }}
+        >
           <h2>Want to leverage n8n for your automation needs?</h2>
           <Button
             href="mailto:jigsawsmma@gmail.com?subject=n8n%20Automation%20Inquiry"
@@ -608,7 +846,7 @@ export default function Automation() {
           >
             Let's discuss your project
           </Button>
-        </section>
+        </motion.section>
       </div>
 
       <AnimatePresence>
@@ -713,11 +951,11 @@ export default function Automation() {
                   </div>
                 </div>
 
-                {/* New section for workflow visualization */}
+                {/* Workflow visualization section */}
                 {selectedProject.hasWorkflow && (
                   <div className={styles.workflowSection}>
                     <div className={styles.workflowHeader}>
-                      <Text variant="h3">Workflow Visualization</Text>
+                      <Text as="h3">Workflow Visualization</Text>
                       <Button 
                         onClick={toggleWorkflowView}
                         className={styles.workflowToggleButton}
@@ -726,25 +964,49 @@ export default function Automation() {
                       </Button>
                     </div>
                     
-                    {showWorkflow && (
-                      <div className={styles.workflowContainer} style={{ 
-                        height: '450px', 
-                        width: '100%', 
-                        overflow: 'hidden', 
-                        borderRadius: '8px', 
-                        boxShadow: '0 4px 12px rgba(0, 0, 0, 0.1)',
-                        margin: '20px 0 40px 0',
-                        maxWidth: '100%'
-                      }}>
-                        <WorkflowViewer workflowData={selectedProject.workflowData} />
-                      </div>
-                    )}
+                    <div className={styles.workflowContainerWrapper} style={{ minHeight: showWorkflow ? '450px' : '0' }}>
+                      <AnimatePresence>
+                        {showWorkflow && (
+                          <motion.div 
+                            className={styles.workflowContainer}
+                            initial={{ opacity: 0, height: 0 }}
+                            animate={{ 
+                              opacity: 1, 
+                              height: '450px',
+                              transition: { 
+                                duration: 0.4,
+                                ease: [0.4, 0.0, 0.2, 1] // Use a smooth easing function
+                              }
+                            }}
+                            exit={{ 
+                              opacity: 0, 
+                              height: 0,
+                              transition: { 
+                                duration: 0.3,
+                                ease: [0.4, 0.0, 0.2, 1]
+                              } 
+                            }}
+                            style={{ 
+                              width: '100%', 
+                              overflow: 'hidden', 
+                              borderRadius: 'var(--radius-lg)',
+                              boxShadow: 'var(--shadow-sm)',
+                              margin: '20px 0',
+                              maxWidth: '100%',
+                              border: '1px solid rgba(255, 255, 255, 0.1)'
+                            }}
+                          >
+                            <WorkflowViewer workflowData={selectedProject.workflowData} />
+                          </motion.div>
+                        )}
+                      </AnimatePresence>
+                    </div>
                   </div>
                 )}
 
                 <div style={{ marginTop: 'auto', textAlign: 'center' }}>
                   <Button
-                    href="mailto:jigsawsmma@gmail.com?subject=n8n%20Project%20Inquiry:%20"
+                    href={`mailto:jigsawsmma@gmail.com?subject=n8n%20Project%20Inquiry:%20${selectedProject.title}`}
                     as="a"
                     target="_blank"
                     variant="primary"
@@ -770,7 +1032,10 @@ export default function Automation() {
           >
             <button 
               className={styles.fullscreenClose} 
-              onClick={closeFullscreenImage}
+              onClick={(e) => {
+                e.stopPropagation();
+                closeFullscreenImage();
+              }}
               aria-label="Close fullscreen"
             >
               ×
@@ -784,6 +1049,7 @@ export default function Automation() {
               animate={{ opacity: 1, scale: zoomLevel }}
               exit={{ opacity: 0 }}
               transition={{ duration: 0.3 }}
+              onClick={(e) => e.stopPropagation()}
             />
             <div className={styles.zoomControls} onClick={e => e.stopPropagation()}>
               <button className={styles.zoomButton} onClick={handleZoomOut} aria-label="Zoom out">
@@ -802,6 +1068,6 @@ export default function Automation() {
           </motion.div>
         )}
       </AnimatePresence>
-    </div>
+    </motion.div>
   );
 } 

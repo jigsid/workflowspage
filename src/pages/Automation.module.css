@@ -849,4 +849,51 @@
 .fullscreenIcon {
   width: 14px;
   height: 14px;
+}
+
+.workflowJson {
+  margin-top: var(--space-lg);
+  background: var(--color-bg-secondary);
+  border-radius: var(--radius-md);
+  padding: var(--space-md);
+  border: 1px solid var(--color-border);
+}
+
+.workflowJson h4 {
+  margin-bottom: var(--space-sm);
+  color: var(--color-text-secondary);
+  font-size: var(--font-size-sm);
+}
+
+.jsonViewer {
+  background: var(--color-bg-primary);
+  border-radius: var(--radius-sm);
+  padding: var(--space-md);
+  overflow-x: auto;
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+.jsonViewer pre {
+  margin: 0;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
+
+.jsonViewer code {
+  font-family: 'Fira Code', monospace;
+  font-size: var(--font-size-sm);
+  line-height: 1.5;
+  color: var(--color-text-secondary);
+}
+
+/* Dark mode styles for JSON viewer */
+@media (prefers-color-scheme: dark) {
+  .jsonViewer {
+    background: #1a1a1a;
+  }
+  
+  .jsonViewer code {
+    color: #e0e0e0;
+  }
 } 

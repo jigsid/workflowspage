@@ -22,7 +22,9 @@ const automationProjects = [
       { label: 'Format', value: 'Text/JSON' }
     ],
     details: 'I designed and implemented a comprehensive n8n workflow that automates the extraction of transcripts from YouTube videos. The solution includes:\n\n• Channel Processing: Automatically extracts videos from any YouTube channel using the YouTube API\n\n• Batch Processing: Handles multiple videos (50+ per run) with efficient error handling\n\n• Transcript Extraction: Utilizes specialized nodes to pull full video transcripts\n\n• Content Cleaning: Implements HTML entity decoding to ensure clean, readable text\n\n• Multiple Export Formats: Provides both structured JSON for data analysis and readable text formats\n\n• Error Recovery: Includes fallback mechanisms when transcript extraction fails\n\n• Flexible Configuration: Supports custom settings for channel ID and API parameters\n\nThis workflow eliminates hours of manual work and enables content analysis, searchability, and archiving of YouTube content at scale.',
-    videoUrl: '/videos/yt-transcript.mp4'
+    videoUrl: '/videos/yt-transcript.mp4',
+    hasWorkflow: true,
+    workflowData: 'youtube-transcript'
   },
   {
     id: 2,
@@ -39,7 +41,9 @@ const automationProjects = [
       { label: 'Success Rate', value: '98%' }
     ],
     details: 'I built a sophisticated website scraping workflow that intelligently discovers and analyzes website content structures. The workflow features:\n\n• URL Normalization: Standardizes input URLs following best practices (HTTPS, subdomain handling)\n\n• Robots.txt Analysis: Automatically checks for robots.txt files to locate sitemaps and respect crawling rules\n\n• Sitemap Detection: Identifies and extracts sitemaps in multiple formats (XML, HTML, etc.)\n\n• AI-Powered Processing: Uses GPT models to intelligently analyze website structure and content\n\n• Content Extraction: Pulls content from structured pages with proper formatting and metadata\n\n• Format Adaptation: Automatically detects and handles different content structures (XML vs. regular URLs)\n\n• Data Organization: Processes and stores all extracted data in Google Sheets for analysis\n\n• Error Handling: Includes comprehensive error recovery for websites with varying structures\n\nThis system can process websites of any complexity while maintaining high success rates (98%) and dramatically reducing manual analysis time.',
-    videoUrl: '/videos/web-scraping.mp4'
+    videoUrl: '/videos/web-scraping.mp4',
+    hasWorkflow: true,
+    workflowData: 'web-scraping'
   },
   {
     id: 3,
@@ -56,7 +60,9 @@ const automationProjects = [
       { label: 'Subreddits', value: '15' }
     ],
     details: 'I created an advanced n8n workflow that leverages AI to discover business opportunities from Reddit discussions. This system includes:\n\n• Multi-Subreddit Monitoring: Continuously monitors 15+ business and entrepreneurship-focused subreddits\n\n• Problem Identification: Uses keyword filtering and sentiment analysis to identify posts discussing genuine business problems\n\n• Content Classification: Categorizes posts by industry, problem type, and potential solution complexity\n\n• GPT-Powered Analysis: Utilizes GPT-4 to analyze problems and generate potential business solutions\n\n• Opportunity Scoring: Implements a scoring algorithm to rank opportunities by viability and market potential\n\n• Detailed Reporting: Generates comprehensive reports with problem statements, solution ideas, and market analyses\n\n• Trend Identification: Identifies emerging problem patterns across multiple posts and communities\n\nThis workflow has successfully identified over 50 viable business opportunities, providing detailed solution concepts and initial market sizing for each.',
-    videoUrl: '/videos/reddit-ideas.mp4'
+    videoUrl: '/videos/reddit-ideas.mp4',
+    hasWorkflow: true,
+    workflowData: 'reddit-biz-ideas'
   },
   {
     id: 4,
@@ -196,6 +202,60 @@ const automationProjects = [
     ],
     details: 'I architected and implemented a comprehensive integration hub using n8n that serves as the central nervous system connecting various business applications. This hub manages bidirectional data synchronization between CRM, ERP, marketing automation, support ticketing, and other critical systems. Using a combination of webhooks, scheduled triggers, and API polling, the hub ensures near real-time data consistency across all platforms while handling complex data mapping and transformation requirements.',
     videoUrl: '/videos/n8n-integration-hub.mp4'
+  },
+  {
+    id: 11,
+    title: 'AI-powered WooCommerce Support Agent',
+    tool: 'n8n',
+    toolIcon: placeholderImages.n8nLogo,
+    description: 'A sophisticated AI support agent that integrates with WooCommerce to provide real-time order status and tracking information to customers.',
+    impact: 'Reduced customer service inquiries by 75% while improving customer satisfaction through 24/7 instant responses',
+    image: placeholderImages.woocommerceSupport,
+    tags: ['WooCommerce', 'AI Agent', 'Customer Support', 'Order Tracking'],
+    metrics: [
+      { label: 'Response Time', value: '< 2 sec' },
+      { label: 'Accuracy', value: '96%' },
+      { label: 'Inquiries Handled', value: '1000+/day' }
+    ],
+    details: 'I developed a comprehensive AI-powered WooCommerce support agent that provides customers with instant, accurate information about their orders. This innovative solution includes:\n\n• Secure Authentication: Implements encrypted email verification to ensure customers can only access their own order data\n\n• Real-time Order Lookup: Connects directly to WooCommerce API to retrieve current order status and details\n\n• Shipping Integration: Pulls live tracking data from shipping providers (DHL, UPS) to provide accurate delivery updates\n\n• Natural Language Processing: Utilizes advanced AI models to understand and respond to a wide range of customer queries\n\n• Contextual Memory: Maintains conversation history to provide coherent responses throughout the interaction\n\n• Multilingual Support: Capable of communicating with customers in multiple languages\n\n• Error Handling: Provides helpful responses when information is missing or orders cannot be found\n\nThis agent significantly reduced the workload on human customer service representatives while providing customers with immediate 24/7 access to order information.',
+    hasWorkflow: true,
+    workflowData: 'woocommerce-support-agent'
+  },
+  {
+    id: 12,
+    title: 'Hacker News to Video Content Pipeline',
+    tool: 'n8n',
+    toolIcon: placeholderImages.n8nLogo,
+    description: 'End-to-end workflow that transforms popular Hacker News articles into professional video content for social media platforms.',
+    impact: 'Generated 120+ viral tech videos with minimal human intervention, resulting in over 1M social media impressions',
+    image: placeholderImages.hackerNewsVideo,
+    tags: ['Content Generation', 'AI Video', 'Social Media', 'Multimodal AI'],
+    metrics: [
+      { label: 'Production Time', value: '-90%' },
+      { label: 'Videos/Month', value: '30+' },
+      { label: 'Platforms', value: '4' }
+    ],
+    details: 'I engineered an innovative content pipeline that automatically transforms trending Hacker News articles into engaging video content. The workflow features:\n\n• Article Analysis: Intelligently selects and analyzes top Hacker News content to determine video suitability\n\n• Content Preparation: Processes articles into script-ready format with appropriate sectioning and highlights\n\n• Multi-model AI Processing: Utilizes advanced AI models for topic relevance scoring and content summarization\n\n• Image Generation: Creates custom visuals that match the content theme using AI image generation\n\n• Video Assembly: Combines text, images, and styling into cohesive video presentations\n\n• Content Distribution: Uploads finished videos to multiple platforms (YouTube, LinkedIn, Twitter, Instagram)\n\n• Performance Tracking: Monitors engagement metrics across platforms to refine future content\n\nThis automated system reduced content production time by 90% while maintaining high quality standards and dramatically increasing content output capability.',
+    hasWorkflow: true,
+    workflowData: 'hacker-news-video'
+  },
+  {
+    id: 13,
+    title: 'Email Subscription Service with AI Content Generation',
+    tool: 'n8n',
+    toolIcon: placeholderImages.n8nLogo,
+    description: 'Complete subscription management system that combines n8n Forms, Airtable, and AI to deliver personalized content to subscribers.',
+    impact: 'Achieved 45% higher engagement rates with AI-generated content compared to traditional newsletter formats',
+    image: placeholderImages.emailSubscription,
+    tags: ['Email Automation', 'Content Generation', 'Airtable', 'Subscription Management'],
+    metrics: [
+      { label: 'Open Rate', value: '+62%' },
+      { label: 'Subscribers', value: '5000+' },
+      { label: 'Personalization', value: '100%' }
+    ],
+    details: 'I designed and implemented a sophisticated email subscription system that uses AI to generate personalized content for subscribers. This comprehensive solution includes:\n\n• Subscription Management: Uses n8n forms for seamless subscriber registration and preference collection\n\n• Database Integration: Leverages Airtable for efficient subscriber data management and segmentation\n\n• Scheduled Delivery: Implements intelligent timing algorithms to deliver content at optimal times for each subscriber\n\n• AI Content Generation: Utilizes advanced language models to create personalized factoids and content based on subscriber preferences\n\n• Image Creation: Generates custom images for each email to increase visual engagement\n\n• Unsubscribe Handling: Provides simple, compliant unsubscribe functionality with immediate database updates\n\n• Analytics Tracking: Monitors open rates, click-through rates, and other key metrics to optimize performance\n\nThis system has dramatically improved subscriber engagement while reducing the manual effort required to create and distribute newsletter content.',
+    hasWorkflow: true,
+    workflowData: 'email-subscription-service'
   }
 ];
 
@@ -205,10 +265,32 @@ export default function Automation() {
   const [showWorkflow, setShowWorkflow] = useState(false);
   const [fullscreenImage, setFullscreenImage] = useState(false);
   const [zoomLevel, setZoomLevel] = useState(1);
+  const [workflowJson, setWorkflowJson] = useState(null);
   
   useEffect(() => {
     setIsLoaded(true);
   }, []);
+
+  // Fetch workflow JSON when project changes
+  useEffect(() => {
+    const fetchWorkflowJson = async () => {
+      if (selectedProject?.hasWorkflow) {
+        try {
+          const response = await fetch(`/data/${selectedProject.workflowData}.json`);
+          if (!response.ok) throw new Error('Failed to fetch workflow JSON');
+          const data = await response.json();
+          setWorkflowJson(data);
+        } catch (error) {
+          console.error('Error fetching workflow JSON:', error);
+          setWorkflowJson(null);
+        }
+      } else {
+        setWorkflowJson(null);
+      }
+    };
+
+    fetchWorkflowJson();
+  }, [selectedProject]);
 
   // Reset workflow view when project changes
   useEffect(() => {
@@ -451,6 +533,18 @@ export default function Automation() {
                       View Fullscreen
                     </button>
                   </div>
+                  {selectedProject.hasWorkflow && (
+                    <div className={styles.workflowJson}>
+                      <h4>Workflow Configuration</h4>
+                      <div className={styles.jsonViewer}>
+                        <pre>
+                          <code>
+                            {workflowJson ? JSON.stringify(workflowJson, null, 2) : 'Loading workflow configuration...'}
+                          </code>
+                        </pre>
+                      </div>
+                    </div>
+                  )}
                 </div>
                 
                 <div>

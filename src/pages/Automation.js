@@ -703,227 +703,15 @@ export default function Automation() {
           </motion.div>
         </motion.section>
 
-        {/* Services Section */}
-        <motion.section
-          className={styles.servicesSection}
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.8, delay: 0.5 }}
-        >
-          <h2 className={styles.servicesTitle}>Specialized n8n Services</h2>
-          <Text as="p" className={styles.servicesSubtitle} size="lg" color="secondary">
-            Comprehensive automation solutions tailored to your business needs
-          </Text>
-          
-          <div className={styles.serviceCards}>
-            <div className={styles.serviceCard}>
-              <div className={styles.serviceIconWrap}>
-                <svg className={styles.serviceIcon} viewBox="0 0 24 24" fill="none" stroke="var(--color-accent)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
-                  <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
-                </svg>
-              </div>
-              <h3>API Integrations</h3>
-              <Text as="p" size="md" color="secondary">
-                Connect disparate systems to create seamless data flows. I specialize in integrating CRMs, marketing platforms, project management tools, and custom APIs.
-              </Text>
-              <ul className={styles.serviceFeatures}>
-                <li>REST & GraphQL API integrations</li>
-                <li>Custom authentication methods</li>
-                <li>Data transformation & normalization</li>
-              </ul>
-            </div>
-            
-            <div className={styles.serviceCard}>
-              <div className={styles.serviceIconWrap}>
-                <svg className={styles.serviceIcon} viewBox="0 0 24 24" fill="none" stroke="var(--color-accent)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>
-                </svg>
-              </div>
-              <h3>Data Automation</h3>
-              <Text as="p" size="md" color="secondary">
-                Automate data collection, processing, and analysis workflows. Create ETL pipelines that transform raw data into actionable insights.
-              </Text>
-              <ul className={styles.serviceFeatures}>
-                <li>Scheduled data extraction</li>
-                <li>Multi-step transformation pipelines</li>
-                <li>Automated reporting systems</li>
-              </ul>
-            </div>
-            
-            <div className={styles.serviceCard}>
-              <div className={styles.serviceIconWrap}>
-                <svg className={styles.serviceIcon} viewBox="0 0 24 24" fill="none" stroke="var(--color-accent)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <circle cx="12" cy="12" r="3"></circle>
-                  <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
-                </svg>
-              </div>
-              <h3>Enterprise n8n Setup</h3>
-              <Text as="p" size="md" color="secondary">
-                End-to-end implementation of n8n in enterprise environments. From installation to configuration, security, and scaling for high-volume workflows.
-              </Text>
-              <ul className={styles.serviceFeatures}>
-                <li>Docker-based deployment</li>
-                <li>High-availability configuration</li>
-                <li>Security best practices implementation</li>
-              </ul>
-            </div>
-          </div>
-        </motion.section>
+        
 
-        {/* Success Statistics Section */}
-        <motion.section
-          className={styles.statsSection}
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.8, delay: 0.5 }}
-        >
-          <h2 className={styles.statsTitle}>Results-Driven Automation</h2>
-          <div className={styles.statsGrid}>
-            <div className={styles.statCard}>
-              <div className={styles.statValue}>50+</div>
-              <div className={styles.statLabel}>n8n Workflows<br />Developed</div>
-            </div>
-            <div className={styles.statCard}>
-              <div className={styles.statValue}>85%</div>
-              <div className={styles.statLabel}>Average Time<br />Saved for Clients</div>
-            </div>
-            <div className={styles.statCard}>
-              <div className={styles.statValue}>100%</div>
-              <div className={styles.statLabel}>Client<br />Satisfaction</div>
-            </div>
-            <div className={styles.statCard}>
-              <div className={styles.statValue}>24/7</div>
-              <div className={styles.statLabel}>Support<br />Available</div>
-            </div>
-          </div>
-        </motion.section>
-
-        {/* Interactive filter section */}
-        <motion.section
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.6 }}
-        >
-          <div className={styles.filters}>
-            <div className={styles.searchBar}>
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <circle cx="11" cy="11" r="8"></circle>
-                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-              </svg>
-              <input
-                type="text"
-                className={styles.searchInput}
-                placeholder="Search projects by title, description, or tags..."
-                value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)}
-              />
-              {(searchTerm || filterTag || filterTool) && (
-                <Button 
-                  size="small"
-                  variant="secondary"
-                  onClick={clearFilters}
-                >
-                  Clear
-                </Button>
-              )}
-            </div>
-            
-            <div>
-              <Text as="p" size="sm" color="secondary" style={{ marginBottom: 'var(--space-xs)' }}>
-                Filter by technology:
-              </Text>
-              <div className={styles.tagFilters}>
-                {allTags.slice(0, 12).map(tag => (
-                  <button
-                    key={tag}
-                    className={`${styles.tagFilter} ${filterTag === tag ? styles.tagFilterActive : ''}`}
-                    onClick={() => handleTagFilter(tag)}
-                  >
-                    {tag}
-                  </button>
-                ))}
-              </div>
-            </div>
-            
-            <div>
-              <Text as="p" size="sm" color="secondary" style={{ marginBottom: 'var(--space-xs)' }}>
-                Filter by tool:
-              </Text>
-              <div className={styles.toolFilters}>
-                {allTools.map(tool => (
-                  <button
-                    key={tool}
-                    className={`${styles.toolFilter} ${filterTool === tool ? styles.toolFilterActive : ''}`}
-                    onClick={() => handleToolFilter(tool)}
-                  >
-                    {tool}
-                  </button>
-                ))}
-              </div>
-            </div>
-          </div>
-        </motion.section>
+       
+       
 
         <section ref={scrollRef}>
-          <motion.h2 
-            className={styles.sectionTitle}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.7 }}
-          >
-            Proven n8n Solutions Portfolio
-          </motion.h2>
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.8 }}
-          >
-            <Text className={styles.sectionSubtitle} as="p" size="lg" color="secondary">
-              Browse real-world automation projects that have saved clients time and money through intelligent workflow design
-            </Text>
-          </motion.div>
+         
 
-          {/* Client Testimonials */}
-          <motion.div 
-            className={styles.testimonials}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.9 }}
-          >
-            <div className={styles.testimonial}>
-              <div className={styles.testimonialContent}>
-                <svg className={styles.quoteIcon} viewBox="0 0 24 24" fill="var(--color-accent)" width="32" height="32">
-                  <path d="M10 11l-2 2v5H3v-6l4-4h3v3zm11 0l-2 2v5h-5v-6l4-4h3v3z" />
-                </svg>
-                <Text as="p" size="lg" color="secondary">
-                  "Working with this n8n expert has transformed our business operations. The custom workflows they built have automated processes that used to take our team hours each day. The ROI has been incredible."
-                </Text>
-                <div className={styles.testimonialAuthor}>
-                  <div className={styles.authorDetails}>
-                    <Text as="p" size="md" weight="bold">Sarah Johnson</Text>
-                    <Text as="p" size="sm" color="secondary">Operations Director, TechSolutions Inc.</Text>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className={styles.testimonial}>
-              <div className={styles.testimonialContent}>
-                <svg className={styles.quoteIcon} viewBox="0 0 24 24" fill="var(--color-accent)" width="32" height="32">
-                  <path d="M10 11l-2 2v5H3v-6l4-4h3v3zm11 0l-2 2v5h-5v-6l4-4h3v3z" />
-                </svg>
-                <Text as="p" size="lg" color="secondary">
-                  "The n8n workflows created for our marketing team have eliminated data entry errors and saved us countless hours. The developer was professional, knowledgeable, and delivered exactly what we needed on time."
-                </Text>
-                <div className={styles.testimonialAuthor}>
-                  <div className={styles.authorDetails}>
-                    <Text as="p" size="md" weight="bold">Michael Chen</Text>
-                    <Text as="p" size="sm" color="secondary">Marketing Manager, GrowthCore</Text>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </motion.div>
+          
 
           {/* How I Work Section */}
           <motion.section
@@ -997,6 +785,90 @@ export default function Automation() {
               </div>
             </div>
           </motion.section>
+
+          <motion.h2 
+            className={styles.sectionTitle}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.7 }}
+          >
+            Proven n8n Solutions Portfolio
+          </motion.h2>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.8 }}
+          >
+            <Text className={styles.sectionSubtitle} as="p" size="lg" color="secondary">
+              Browse real-world automation projects that have saved clients time and money through intelligent workflow design
+            </Text>
+          </motion.div>
+
+           {/* Interactive filter section */}
+        <motion.section
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.6 }}
+        >
+          <div className={styles.filters}>
+            <div className={styles.searchBar}>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <circle cx="11" cy="11" r="8"></circle>
+                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+              </svg>
+              <input
+                type="text"
+                className={styles.searchInput}
+                placeholder="Search projects by title, description, or tags..."
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+              />
+              {(searchTerm || filterTag || filterTool) && (
+                <Button 
+                  size="small"
+                  variant="secondary"
+                  onClick={clearFilters}
+                >
+                  Clear
+                </Button>
+              )}
+            </div>
+            
+            <div>
+              <Text as="p" size="sm" color="secondary" style={{ marginBottom: 'var(--space-xs)' }}>
+                Filter by technology:
+              </Text>
+              <div className={styles.tagFilters}>
+                {allTags.slice(0, 12).map(tag => (
+                  <button
+                    key={tag}
+                    className={`${styles.tagFilter} ${filterTag === tag ? styles.tagFilterActive : ''}`}
+                    onClick={() => handleTagFilter(tag)}
+                  >
+                    {tag}
+                  </button>
+                ))}
+              </div>
+            </div>
+            
+            <div>
+              <Text as="p" size="sm" color="secondary" style={{ marginBottom: 'var(--space-xs)' }}>
+                Filter by tool:
+              </Text>
+              <div className={styles.toolFilters}>
+                {allTools.map(tool => (
+                  <button
+                    key={tool}
+                    className={`${styles.toolFilter} ${filterTool === tool ? styles.toolFilterActive : ''}`}
+                    onClick={() => handleToolFilter(tool)}
+                  >
+                    {tool}
+                  </button>
+                ))}
+              </div>
+            </div>
+          </div>
+        </motion.section>
 
           {filteredProjects.length === 0 ? (
             <motion.div
@@ -1080,6 +952,74 @@ export default function Automation() {
             </motion.div>
           )}
         </section>
+
+        {/* Services Section */}
+        <motion.section
+          className={styles.servicesSection}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.8, delay: 0.5 }}
+        >
+          <h2 className={styles.servicesTitle}>Specialized n8n Services</h2>
+          <Text as="p" className={styles.servicesSubtitle} size="lg" color="secondary">
+            Comprehensive automation solutions tailored to your business needs
+          </Text>
+          
+          <div className={styles.serviceCards}>
+            <div className={styles.serviceCard}>
+              <div className={styles.serviceIconWrap}>
+                <svg className={styles.serviceIcon} viewBox="0 0 24 24" fill="none" stroke="var(--color-accent)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
+                  <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+                </svg>
+              </div>
+              <h3>API Integrations</h3>
+              <Text as="p" size="md" color="secondary">
+                Connect disparate systems to create seamless data flows. I specialize in integrating CRMs, marketing platforms, project management tools, and custom APIs.
+              </Text>
+              <ul className={styles.serviceFeatures}>
+                <li>REST & GraphQL API integrations</li>
+                <li>Custom authentication methods</li>
+                <li>Data transformation & normalization</li>
+              </ul>
+            </div>
+            
+            <div className={styles.serviceCard}>
+              <div className={styles.serviceIconWrap}>
+                <svg className={styles.serviceIcon} viewBox="0 0 24 24" fill="none" stroke="var(--color-accent)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>
+                </svg>
+              </div>
+              <h3>Data Automation</h3>
+              <Text as="p" size="md" color="secondary">
+                Automate data collection, processing, and analysis workflows. Create ETL pipelines that transform raw data into actionable insights.
+              </Text>
+              <ul className={styles.serviceFeatures}>
+                <li>Scheduled data extraction</li>
+                <li>Multi-step transformation pipelines</li>
+                <li>Automated reporting systems</li>
+              </ul>
+            </div>
+            
+            <div className={styles.serviceCard}>
+              <div className={styles.serviceIconWrap}>
+                <svg className={styles.serviceIcon} viewBox="0 0 24 24" fill="none" stroke="var(--color-accent)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <circle cx="12" cy="12" r="3"></circle>
+                  <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+                </svg>
+              </div>
+              <h3>Enterprise n8n Setup</h3>
+              <Text as="p" size="md" color="secondary">
+                End-to-end implementation of n8n in enterprise environments. From installation to configuration, security, and scaling for high-volume workflows.
+              </Text>
+              <ul className={styles.serviceFeatures}>
+                <li>Docker-based deployment</li>
+                <li>High-availability configuration</li>
+                <li>Security best practices implementation</li>
+              </ul>
+            </div>
+          </div>
+        </motion.section>
 
         {/* FAQ Section */}
         <motion.section

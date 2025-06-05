@@ -94,6 +94,9 @@ html, body {
   color: var(--color-text);
   line-height: 1.5;
   scroll-behavior: smooth;
+  width: 100vw;
+  max-width: 100%;
+  overflow-x: hidden;
 }
 
 * {

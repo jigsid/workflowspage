@@ -583,6 +583,17 @@ export default function Automation() {
           animate={{ opacity: 1 }}
           transition={{ duration: 0.8 }}
         >
+          <video 
+            className={styles.videoBackground}
+            autoPlay
+            muted
+            loop
+            playsInline
+            preload="auto"
+          >
+            <source src="/videoplayback.mp4" type="video/mp4" />
+          </video>
+          <div className={styles.videoOverlay}></div>
           <div className={styles.heroContent}>
             <motion.div 
               className={styles.heroTextContent}
@@ -714,7 +725,7 @@ export default function Automation() {
           
           <motion.div 
             className={styles.featureCards}
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.5 }}
           >

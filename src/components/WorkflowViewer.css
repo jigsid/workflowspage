@@ -3,38 +3,41 @@
   flex-direction: column;
   width: 100%;
   height: 100%;
-  background-color: #f8f8f8;
-  border-radius: 8px;
+  background-color: #000000;
+  border-radius: 12px;
   overflow: hidden;
-  font-family: 'Roboto', sans-serif;
+  font-family: 'Inter', sans-serif;
+  padding: 0 var(--space-md);
+  box-sizing: border-box;
 }
 
 .reactflow-wrapper {
   width: 100%;
   height: 70%; /* Use 70% of container height for the flow visualization */
   min-height: 300px;
-  background-color: #f8f8f8;
+  background-color: #000000;
   background-image: 
-    linear-gradient(to right, rgba(128, 128, 128, 0.05) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(128, 128, 128, 0.05) 1px, transparent 1px);
+    linear-gradient(to right, rgba(128, 128, 128, 0.03) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(128, 128, 128, 0.03) 1px, transparent 1px);
   background-size: 20px 20px;
+  padding: var(--space-md) 0;
 }
 
 /* Custom Node Styling - n8n Style */
 .custom-node {
   width: 180px;
-  border-radius: 6px;
-  border: 2px solid;
-  background-color: white;
-  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  background-color: #0a0a0a;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
   overflow: hidden;
-  transition: box-shadow 0.2s ease, transform 0.2s ease;
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
   position: relative;
 }
 
 .custom-node:hover {
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
-  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3), 0 0 15px rgba(92, 124, 250, 0.2);
+  transform: translateY(-3px);
 }
 
 .custom-node:before {
@@ -45,18 +48,18 @@
   right: 0;
   height: 3px;
   background-color: inherit;
-  border-top-left-radius: 6px;
-  border-top-right-radius: 6px;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
 }
 
 .node-header {
   padding: 10px 12px;
   color: white;
-  font-weight: bold;
+  font-weight: 600;
   display: flex;
   align-items: center;
-  border-top-left-radius: 6px;
-  border-top-right-radius: 6px;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
   position: relative;
 }
 
@@ -83,8 +86,8 @@
 .node-content {
   padding: 12px;
   font-size: 12px;
-  color: #333;
-  background-color: white;
+  color: #eee;
+  background-color: #0a0a0a;
 }
 
 .node-description {
@@ -247,22 +250,23 @@
 
 /* Workflow details section */
 .workflow-details {
-  padding: 15px;
-  background-color: white;
-  border-top: 1px solid #eee;
+  padding: 20px;
+  background-color: #0a0a0a;
+  border-top: 1px solid rgba(255, 255, 255, 0.03);
   display: flex;
   flex-direction: column;
-  gap: 15px;
+  gap: 20px;
   height: 30%; /* Use 30% of container height for the details */
   overflow-y: auto;
 }
 
 .workflow-info h3 {
-  margin: 0 0 6px 0;
+  margin: 0 0 8px 0;
   font-size: 16px;
-  color: #333;
+  color: #fff;
   display: flex;
   align-items: center;
+  letter-spacing: -0.01em;
 }
 
 .workflow-info h3:before {
@@ -270,27 +274,29 @@
   display: inline-block;
   width: 16px;
   height: 16px;
-  background-color: #6956E5;
+  background-color: #5c7cfa;
   border-radius: 50%;
   margin-right: 8px;
 }
 
 .workflow-info p {
   margin: 0;
-  color: #666;
+  color: rgba(255, 255, 255, 0.7);
   font-size: 14px;
   line-height: 1.5;
 }
 
 .workflow-features h4,
 .workflow-technology h4 {
-  margin: 0 0 8px 0;
+  margin: 0 0 10px 0;
   font-size: 14px;
-  color: #333;
-  border-bottom: 1px solid #eee;
-  padding-bottom: 6px;
+  color: #fff;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  padding-bottom: 8px;
   display: flex;
   align-items: center;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
 }
 
 .workflow-features h4:before {
@@ -310,13 +316,13 @@
 
 .workflow-features li {
   margin-bottom: 8px;
-  color: #555;
+  color: rgba(255, 255, 255, 0.7);
   position: relative;
 }
 
 .workflow-features li:before {
   content: "•";
-  color: #6956E5;
+  color: #5c7cfa;
   font-weight: bold;
   position: absolute;
   left: -15px;
@@ -329,32 +335,33 @@
 }
 
 .technology-item {
-  background-color: #f5f5f5;
-  padding: 10px 12px;
-  border-radius: 6px;
+  background-color: rgba(255, 255, 255, 0.03);
+  padding: 12px 15px;
+  border-radius: 10px;
   display: flex;
   flex-direction: column;
-  border: 1px solid #ececec;
+  border: 1px solid rgba(255, 255, 255, 0.03);
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .technology-item:hover {
   transform: translateY(-2px);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2), 0 0 10px rgba(92, 124, 250, 0.1);
+  border-color: rgba(92, 124, 250, 0.2);
 }
 
 .technology-label {
-  font-weight: bold;
+  font-weight: 600;
   font-size: 11px;
-  color: #555;
+  color: rgba(255, 255, 255, 0.5);
   text-transform: uppercase;
   letter-spacing: 0.5px;
-  margin-bottom: 3px;
+  margin-bottom: 4px;
 }
 
 .technology-value {
   font-size: 13px;
-  color: #333;
+  color: #fff;
 }
 
 /* Loading state */
@@ -421,24 +428,24 @@
 /* Dark mode adjustments */
 @media (prefers-color-scheme: dark) {
   .workflow-viewer-container {
-    background-color: #1e1e1e;
+    background-color: #000000;
   }
   
   .reactflow-wrapper {
-    background-color: #1e1e1e;
+    background-color: #000000;
     background-image: 
       linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
       linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
   }
   
   .custom-node {
-    background-color: #2a2a2a;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    background-color: #0a0a0a;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
   }
   
   .node-content {
-    color: #ddd;
-    background-color: #2a2a2a;
+    color: #eee;
+    background-color: #0a0a0a;
   }
   
   .node-description {
@@ -503,8 +510,8 @@
   }
   
   .workflow-details {
-    background-color: #2a2a2a;
-    border-top-color: #444;
+    background-color: #0a0a0a;
+    border-top-color: rgba(255, 255, 255, 0.03);
   }
   
   .workflow-info h3 {
@@ -555,28 +562,33 @@
 
 /* Workflow panel header */
 .workflow-panel-header {
-  background-color: white;
-  padding: 6px 10px;
-  border-radius: 6px;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(10px);
+  padding: 8px 12px;
+  border-radius: 8px;
   display: flex;
   align-items: center;
   gap: 8px;
-  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
-  font-size: 12px;
-  margin-top: 8px;
-  margin-left: 8px;
-  border: 1px solid #eee;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+.workflow-panel-header strong {
+  font-size: 14px;
+  font-weight: 600;
+  color: #fff;
+  letter-spacing: -0.01em;
 }
 
 .workflow-type-badge {
-  background-color: #6956E5;
-  color: white;
-  padding: 2px 6px;
-  border-radius: 4px;
+  background: rgba(92, 124, 250, 0.15);
+  color: #5c7cfa;
   font-size: 10px;
-  font-weight: bold;
-  text-transform: uppercase;
+  padding: 2px 8px;
+  border-radius: 12px;
+  font-weight: 500;
   letter-spacing: 0.5px;
+  text-transform: uppercase;
 }
 
 /* Edge labels */
@@ -606,5 +618,34 @@
     background-color: #333;
     color: #ddd;
     border-color: #444;
+  }
+}
+
+/* Media queries for responsive design */
+@media (max-width: 768px) {
+  .workflow-viewer-container {
+    padding: 0 var(--space-sm);
+  }
+  
+  .workflow-details {
+    padding: 15px;
+  }
+  
+  .technology-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .workflow-viewer-container {
+    padding: 0 var(--space-xs);
+  }
+  
+  .workflow-details {
+    padding: 10px;
+  }
+  
+  .custom-node {
+    width: 160px;
   }
 } 

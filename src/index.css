@@ -3,24 +3,24 @@
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
   --font-mono: 'Roboto Mono', 'SF Mono', monospace;
   
-  /* Colors - Updated for professional look */
-  --color-bg: #0b101c;
-  --color-bg-secondary: #141b2d;
+  /* Colors - Updated for sleek 2025 SaaS look */
+  --color-bg: #000000;
+  --color-bg-secondary: #0a0a0a;
   --color-text: #FFFFFF;
   --color-text-secondary: rgba(255, 255, 255, 0.7);
-  --color-accent: #3a7bd5;
-  --color-accent-dark: #2a5ea8;
-  --color-accent-light: rgba(58, 123, 213, 0.15);
-  --color-success: #0caf60;
-  --color-warning: #e0ad3f;
-  --color-error: #d83a52;
+  --color-accent: #5c7cfa;
+  --color-accent-dark: #4263eb;
+  --color-accent-light: rgba(92, 124, 250, 0.15);
+  --color-success: #12b886;
+  --color-warning: #fab005;
+  --color-error: #fa5252;
   --color-border: rgba(255, 255, 255, 0.08);
   
-  /* Gradient colors - more subtle and professional */
-  --gradient-primary: linear-gradient(135deg, #3a7bd5 0%, #2e5c9f 100%);
-  --gradient-secondary: linear-gradient(135deg, #2d3748 0%, #1a202c 100%);
-  --gradient-accent: linear-gradient(135deg, #3a7bd5 0%, #2e5c9f 100%);
-  --gradient-glow: radial-gradient(circle at 50% 0%, rgba(58, 123, 213, 0.15) 0%, rgba(10, 14, 23, 0) 70%);
+  /* Gradient colors - more modern and sleek */
+  --gradient-primary: linear-gradient(135deg, #5c7cfa 0%, #4263eb 100%);
+  --gradient-secondary: linear-gradient(135deg, #1a1a1a 0%, #0a0a0a 100%);
+  --gradient-accent: linear-gradient(135deg, #5c7cfa 0%, #4263eb 100%);
+  --gradient-glow: radial-gradient(circle at 50% 0%, rgba(92, 124, 250, 0.15) 0%, rgba(0, 0, 0, 0) 70%);
   
   /* Spacing */
   --space-xxs: 4px;
@@ -50,18 +50,18 @@
   
   /* Border radius */
   --radius-sm: 4px;
-  --radius-md: 6px;
-  --radius-lg: 8px;
-  --radius-xl: 12px;
-  --radius-2xl: 16px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-xl: 16px;
+  --radius-2xl: 20px;
   --radius-full: 9999px;
   
-  /* Shadows - more subtle */
-  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.15);
-  --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.2);
-  --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.25);
-  --shadow-glow: 0 0 12px rgba(58, 123, 213, 0.2);
-  --shadow-accent: 0 0 10px rgba(58, 123, 213, 0.3);
+  /* Shadows - more sleek and modern */
+  --shadow-sm: 0 2px 10px rgba(0, 0, 0, 0.2);
+  --shadow-md: 0 4px 20px rgba(0, 0, 0, 0.25);
+  --shadow-lg: 0 8px 30px rgba(0, 0, 0, 0.3);
+  --shadow-glow: 0 0 15px rgba(92, 124, 250, 0.25);
+  --shadow-accent: 0 0 12px rgba(92, 124, 250, 0.35);
   
   /* Transitions */
   --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
@@ -107,5 +107,5 @@ code {
   font-family: var(--font-mono);
 }
 
-/* Add Font import - Added a weight 300 for more elegant typography */
+/* Add Font import - Updated for more modern typography */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Roboto+Mono&display=swap');

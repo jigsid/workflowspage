@@ -637,7 +637,7 @@ export default function Automation() {
                     size="large"
                     className={styles.ctaButton}
                   >
-                    Get Started Free
+                    Contact Me
                   </Button>
                   <Button
                     onClick={() => scrollRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' })}

@@ -60,18 +60,26 @@ const StickyNote = ({ data }) => {
   );
 };
 
-// Define node types to color mapping
+// Map node types to colors
 const typeToColor = {
-  'trigger': '#6956E5',        // Trigger nodes (purple)
-  'action': '#FF6B6B',         // Action nodes (red)
-  'processing': '#5AAAFA',     // Processing nodes (blue)
-  'decision': '#FF9A3C',       // Decision nodes (orange)
-  'ai': '#28C76F',             // AI nodes (green)
-  'api': '#7367F0',            // API nodes (indigo)
-  'database': '#336791',       // Database nodes (blue-gray)
-  'whatsapp': '#25D366',       // WhatsApp nodes (green)
-  'output': '#FFC600',         // Output nodes (yellow)
-  'input': '#FF6B6B'           // Input nodes (red)
+  'trigger': '#5c7cfa',
+  'action': '#4263eb',
+  'helper': '#748ffc',
+  'api': '#4dabf7',
+  'database': '#15aabf',
+  'notification': '#3bc9db',
+  'analytics': '#38d9a9',
+  'transform': '#20c997',
+  'condition': '#12b886',
+  'loop': '#69db7c',
+  'file': '#8ce99a',
+  'email': '#a9e34b',
+  'social': '#ffe066',
+  'messaging': '#fcc419',
+  'scraping': '#ff922b',
+  'ai': '#fd7e14',
+  'integration': '#fa5252',
+  'custom': '#e64980'
 };
 
 // Mini-map node color representation
@@ -101,12 +109,12 @@ const WorkflowViewer = ({ workflowData }) => {
   const defaultEdgeOptions = useMemo(() => ({
     type: 'smoothstep',
     animated: true,
-    style: { stroke: '#555', strokeWidth: 2 },
+    style: { stroke: '#5c7cfa', strokeWidth: 2 },
     markerEnd: {
       type: MarkerType.ArrowClosed,
       width: 20,
       height: 20,
-      color: '#555',
+      color: '#5c7cfa',
     },
   }), []);
 
@@ -564,7 +572,7 @@ const WorkflowViewer = ({ workflowData }) => {
             height={80}
             width={140}
           />
-          <Background color="#aaa" gap={16} size={1} />
+          <Background color="#333" gap={16} size={1} />
           <Panel position="top-left">
             <div className="workflow-panel-header">
               <strong>{workflowInfo.name}</strong>

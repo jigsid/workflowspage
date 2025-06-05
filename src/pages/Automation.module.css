@@ -128,6 +128,7 @@
   backdrop-filter: blur(10px);
   border: 1px solid rgba(255, 255, 255, 0.06);
   box-shadow: var(--shadow-sm);
+  margin-bottom: var(--space-xl);
 }
 
 .searchBar {
@@ -135,21 +136,50 @@
   align-items: center;
   gap: var(--space-md);
   padding: var(--space-md);
-  background: rgba(255, 255, 255, 0.05);
+  background: linear-gradient(to right, rgba(20, 27, 45, 0.8), rgba(30, 40, 70, 0.8));
   border-radius: var(--radius-md);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(92, 124, 250, 0.15);
   transition: all var(--transition-normal);
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.2);
+  position: relative;
+  overflow: hidden;
+}
+
+.searchBar::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, 
+    transparent, 
+    rgba(92, 124, 250, 0.1), 
+    transparent
+  );
+  transition: left 0.8s ease;
 }
 
 .searchBar:focus-within {
   border-color: var(--color-accent);
-  box-shadow: 0 0 0 1px var(--color-accent-light);
+  box-shadow: 0 0 0 1px var(--color-accent-light), 0 0 8px rgba(92, 124, 250, 0.3);
+  background: linear-gradient(to right, rgba(25, 35, 60, 0.9), rgba(35, 45, 75, 0.9));
+}
+
+.searchBar:focus-within::before {
+  left: 100%;
 }
 
 .searchBar svg {
   width: 20px;
   height: 20px;
-  color: rgba(255, 255, 255, 0.6);
+  color: var(--color-accent);
+  opacity: 0.8;
+  transition: opacity var(--transition-normal);
+}
+
+.searchBar:focus-within svg {
+  opacity: 1;
 }
 
 .searchInput {
@@ -159,10 +189,13 @@
   font-size: var(--font-size-md);
   color: var(--color-text);
   outline: none;
+  padding: var(--space-xs) 0;
 }
 
 .searchInput::placeholder {
-  color: rgba(255, 255, 255, 0.6);
+  color: rgba(255, 255, 255, 0.5);
+  font-weight: var(--font-weight-normal);
+  letter-spacing: 0.01em;
 }
 
 .tagFilters,
@@ -184,6 +217,7 @@
   background: rgba(255, 255, 255, 0.05);
   border: 1px solid rgba(255, 255, 255, 0.08);
   cursor: pointer;
+  color: var(--color-text);
 }
 
 .tagFilter:hover,

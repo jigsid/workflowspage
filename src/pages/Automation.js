@@ -735,8 +735,8 @@ export default function Automation() {
                   <path d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
                 </svg>
               </div>
-              <h3>Increased Efficiency</h3>
-              <p>Reduce operational costs by 80%</p>
+              <h3>Efficiency</h3>
+              <p>Reduce costs by 80%</p>
             </div>
             <div className={styles.featureCard}>
               <div className={styles.featureIcon}>
@@ -744,8 +744,8 @@ export default function Automation() {
                   <path d="M13 10V3L4 14h7v7l9-11h-7z"></path>
                 </svg>
               </div>
-              <h3>Seamless Integration</h3>
-              <p>Connect 200+ apps with ease</p>
+              <h3>Integration</h3>
+              <p>Connect 200+ apps</p>
             </div>
             <div className={styles.featureCard}>
               <div className={styles.featureIcon}>
@@ -754,8 +754,8 @@ export default function Automation() {
                   <path d="M12 6v6l4 2"></path>
                 </svg>
               </div>
-              <h3>Fast Implementation</h3>
-              <p>Get running in days, not months</p>
+              <h3>Speed</h3>
+              <p>Launch in days, not months</p>
             </div>
           </motion.div>
         </motion.div>
